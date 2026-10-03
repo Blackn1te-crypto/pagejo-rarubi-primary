@@ -274,31 +274,38 @@ function applyContent() {
   const badgeEls = document.querySelectorAll('.header-badge');
   badgeEls.forEach(el => el.innerHTML = '<i class="fas fa-calendar-alt"></i> Est. ' + data.school.established);
 
-  /* HERO */
+  /* HERO BADGE */
   const heroBadge = document.querySelector('.hero-badge');
   if (heroBadge) heroBadge.innerHTML = '<i class="fas fa-award"></i> ' + data.hero.badge;
 
-  const heroTitle = document.querySelector('.hero h2');
-  if (heroTitle) {
-    const parts = data.hero.title.split('Pagejo Rarubi');
-    if (parts.length === 2) {
-      heroTitle.innerHTML = parts[0] + '<span class="highlight">Pagejo Rarubi</span>' + parts[1];
-    } else {
-      heroTitle.textContent = data.hero.title;
-    }
+  /* HERO TITLE — update typing messages with admin's title */
+  if (window.TYPING_MESSAGES && data.hero.title) {
+    window.TYPING_MESSAGES[0] = data.hero.title;
   }
 
   const heroSubtitle = document.querySelector('.hero p');
   if (heroSubtitle) heroSubtitle.textContent = data.hero.subtitle;
 
+  /* HERO STATS — with data-count so counters animate */
   const statsContainer = document.querySelector('.hero-stats');
   if (statsContainer && data.hero.stats) {
-    statsContainer.innerHTML = data.hero.stats.map(s => `
-      <div class="hero-stat">
-        <div class="number">${s.number}</div>
-        <div class="label">${s.label}</div>
-      </div>
-    `).join('');
+    statsContainer.innerHTML = data.hero.stats.map(s => {
+      const match = String(s.number).match(/^(\d+)(.*)$/);
+      const count = match ? match[1] : '';
+      const suffix = match ? match[2] : '';
+      return `
+        <div class="hero-stat animate-on-scroll">
+          <div class="number"${count ? ` data-count="${count}" data-suffix="${suffix}"` : ''}>${s.number}</div>
+          <div class="label">${s.label}</div>
+        </div>
+      `;
+    }).join('');
+
+    setTimeout(() => {
+      if (typeof window.__rebuildCounters === 'function') {
+        window.__rebuildCounters();
+      }
+    }, 100);
   }
 
   /* WELCOME */
@@ -408,7 +415,9 @@ window.addEventListener('storage', (e) => {
   }
 });
 
-/* Global exports */
+/* ============================================================
+   GLOBAL EXPORTS
+   ============================================================ */
 window.getData = getData;
 window.saveData = saveData;
 window.resetData = resetData;
@@ -420,5 +429,39 @@ window.applyContent = applyContent;
 window.applyTheme = applyTheme;
 window.renderPublicResults = renderPublicResults;
 
-console.log('%c Pagejo Rarubi CMS Loaded ', 'background: #1e4b3a; color: #f9e6b3; font-size: 14px; font-weight: bold; padding: 6px; border-radius: 6px;');
-console.log('%c Admin Key: pagejorarubiprischadmin ', 'background: #d4a373; color: #0b2b1e; font-size: 11px; padding: 4px 8px; border-radius: 4px;');
+/* ============================================================
+   COUNTER REBUILD HOOK
+   ============================================================ */
+window.__rebuildCounters = function () {
+  const counters = document.querySelectorAll('[data-count]:not([data-counted])');
+  counters.forEach(el => {
+    el.setAttribute('data-counted', 'true');
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    if (isNaN(target)) return;
+
+    const duration = 1600;
+    const startTime = performance.now();
+
+    function update(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+};
+
+/* ============================================================
+   BRANDING LOGS
+   ============================================================ */
+console.log(
+  '%c Pagejo Rarubi CMS Loaded ',
+  'background: #1e4b3a; color: #f9e6b3; font-size: 14px; font-weight: bold; padding: 6px; border-radius: 6px;'
+);
+console.log(
+  '%c Admin Key: pagejorarubiprischadmin ',
+  'background: #d4a373; color: #0b2b1e; font-size: 11px; padding: 4px 8px; border-radius: 4px;'
+);
