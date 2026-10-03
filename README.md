@@ -1,113 +1,172 @@
+<!-- ============================================================
+     PAGEJO RARUBI PRIMARY SCHOOL — README
+     Developer: Pardon Katsande (BL@CKN1TE)
+     GitHub: Blackn1te-crypto
+     ============================================================ -->
+
 <h1 align="center">
-  🏫 Pagejo Rarubi Primary School
+  <img src="https://readme-typing-svg.demolab.com?font=Montserrat&weight=900&size=42&duration=2500&pause=800&color=1E4B3A&center=true&vCenter=true&width=900&lines=🏫+Pagejo+Rarubi+Primary+School;Official+Website+%26+CMS;Ward+13+·+Goromonzi+·+Zimbabwe;Built+by+BL%40CKN1TE" alt="Typing Animation">
 </h1>
 
-<h3 align="center">
-  Official Website &amp; Content Management System
-</h3>
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Open+Sans&size=18&duration=3000&pause=1000&color=D4A373&center=true&vCenter=true&width=700&lines=A+heritage-driven+education...;Life+skills+·+Character+building;Excellence+in+Education" alt="Typing Subtitle">
+</p>
+
+---
+
+<h2 align="center">🌐 Live Demo</h2>
 
 <p align="center">
-  <strong>Ward 13 · Goromonzi District · Mashonaland East · Zimbabwe</strong>
+  <a href="https://blackn1te-crypto.github.io/Pagejorarubi/">
+    <img src="https://img.shields.io/badge/🌐_LIVE_SITE-Visit_Now-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Site">
+  </a>
+  <a href="https://blackn1te-crypto.github.io/Pagejorarubi/admin.html">
+    <img src="https://img.shields.io/badge/🔐_ADMIN_PANEL-Login-blue?style=for-the-badge&logo=auth0&logoColor=white" alt="Admin Panel">
+  </a>
+  <a href="https://github.com/Blackn1te-crypto/Pagejorarubi/issues">
+    <img src="https://img.shields.io/badge/🐛_REPORT-Bug-red?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
+  </a>
 </p>
 
 <p align="center">
-  <a href="https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/">
-    <img src="https://img.shields.io/badge/🌐_Live_Site-Visit_Now-brightgreen?style=for-the-badge" alt="Live Site">
-  </a>
-  <a href="https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/admin.html">
-    <img src="https://img.shields.io/badge/🔐_Admin_Panel-Login-blue?style=for-the-badge" alt="Admin Panel">
-  </a>
-  <a href="https://github.com/YOUR-USERNAME/pagejo-rarubi-primary/issues">
-    <img src="https://img.shields.io/badge/🐛_Report-Bug-red?style=for-the-badge" alt="Report Bug">
-  </a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/status-live-success?style=flat-square" alt="Status">
+  <img src="https://img.shields.io/badge/STATUS-LIVE-success?style=flat-square&logo=statuspage" alt="Status">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
-  <img src="https://img.shields.io/badge/No_Frameworks-Vanilla_JS-orange?style=flat-square" alt="Vanilla JS">
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JS">
+  <img src="https://img.shields.io/badge/Vanilla_JS-No_Frameworks-orange?style=flat-square&logo=javascript&logoColor=white" alt="Vanilla JS">
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License">
 </p>
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Pages
 
-| Page | Link |
-|---|---|
-| 🏠 **Homepage** | [https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/) |
-| 👥 **About Us** | [/about.html](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/about.html) |
-| 📚 **Academics** | [/academics.html](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/academics.html) |
-| 📊 **Results** | [/results.html](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/results.html) |
-| 🌱 **Projects** | [/projects.html](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/projects.html) |
-| 🖼️ **Gallery** | [/gallery.html](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/gallery.html) |
-| 📞 **Contact** | [/contact.html](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/contact.html) |
-| 🔐 **Admin Panel** | [/admin.html](https://YOUR-USERNAME.github.io/pagejo-rarubi-primary/admin.html) |
-
-> ⚠️ **Replace `YOUR-USERNAME`** with your GitHub username after pushing the repo.
+| Page | Status | Link |
+|---|---|---|
+| 🏠 **Homepage** | ![live](https://img.shields.io/badge/-LIVE-brightgreen?style=flat-square) | [Visit →](https://blackn1te-crypto.github.io/Pagejorarubi/) |
+| 👥 **About Us** | ![live](https://img.shields.io/badge/-LIVE-brightgreen?style=flat-square) | [Visit →](https://blackn1te-crypto.github.io/Pagejorarubi/about.html) |
+| 📚 **Academics** | ![live](https://img.shields.io/badge/-LIVE-brightgreen?style=flat-square) | [Visit →](https://blackn1te-crypto.github.io/Pagejorarubi/academics.html) |
+| 📊 **Results** | ![live](https://img.shields.io/badge/-LIVE-brightgreen?style=flat-square) | [Visit →](https://blackn1te-crypto.github.io/Pagejorarubi/results.html) |
+| 🌱 **Projects** | ![live](https://img.shields.io/badge/-LIVE-brightgreen?style=flat-square) | [Visit →](https://blackn1te-crypto.github.io/Pagejorarubi/projects.html) |
+| 🖼️ **Gallery** | ![live](https://img.shields.io/badge/-LIVE-brightgreen?style=flat-square) | [Visit →](https://blackn1te-crypto.github.io/Pagejorarubi/gallery.html) |
+| 📞 **Contact** | ![live](https://img.shields.io/badge/-LIVE-brightgreen?style=flat-square) | [Visit →](https://blackn1te-crypto.github.io/Pagejorarubi/contact.html) |
+| 🔐 **Admin Panel** | ![secure](https://img.shields.io/badge/-SECURE-blue?style=flat-square) | [Login →](https://blackn1te-crypto.github.io/Pagejorarubi/admin.html) |
 
 ---
 
-## 📖 About the Project
+## 🎬 Animated Preview
 
-A modern, mobile-first website built for **Pagejo Rarubi Primary School** — a heritage-driven primary school in Goromonzi District, Zimbabwe.
+<p align="center">
+  <img src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif" width="700" alt="Website Preview">
+</p>
 
-The site is fully powered by a **custom-built CMS (Content Management System)** that lets school administrators update **every part of the site live** — no coding, no FTP, no developer needed.
-
-From changing the phone number, adding student results, uploading photos, or switching the entire site's colour theme — everything is done through the built-in Admin Panel.
+<p align="center">
+  <em>💡 Tip: Add a screen recording or GIF of your site here to showcase it visually.</em>
+</p>
 
 ---
 
-## ✨ Features
+## ✨ Feature Showcase
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Montserrat&weight=700&size=20&duration=2000&pause=500&color=D4A373&center=true&vCenter=true&width=700&lines=📱+Fully+Responsive;🎨+Dynamic+Theming;🖼️+Image+Lightbox;🌊+Scroll+Animations;🔐+Admin+CMS+Panel" alt="Features">
+</p>
 
 ### 🌐 Public Website
-- 📱 Fully responsive (mobile, tablet, desktop)
-- 🎨 Dynamic theming — colours changed from admin panel apply site-wide
-- 🖼️ Custom image lightbox with keyboard + swipe navigation
-- 🌊 Scroll-triggered animations
-- 📖 Mobile navigation drawer
-- ♿ Accessible (ARIA, semantic HTML)
-- 🚀 Zero dependencies — pure HTML, CSS, JavaScript
-- ⚡ Lightning fast (no frameworks, no build step)
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://img.icons8.com/fluency/96/000000/responsive.png" width="60"><br>
+      <strong>Responsive</strong><br>
+      <sub>Mobile, tablet, desktop</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.icons8.com/fluency/96/000000/paint-palette.png" width="60"><br>
+      <strong>Themed</strong><br>
+      <sub>Live colour switching</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.icons8.com/fluency/96/000000/picture.png" width="60"><br>
+      <strong>Lightbox</strong><br>
+      <sub>Zoom + swipe navigation</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://img.icons8.com/fluency/96/000000/animation.png" width="60"><br>
+      <strong>Animated</strong><br>
+      <sub>Scroll-triggered reveals</sub>
+    </td>
+    <td align="center">
+      <img src="https://img.icons8.com/fluency/96/000000/smartphone-tablet.png" width="60"><br>
+      <strong>Mobile Drawer</strong><br>
+      <sub>Slide-in navigation</sub>
+    </td>
+    <td align="center">
+      <img src="https://img.icons8.com/fluency/96/000000/rocket.png" width="60"><br>
+      <strong>Fast</strong><br>
+      <sub>No frameworks, no build</sub>
+    </td>
+  </tr>
+</table>
 
 ### 🔐 Admin CMS Panel
-| Tab | What It Does |
-|---|---|
-| 📊 **Results** | Add, edit, or delete student exam results |
-| 🖼️ **Hero** | Change homepage banner + 4 stats |
-| 💬 **Welcome** | Edit leadership welcome message |
-| 📸 **Photos** | Change image file paths |
-| 👥 **Staff** | Manage staff directory (13 entries) |
-| 🏫 **School** | Edit school name, motto, phones, email, address |
-| 📢 **Announcements** | Post school news bulletins |
-| 🎨 **Theme** | 8 colour pickers + 6 presets (Forest, Royal, Sunset, Purple, Maroon, Ocean) |
-| 🧩 **Layout** | Show/hide homepage sections |
-| 🔄 **Reset** | Restore all content to defaults |
+
+<table>
+  <tr>
+    <td>📊 <strong>Results</strong></td>
+    <td>Add, edit, delete student exam results</td>
+  </tr>
+  <tr>
+    <td>🖼️ <strong>Hero</strong></td>
+    <td>Change homepage banner + 4 stats</td>
+  </tr>
+  <tr>
+    <td>💬 <strong>Welcome</strong></td>
+    <td>Edit leadership welcome message</td>
+  </tr>
+  <tr>
+    <td>📸 <strong>Photos</strong></td>
+    <td>Change image file paths</td>
+  </tr>
+  <tr>
+    <td>👥 <strong>Staff</strong></td>
+    <td>Manage staff directory (13 entries)</td>
+  </tr>
+  <tr>
+    <td>🏫 <strong>School</strong></td>
+    <td>Edit name, motto, phones, email, address</td>
+  </tr>
+  <tr>
+    <td>📢 <strong>Announcements</strong></td>
+    <td>Post school news bulletins</td>
+  </tr>
+  <tr>
+    <td>🎨 <strong>Theme</strong></td>
+    <td>8 colour pickers + 6 presets</td>
+  </tr>
+  <tr>
+    <td>🧩 <strong>Layout</strong></td>
+    <td>Show/hide homepage sections</td>
+  </tr>
+</table>
 
 ---
 
-## 🎬 Quick Start
+## 🎨 Theme Presets
 
-### 🌐 View the Live Site (Easiest)
+<p align="center">
+  <img src="https://img.shields.io/badge/Forest_Green-0b2b1e?style=for-the-badge" alt="Forest">
+  <img src="https://img.shields.io/badge/Royal_Blue-1a3a6e?style=for-the-badge" alt="Royal">
+  <img src="https://img.shields.io/badge/Sunset_Warm-8b3a1a?style=for-the-badge" alt="Sunset">
+  <img src="https://img.shields.io/badge/Royal_Purple-4a1a6e?style=for-the-badge" alt="Purple">
+  <img src="https://img.shields.io/badge/Maroon_Classic-6e1a1a?style=for-the-badge" alt="Maroon">
+  <img src="https://img.shields.io/badge/Ocean_Teal-0a5a6e?style=for-the-badge" alt="Ocean">
+</p>
 
-Click any link in the [Live Demo](#-live-demo) table above.
+> All colours applied **instantly** site-wide from the Admin Panel. Even the lightbox buttons recolour themselves.
 
-### 💻 Run Locally
+---
 
-```bash
-# Clone the repository
-git clone https://github.com/YOUR-USERNAME/pagejo-rarubi-primary.git
-
-# Enter the folder
-cd pagejo-rarubi-primary
-
-# Option 1: Python (any version 3+)
-python -m http.server 8080
-
-# Option 2: Node.js
-npx serve
-
-# Option 3: PHP
-php -S localhost:8080
+## 📁 Project Structure
