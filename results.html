@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examination Results | Pagejo Rarubi Primary School</title>
+  <meta name="description" content="Grade 7 examination results and academic performance at Pagejo Rarubi Primary School.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/drawer.css">
+  <style>
+    /* Results stat cards — theme-aware */
+    .results-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+    .results-stat-card {
+      background: #fff;
+      padding: 2rem 2.4rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--accent, #d4a373);
+      min-width: 200px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .results-stat-card:nth-child(2) {
+      border-top-color: var(--primary-light, #2e7d5e);
+    }
+    .results-stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -12px rgba(10,40,30,0.15);
+    }
+    .results-stat-card .number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary-dark, #0b2b1e);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1;
+    }
+    .results-stat-card .label {
+      font-size: 0.75rem;
+      color: var(--text-mid, #4a5a52);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+      font-weight: 700;
+    }
+    .results-admin-link {
+      color: var(--accent, #d4a373);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .results-admin-link:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .results-stat-card { min-width: 160px; padding: 1.5rem 1.6rem; }
+      .results-stat-card .number { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body class="page-results">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="contact-info">
+      <span><i class="fas fa-phone-alt"></i> School: 0781521551</span>
+      <span><i class="fas fa-phone-alt"></i> Head: 0714168885</span>
+      <span><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com</span>
+    </div>
+    <div class="motto"><i class="fas fa-star"></i> Knowledge · Integrity · Service</div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header" id="mainHeader">
+    <div class="logo-area">
+      <img src="images/logo.png" alt="School Logo" class="school-logo-svg" style="object-fit: contain;" onerror="this.outerHTML='<svg class=\'school-logo-svg\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z\' fill=\'#1e4b3a\' stroke=\'#d4a373\' stroke-width=\'2.5\'/><path d=\'M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z\' fill=\'#f9e6b3\' stroke=\'#1e4b3a\' stroke-width=\'2.2\'/><path d=\'M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z\' fill=\'#d4a373\' stroke=\'#fff\' stroke-width=\'1.2\'/></svg>';">
+      <div class="school-name">
+        <h1>Pagejo Rarubi</h1>
+        <div class="subhead"><i class="fas fa-graduation-cap"></i> Primary School</div>
+      </div>
+    </div>
+    <div class="header-badge"><i class="fas fa-calendar-alt"></i> Est. 1998</div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-users"></i> About Us</a>
+    <a href="academics.html"><i class="fas fa-book-open"></i> Academics</a>
+    <a href="results.html" class="active"><i class="fas fa-chart-line"></i> Results</a>
+    <a href="projects.html"><i class="fas fa-seedling"></i> Projects</a>
+    <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+    <a href="contact.html"><i class="fas fa-address-card"></i> Contact</a>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <section class="page-banner">
+    <div class="page-banner-content">
+      <h1><i class="fas fa-chart-line"></i> Examination Results</h1>
+      <p>Celebrating academic excellence at Pagejo Rarubi Primary School</p>
+    </div>
+  </section>
+
+  <!-- OVERVIEW STATS -->
+  <section class="section" id="results-overview">
+    <div class="section-container">
+      <div class="section-header animate-on-scroll">
+        <span class="eyebrow"><i class="fas fa-trophy"></i> Academic Performance</span>
+        <h2>Our Results Overview</h2>
+        <p>Our learners consistently achieve outstanding results, a testament to our dedicated teachers and hardworking students.</p>
+      </div>
+
+      <div class="results-stats animate-on-scroll">
+        <div class="results-stat-card">
+          <div class="number" id="avgPassRate">80%</div>
+          <div class="label">Average Pass Rate</div>
+        </div>
+        <div class="results-stat-card">
+          <div class="number">446</div>
+          <div class="label">Total Enrollment</div>
+        </div>
+        <div class="results-stat-card">
+          <div class="number">037305</div>
+          <div class="label">Exam Registration No.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED RESULTS -->
+  <section class="section" id="detailed-results" style="background: rgba(255,255,255,0.7);">
+    <div class="section-container">
+      <div class="section-header animate-on-scroll">
+        <span class="eyebrow"><i class="fas fa-table"></i> Detailed Results</span>
+        <h2>Student Examination Results</h2>
+        <p>Results are managed by the school administration. <a href="admin.html" class="results-admin-link">Admin login</a></p>
+      </div>
+
+      <div class="table-wrapper animate-on-scroll">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Student Name</th>
+              <th>English</th>
+              <th>Maths</th>
+              <th>Science</th>
+              <th>Shona</th>
+              <th>Social</th>
+              <th>Average</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody">
+            <tr>
+              <td colspan="9" style="text-align:center; padding:2rem; color:#6b7d75;">
+                <i class="fas fa-spinner fa-spin" style="font-size:2rem; display:block; margin-bottom:0.5rem; color:var(--accent);"></i>
+                Loading results...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="supervision-note" id="resultsFooter">
+          <i class="fas fa-info-circle"></i> Loading results…
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="School Logo" style="width: 50px; height: 50px; object-fit: contain;" onerror="this.style.display='none';">
+        <span>Pagejo Rarubi Primary</span>
+      </div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="results.html">Results</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><i class="fas fa-copyright"></i> 2025 Pagejo Rarubi Primary School. All rights reserved.</p>
+      <p><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com &nbsp; | &nbsp; <i class="fas fa-phone"></i> 0781521551 / 0714168885</p>
+      <p style="margin-top: 8px; font-size: 0.8rem;">Website developed by <strong style="color: var(--accent, #d4a373);">Pardon Katsande (BL@CKN1TE)</strong></p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- SCRIPTS -->
+  <script src="js/admin.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/drawer.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

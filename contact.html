@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Enrollment | Pagejo Rarubi Primary School</title>
+  <meta name="description" content="Contact Pagejo Rarubi Primary School — enrollment, school database, and administration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/drawer.css">
+  <style>
+    /* Contact cards — theme-aware */
+    .contact-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+    }
+    .contact-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-bottom: 5px solid var(--accent, #d4a373);
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -12px rgba(10,40,30,0.15);
+      border-bottom-color: var(--primary, #1e4b3a);
+    }
+    .contact-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary, #1e4b3a), var(--primary-light, #2e7d5e));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent-light, #f9e6b3);
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 8px 20px rgba(30, 75, 58, 0.3);
+    }
+    .contact-card h3 {
+      font-size: 1.1rem;
+      color: var(--primary-dark, #0b2b1e);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+    .contact-card a, .contact-card p {
+      color: var(--text-mid, #4a5a52);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      line-height: 1.5;
+    }
+    .contact-card a:hover { color: var(--accent, #d4a373); }
+
+    /* Enrollment checkmark color */
+    .enroll-check { color: var(--primary-light, #2e7d5e); }
+  </style>
+</head>
+<body class="page-contact">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="contact-info">
+      <span><i class="fas fa-phone-alt"></i> School: 0781521551</span>
+      <span><i class="fas fa-phone-alt"></i> Head: 0714168885</span>
+      <span><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com</span>
+    </div>
+    <div class="motto"><i class="fas fa-star"></i> Knowledge · Integrity · Service</div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header" id="mainHeader">
+    <div class="logo-area">
+      <img src="images/logo.png" alt="School Logo" class="school-logo-svg" style="object-fit: contain;" onerror="this.outerHTML='<svg class=\'school-logo-svg\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z\' fill=\'#1e4b3a\' stroke=\'#d4a373\' stroke-width=\'2.5\'/><path d=\'M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z\' fill=\'#f9e6b3\' stroke=\'#1e4b3a\' stroke-width=\'2.2\'/><path d=\'M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z\' fill=\'#d4a373\' stroke=\'#fff\' stroke-width=\'1.2\'/></svg>';">
+      <div class="school-name">
+        <h1>Pagejo Rarubi</h1>
+        <div class="subhead"><i class="fas fa-graduation-cap"></i> Primary School</div>
+      </div>
+    </div>
+    <div class="header-badge"><i class="fas fa-calendar-alt"></i> Est. 1998</div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-users"></i> About Us</a>
+    <a href="academics.html"><i class="fas fa-book-open"></i> Academics</a>
+    <a href="results.html"><i class="fas fa-chart-line"></i> Results</a>
+    <a href="projects.html"><i class="fas fa-seedling"></i> Projects</a>
+    <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+    <a href="contact.html" class="active"><i class="fas fa-address-card"></i> Contact</a>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <section class="page-banner">
+    <div class="page-banner-content">
+      <h1>Contact &amp; Enrollment</h1>
+      <p>Get in touch with us or enroll your child today. We're here to help!</p>
+    </div>
+  </section>
+
+  <!-- CONTACT CARDS -->
+  <section class="section" id="contact-cards">
+    <div class="section-container">
+      <div class="section-header animate-on-scroll">
+        <span class="eyebrow"><i class="fas fa-address-card"></i> Get in Touch</span>
+        <h2>Contact Information</h2>
+      </div>
+
+      <div class="contact-cards-grid">
+        <div class="contact-card animate-on-scroll">
+          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+          <h3>School Phone</h3>
+          <a href="tel:0781521551">0781 521 551</a>
+        </div>
+        <div class="contact-card animate-on-scroll" style="transition-delay: 0.1s;">
+          <div class="contact-icon"><i class="fas fa-user-tie"></i></div>
+          <h3>Head's Phone</h3>
+          <a href="tel:0714168885">0714 168 885</a>
+        </div>
+        <div class="contact-card animate-on-scroll" style="transition-delay: 0.2s;">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <h3>Email Address</h3>
+          <a href="mailto:pagejorarubiprisch@gmail.com" style="font-size: 0.78rem;">pagejorarubiprisch@gmail.com</a>
+        </div>
+        <div class="contact-card animate-on-scroll" style="transition-delay: 0.3s;">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h3>Address</h3>
+          <p style="font-size: 0.85rem;">P.O. Box CH 202, Chisipite<br>Ward 13, Goromonzi District</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHOOL DATABASE -->
+  <section class="section" id="school-database" style="background: rgba(255,255,255,0.7);">
+    <div class="section-container">
+      <div class="section-header animate-on-scroll">
+        <span class="eyebrow"><i class="fas fa-database"></i> Official Records</span>
+        <h2>School Database</h2>
+        <p>Official registration and operational information.</p>
+      </div>
+
+      <div class="admin-card animate-on-scroll">
+        <div class="admin-header">
+          <h3><i class="fas fa-school"></i> School Database</h3>
+        </div>
+        <table class="admin-table">
+          <tbody>
+            <tr>
+              <td class="position-school-head">ADDRESS</td>
+              <td>PAGEJO RARUBI PRIMARY SCHOOL<br>P.O. BOX CH 202<br>CHISIPITE</td>
+            </tr>
+            <tr>
+              <td class="position-school-head">LOCATION</td>
+              <td>PAGEJO RARUBI FARM @ 32KM PEG MUTOKO ROAD<br>WARD 13 GOROMONZI DISTRICT</td>
+            </tr>
+            <tr>
+              <td class="position-school-head">GPS</td>
+              <td>Latitude: S 17°44'7"<br>Longitude: E 31°18'43"<br>Altitude: 1294.5m<br>Accuracy: 4.5m</td>
+            </tr>
+            <tr><td class="position-school-head">SCHOOL REGISTRATION NO.</td><td>6050</td></tr>
+            <tr>
+              <td class="position-school-head">EMAIL ADDRESS</td>
+              <td><a href="mailto:pagejorarubiprisch@gmail.com" class="contact-link">pagejorarubiprisch@gmail.com</a></td>
+            </tr>
+            <tr>
+              <td class="position-school-head">CELL PHONE (1) SCHOOL</td>
+              <td><a href="tel:0781521551" class="contact-link">0781 521 551</a></td>
+            </tr>
+            <tr>
+              <td class="position-school-head">CELLPHONE (2) HEAD</td>
+              <td><a href="tel:0714168885" class="contact-link">0714 168 885</a></td>
+            </tr>
+            <tr><td class="position-school-head">RESPONSIBLE AUTHORITY</td><td>RAY AND BRIAN ENTERPRISES</td></tr>
+            <tr><td class="position-school-head">DATE FOUNDED (INITIAL)</td><td>01/01/62</td></tr>
+            <tr><td class="position-school-head">RE-ESTABLISHED</td><td>01/01/2003</td></tr>
+            <tr><td class="position-school-head">STATION CODE</td><td>7020</td></tr>
+            <tr><td class="position-school-head">DEPARTMENT CODE</td><td>2330</td></tr>
+            <tr><td class="position-school-head">SECTION</td><td>02</td></tr>
+            <tr><td class="position-school-head">SUBSECTION</td><td>220</td></tr>
+            <tr><td class="position-school-head">ENROLLMENT</td><td>446</td></tr>
+            <tr><td class="position-school-head">EXAMINATION REGISTRATION NO.</td><td>037305</td></tr>
+            <tr>
+              <td class="position-school-head">AVERAGE PASS RATE</td>
+              <td><strong style="color: #2e7d32; font-size: 1.1rem;">80%</strong></td>
+            </tr>
+            <tr><td class="position-school-head">CBZ ACC. NAME</td><td>PAGEJO RARUBI PRIMARY</td></tr>
+            <tr>
+              <td class="position-school-head">ACC NO.</td>
+              <td>01124170430019 RTGS<br>01124170430029 NOSTRO</td>
+            </tr>
+            <tr><td class="position-school-head">ZESA PRE-PAID ELECTRICITY NO.</td><td>37132572100</td></tr>
+            <tr><td class="position-school-head">ACCOUNT NAME</td><td>REMARH CHIGA</td></tr>
+            <tr>
+              <td class="position-school-head">HELP LINE POLICE JURU</td>
+              <td><a href="tel:0773611611" class="contact-link">0773 611 611</a></td>
+            </tr>
+            <tr><td class="position-school-head">SIG: ZB BANK</td><td>4118-793239-406</td></tr>
+            <tr><td class="position-school-head">GOROMONZI NORTH ZONE</td><td>4112-525106-200</td></tr>
+            <tr><td class="position-school-head">NAPH GOROMONZI DISTRICT</td><td>4112-552170-200</td></tr>
+            <tr>
+              <td class="position-school-head">BSPZ: NOSTRO ZB BANK</td>
+              <td>FIRST STREET<br>Acc No. 4112-524996-405</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENROLLMENT -->
+  <section class="section" id="enrollment">
+    <div class="section-container">
+      <div class="section-header animate-on-scroll">
+        <span class="eyebrow"><i class="fas fa-user-plus"></i> Join Us</span>
+        <h2>Enrollment Information</h2>
+      </div>
+      <div class="quick-links-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+
+        <div class="quick-link-card animate-on-scroll" style="text-align: left; padding: 2rem 1.8rem;">
+          <div class="quick-icon" style="margin: 0 0 1rem;"><i class="fas fa-clipboard-list"></i></div>
+          <h4>Requirements</h4>
+          <ul style="list-style: none; margin-top: 0.8rem;">
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Birth Certificate</li>
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Immunization Records</li>
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Transfer Letter (if applicable)</li>
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Parent/Guardian ID</li>
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Recent Report Card</li>
+          </ul>
+        </div>
+
+        <div class="quick-link-card animate-on-scroll" style="text-align: left; padding: 2rem 1.8rem; transition-delay: 0.1s;">
+          <div class="quick-icon" style="margin: 0 0 1rem;"><i class="fas fa-calendar-check"></i></div>
+          <h4>Enrollment Period</h4>
+          <p>Enrollment is open throughout the year. We recommend enrolling before the start of each term.</p>
+          <ul style="list-style: none; margin-top: 0.8rem;">
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Term 1: January</li>
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Term 2: May</li>
+            <li style="padding: 0.3rem 0; color: var(--text-mid, #4a5a52); font-size: 0.85rem;"><i class="fas fa-check enroll-check"></i> Term 3: September</li>
+          </ul>
+        </div>
+
+        <div class="quick-link-card animate-on-scroll" style="text-align: left; padding: 2rem 1.8rem; transition-delay: 0.2s;">
+          <div class="quick-icon" style="margin: 0 0 1rem;"><i class="fas fa-money-bill-wave"></i></div>
+          <h4>School Fees</h4>
+          <p>Please contact the school office for current fee structure. We offer flexible payment plans.</p>
+          <p style="margin-top: 1rem; font-size: 0.85rem;">
+            <i class="fas fa-phone" style="color: var(--accent, #d4a373);"></i>
+            <a href="tel:0781521551" style="color: var(--primary, #1e4b3a); font-weight: 700;">0781 521 551</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN ACCESS -->
+  <section class="section" id="admin-access" style="background: rgba(255,255,255,0.7);">
+    <div class="section-container" style="text-align: center;">
+      <div class="section-header animate-on-scroll">
+        <span class="eyebrow"><i class="fas fa-shield-alt"></i> Authorized Access</span>
+        <h2>Admin Settings Panel</h2>
+        <p>Authorized personnel only — School administrators and developers.</p>
+      </div>
+      <a href="admin.html" class="btn btn-gold" style="font-size: 1rem;">
+        <i class="fas fa-shield-alt"></i> Open Admin Panel
+      </a>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: #6b7d75;">
+        Access key required
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="School Logo" style="width: 50px; height: 50px; object-fit: contain;" onerror="this.style.display='none';">
+        <span>Pagejo Rarubi Primary</span>
+      </div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="results.html">Results</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><i class="fas fa-copyright"></i> 2025 Pagejo Rarubi Primary School. All rights reserved.</p>
+      <p><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com &nbsp; | &nbsp; <i class="fas fa-phone"></i> 0781521551 / 0714168885</p>
+      <p style="margin-top: 8px; font-size: 0.8rem;">Website developed by <strong style="color: var(--accent, #d4a373);">Pardon Katsande (BL@CKN1TE)</strong></p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- SCRIPTS -->
+  <script src="js/admin.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/drawer.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Pagejo Rarubi Primary School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #0b2b1e 0%, #1e4b3a 50%, #2e7d5e 100%);
+      min-height: 100vh;
+      padding: 1.5rem;
+      color: #1a1a1a;
+    }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Login */
+    .login-box {
+      background: #fff;
+      max-width: 450px;
+      margin: 5rem auto;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      text-align: center;
+      border-top: 5px solid #d4a373;
+    }
+    .login-icon {
+      font-size: 3.5rem;
+      color: #d4a373;
+      margin-bottom: 1rem;
+    }
+    .login-box h2 { color: #0b2b1e; margin-bottom: 0.5rem; }
+    .login-box p { color: #6b7d75; font-size: 0.9rem; margin-bottom: 2rem; }
+    .login-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #d8e2dc;
+      border-radius: 50px;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .login-input:focus { outline: none; border-color: #1e4b3a; box-shadow: 0 0 0 4px rgba(30,75,58,0.1); }
+    .login-error { color: #d32f2f; font-weight: 700; margin: 1rem 0; display: none; }
+    .login-error.show { display: block; }
+
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.8rem;
+      background: linear-gradient(135deg, #1e4b3a, #2e7d5e);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 6px 15px rgba(30,75,58,0.3);
+    }
+    .btn-admin:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(30,75,58,0.4); }
+    .btn-admin.gold { background: linear-gradient(135deg, #d4a373, #b88645); color: #0b2b1e; }
+    .btn-admin.danger { background: linear-gradient(135deg, #d32f2f, #b71c1c); }
+    .btn-admin.small { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
+    .btn-admin.outline { background: transparent; border: 2px solid #1e4b3a; color: #1e4b3a; }
+
+    /* Dashboard */
+    .dashboard {
+      display: none;
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+    .dashboard.active { display: block; }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #eef2f0;
+      margin-bottom: 2rem;
+    }
+    .dash-header h1 {
+      color: #0b2b1e;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .dash-header h1 i { color: #d4a373; }
+    .dash-user {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .dash-badge {
+      background: #e8f5ee;
+      color: #1e4b3a;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      background: #f8faf9;
+      padding: 0.5rem;
+      border-radius: 14px;
+    }
+    .tab {
+      flex: 1;
+      min-width: 140px;
+      padding: 0.8rem 1rem;
+      background: transparent;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #4a5a52;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .tab:hover { background: #e8f5ee; }
+    .tab.active {
+      background: linear-gradient(135deg, #1e4b3a, #2e7d5e);
+      color: #f9e6b3;
+      box-shadow: 0 4px 12px rgba(30,75,58,0.3);
+    }
+
+    /* Panel */
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .panel-title {
+      color: #0b2b1e;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .panel-title i { color: #d4a373; }
+    .panel-sub {
+      color: #6b7d75;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Form fields */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .form-field { display: flex; flex-direction: column; margin-bottom: 1rem; }
+    .form-field label {
+      font-weight: 700;
+      color: #0b2b1e;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      padding: 0.75rem 1rem;
+      border: 2px solid #d8e2dc;
+      border-radius: 10px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      background: #f8faf9;
+      transition: 0.2s;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      outline: none;
+      border-color: #1e4b3a;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(30,75,58,0.1);
+    }
+    .form-field textarea { resize: vertical; min-height: 90px; font-family: 'Open Sans', sans-serif; }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1rem 0;
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-top: 1rem;
+    }
+    table.cms-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      background: #fff;
+      min-width: 600px;
+    }
+    table.cms-table thead th {
+      background: linear-gradient(135deg, #0b2b1e, #1e4b3a);
+      color: #fff;
+      padding: 0.9rem 0.7rem;
+      text-align: left;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    table.cms-table tbody td {
+      padding: 0.8rem 0.7rem;
+      border-bottom: 1px solid #eef2f0;
+      font-weight: 600;
+    }
+    table.cms-table tbody tr:hover { background: #f8fdfa; }
+
+    .item-card {
+      background: #f8faf9;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 0.7rem;
+      border-left: 4px solid #d4a373;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .item-card-content { flex: 1; min-width: 200px; }
+    .item-card-content h4 { color: #0b2b1e; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .item-card-content p { color: #6b7d75; font-size: 0.8rem; }
+    .item-card-content .item-date {
+      color: #d4a373;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-box {
+      background: #f9e6b3;
+      border-left: 5px solid #d4a373;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: #5a4030;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #2e7d32;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: 0.3s;
+      z-index: 9999;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.error { background: #d32f2f; }
+
+    @media (max-width: 768px) {
+      .login-box { padding: 1.8rem; margin: 2rem auto; }
+      .dashboard { padding: 1.2rem; }
+      .tab { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div class="login-box" id="loginBox">
+    <i class="fas fa-shield-alt login-icon"></i>
+    <h2>Admin CMS Panel</h2>
+    <p>Enter your access key to manage the website</p>
+    <input type="password" class="login-input" id="adminKey" placeholder="Enter access key...">
+    <div class="login-error" id="loginError">❌ Invalid access key</div>
+    <button class="btn-admin" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Access Panel</button>
+    <div style="margin-top: 1.5rem; font-size: 0.7rem; color: #a0a0a0; line-height: 1.6;">
+      System by <strong style="color: #d4a373;">Pardon Katsande</strong><br>
+      aka BL@CKN1TE THE INCISIVE TRI-HAT HACKER
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard">
+    <div class="admin-container">
+      <div class="dash-header">
+        <h1><i class="fas fa-cog"></i> CMS Settings Panel</h1>
+        <div class="dash-user">
+          <span class="dash-badge"><i class="fas fa-shield-alt"></i> Authorized</span>
+          <a href="index.html" class="btn-admin outline small" style="text-decoration:none;"><i class="fas fa-eye"></i> View Site</a>
+          <button class="btn-admin danger small" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab active" data-tab="results"><i class="fas fa-chart-line"></i> Results</button>
+        <button class="tab" data-tab="hero"><i class="fas fa-image"></i> Hero</button>
+        <button class="tab" data-tab="welcome"><i class="fas fa-comment"></i> Welcome</button>
+        <button class="tab" data-tab="photos"><i class="fas fa-camera"></i> Photos</button>
+        <button class="tab" data-tab="staff"><i class="fas fa-users"></i> Staff</button>
+        <button class="tab" data-tab="school"><i class="fas fa-school"></i> School</button>
+        <button class="tab" data-tab="announcements"><i class="fas fa-bullhorn"></i> Announcements</button>
+        <button class="tab" data-tab="layout"><i class="fas fa-th-large"></i> Layout</button>
+      </div>
+
+      <!-- RESULTS TAB -->
+      <div class="panel active" id="panel-results">
+        <h3 class="panel-title"><i class="fas fa-chart-line"></i> Examination Results</h3>
+        <p class="panel-sub">Add, edit, or delete student results. Changes appear instantly on the Results page.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Student Name</label>
+            <input type="text" id="sName" placeholder="e.g. Tendai Moyo">
+          </div>
+          <div class="form-field">
+            <label>English</label>
+            <input type="number" id="sEng" min="0" max="100" placeholder="0-100">
+          </div>
+          <div class="form-field">
+            <label>Maths</label>
+            <input type="number" id="sMath" min="0" max="100" placeholder="0-100">
+          </div>
+          <div class="form-field">
+            <label>Science</label>
+            <input type="number" id="sSci" min="0" max="100" placeholder="0-100">
+          </div>
+          <div class="form-field">
+            <label>Shona</label>
+            <input type="number" id="sShona" min="0" max="100" placeholder="0-100">
+          </div>
+          <div class="form-field">
+            <label>Social Studies</label>
+            <input type="number" id="sSoc" min="0" max="100" placeholder="0-100">
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-admin" onclick="addStudent()"><i class="fas fa-plus"></i> Add Student</button>
+          <button class="btn-admin danger" onclick="resetResults()"><i class="fas fa-trash"></i> Reset All</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="cms-table">
+            <thead>
+              <tr>
+                <th>#</th><th>Name</th><th>Eng</th><th>Math</th><th>Sci</th><th>Shona</th><th>Soc</th><th>Avg</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminResultsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- HERO TAB -->
+      <div class="panel" id="panel-hero">
+        <h3 class="panel-title"><i class="fas fa-image"></i> Hero Section</h3>
+        <p class="panel-sub">Edit the big welcome text on the homepage.</p>
+
+        <div class="form-field">
+          <label>Hero Badge Text</label>
+          <input type="text" id="heroBadge">
+        </div>
+        <div class="form-field">
+          <label>Hero Title</label>
+          <input type="text" id="heroTitle">
+        </div>
+        <div class="form-field">
+          <label>Hero Subtitle</label>
+          <textarea id="heroSubtitle"></textarea>
+        </div>
+
+        <h4 style="color:#0b2b1e; margin: 1.5rem 0 0.8rem;"><i class="fas fa-chart-bar" style="color:#d4a373;"></i> Hero Stats</h4>
+        <div class="form-grid">
+          <div class="form-field"><label>Stat 1 Number</label><input type="text" id="stat1n"></div>
+          <div class="form-field"><label>Stat 1 Label</label><input type="text" id="stat1l"></div>
+          <div class="form-field"><label>Stat 2 Number</label><input type="text" id="stat2n"></div>
+          <div class="form-field"><label>Stat 2 Label</label><input type="text" id="stat2l"></div>
+          <div class="form-field"><label>Stat 3 Number</label><input type="text" id="stat3n"></div>
+          <div class="form-field"><label>Stat 3 Label</label><input type="text" id="stat3l"></div>
+          <div class="form-field"><label>Stat 4 Number</label><input type="text" id="stat4n"></div>
+          <div class="form-field"><label>Stat 4 Label</label><input type="text" id="stat4l"></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-admin" onclick="saveHero()"><i class="fas fa-save"></i> Save Hero</button>
+        </div>
+      </div>
+
+      <!-- WELCOME TAB -->
+      <div class="panel" id="panel-welcome">
+        <h3 class="panel-title"><i class="fas fa-comment"></i> Welcome Message</h3>
+        <p class="panel-sub">Edit the welcome message shown on the homepage.</p>
+
+        <div class="form-field">
+          <label>Welcome Title</label>
+          <input type="text" id="welcomeTitle">
+        </div>
+        <div class="form-field">
+          <label>Paragraph 1</label>
+          <textarea id="welcomeP1"></textarea>
+        </div>
+        <div class="form-field">
+          <label>Paragraph 2</label>
+          <textarea id="welcomeP2"></textarea>
+        </div>
+        <div class="form-field">
+          <label>Quote / Motto</label>
+          <input type="text" id="welcomeQuote">
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-admin" onclick="saveWelcome()"><i class="fas fa-save"></i> Save Welcome</button>
+        </div>
+      </div>
+
+      <!-- PHOTOS TAB -->
+      <div class="panel" id="panel-photos">
+        <h3 class="panel-title"><i class="fas fa-camera"></i> Photo Management</h3>
+        <p class="panel-sub">Change the file paths for images. Put new photos in the images folder, then update the paths here.</p>
+
+        <div class="info-box">
+          <i class="fas fa-info-circle"></i> Keep your photos in the <strong>images</strong> folder. Use paths like <code>images/photo.jpg</code>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field"><label>School Logo</label><input type="text" id="photoLogo"></div>
+          <div class="form-field"><label>Headmistress Photo</label><input type="text" id="photoHead"></div>
+          <div class="form-field"><label>Deputy Head Photo</label><input type="text" id="photoDeputy"></div>
+          <div class="form-field"><label>Prefects Photo</label><input type="text" id="photoPrefects"></div>
+          <div class="form-field"><label>Uniform Photo</label><input type="text" id="photoUniform"></div>
+          <div class="form-field"><label>PE Uniform Photo</label><input type="text" id="photoPE"></div>
+          <div class="form-field"><label>Mushroom Project</label><input type="text" id="photoMushroom"></div>
+          <div class="form-field"><label>Pumpkin Project</label><input type="text" id="photoPumpkin"></div>
+          <div class="form-field"><label>Road Runners</label><input type="text" id="photoRR"></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-admin" onclick="savePhotos()"><i class="fas fa-save"></i> Save Photos</button>
+        </div>
+      </div>
+
+      <!-- STAFF TAB -->
+      <div class="panel" id="panel-staff">
+        <h3 class="panel-title"><i class="fas fa-users"></i> Staff Directory</h3>
+        <p class="panel-sub">Manage the school administration directory.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Position</label>
+            <input type="text" id="staffPos" placeholder="e.g. SCHOOL HEAD">
+          </div>
+          <div class="form-field">
+            <label>Name</label>
+            <input type="text" id="staffName" placeholder="e.g. HORIRO R.">
+          </div>
+          <div class="form-field">
+            <label>Phone</label>
+            <input type="text" id="staffPhone" placeholder="+263 7XX XXX XXX">
+          </div>
+          <div class="form-field">
+            <label>Category</label>
+            <select id="staffCat">
+              <option value="head">Head (Green)</option>
+              <option value="deputy">Deputy (Red)</option>
+              <option value="tic">T.I.C (Orange)</option>
+              <option value="senior">Senior (Blue)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-admin" onclick="addStaff()"><i class="fas fa-plus"></i> Add Staff</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="cms-table">
+            <thead>
+              <tr><th>Position</th><th>Name</th><th>Phone</th><th>Action</th></tr>
+            </thead>
+            <tbody id="staffTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SCHOOL TAB -->
+      <div class="panel" id="panel-school">
+        <h3 class="panel-title"><i class="fas fa-school"></i> School Information</h3>
+        <p class="panel-sub">Edit the school's contact info and identity.</p>
+
+        <div class="form-grid">
+          <div class="form-field"><label>School Name</label><input type="text" id="schoolName"></div>
+          <div class="form-field"><label>Tagline</label><input type="text" id="schoolTagline"></div>
+          <div class="form-field"><label>Motto</label><input type="text" id="schoolMotto"></div>
+          <div class="form-field"><label>Established Year</label><input type="text" id="schoolEst"></div>
+          <div class="form-field"><label>School Phone</label><input type="text" id="schoolPhone"></div>
+          <div class="form-field"><label>Head Phone</label><input type="text" id="schoolHeadPhone"></div>
+          <div class="form-field"><label>Email</label><input type="email" id="schoolEmail"></div>
+          <div class="form-field"><label>Address</label><input type="text" id="schoolAddress"></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-admin" onclick="saveSchool()"><i class="fas fa-save"></i> Save School Info</button>
+        </div>
+      </div>
+
+      <!-- ANNOUNCEMENTS TAB -->
+      <div class="panel" id="panel-announcements">
+        <h3 class="panel-title"><i class="fas fa-bullhorn"></i> Announcements</h3>
+        <p class="panel-sub">Post announcements visible on the homepage.</p>
+
+        <div class="form-grid">
+          <div class="form-field"><label>Title</label><input type="text" id="annTitle" placeholder="Announcement title"></div>
+          <div class="form-field"><label>Date</label><input type="date" id="annDate"></div>
+        </div>
+        <div class="form-field">
+          <label>Content</label>
+          <textarea id="annContent" placeholder="Announcement text..."></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="btn-admin" onclick="addAnnouncement()"><i class="fas fa-plus"></i> Add Announcement</button>
+        </div>
+
+        <h4 style="color:#0b2b1e; margin: 1.5rem 0 0.8rem;">Current Announcements</h4>
+        <div id="annList"></div>
+      </div>
+
+      <!-- LAYOUT TAB -->
+      <div class="panel" id="panel-layout">
+        <h3 class="panel-title"><i class="fas fa-th-large"></i> Layout Control</h3>
+        <p class="panel-sub">Show or hide sections on the homepage.</p>
+
+        <div class="item-card">
+          <div class="item-card-content">
+            <h4>Hero Section</h4>
+            <p>Big welcome banner at the top</p>
+          </div>
+          <label style="cursor:pointer;">
+            <input type="checkbox" id="secHero" onchange="toggleSection('hero', this.checked)" style="width:24px; height:24px; cursor:pointer;">
+          </label>
+        </div>
+
+        <div class="item-card">
+          <div class="item-card-content">
+            <h4>Welcome Message</h4>
+            <p>Headmistress welcome message</p>
+          </div>
+          <label style="cursor:pointer;">
+            <input type="checkbox" id="secWelcome" onchange="toggleSection('welcome', this.checked)" style="width:24px; height:24px; cursor:pointer;">
+          </label>
+        </div>
+
+        <div class="item-card">
+          <div class="item-card-content">
+            <h4>Quick Links</h4>
+            <p>Grid of quick access links</p>
+          </div>
+          <label style="cursor:pointer;">
+            <input type="checkbox" id="secQuickLinks" onchange="toggleSection('quickLinks', this.checked)" style="width:24px; height:24px; cursor:pointer;">
+          </label>
+        </div>
+
+        <div class="item-card">
+          <div class="item-card-content">
+            <h4>Why Choose Us</h4>
+            <p>Highlights section</p>
+          </div>
+          <label style="cursor:pointer;">
+            <input type="checkbox" id="secWhy" onchange="toggleSection('whyChooseUs', this.checked)" style="width:24px; height:24px; cursor:pointer;">
+          </label>
+        </div>
+
+        <div class="item-card">
+          <div class="item-card-content">
+            <h4>Projects Preview</h4>
+            <p>Mushroom, pumpkin, road runners</p>
+          </div>
+          <label style="cursor:pointer;">
+            <input type="checkbox" id="secProjects" onchange="toggleSection('projects', this.checked)" style="width:24px; height:24px; cursor:pointer;">
+          </label>
+        </div>
+
+        <div class="item-card">
+          <div class="item-card-content">
+            <h4>Call-to-Action Banner</h4>
+            <p>Enrollment call-to-action</p>
+          </div>
+          <label style="cursor:pointer;">
+            <input type="checkbox" id="secCta" onchange="toggleSection('cta', this.checked)" style="width:24px; height:24px; cursor:pointer;">
+          </label>
+        </div>
+
+        <div class="btn-row" style="margin-top:2rem;">
+          <button class="btn-admin danger" onclick="if(confirm('Reset ALL website content to defaults? This cannot be undone.')) { resetData(); location.reload(); }">
+            <i class="fas fa-trash"></i> Reset All Content
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    /* ============================================================
+       ADMIN UI CONTROLLER
+       ============================================================ */
+
+    // Check if already logged in
+    if (isLoggedIn()) {
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('dashboard').classList.add('active');
+      loadAllPanels();
+    }
+
+    // Login
+    function doLogin() {
+      const key = document.getElementById('adminKey').value.trim();
+      if (login(key)) {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('dashboard').classList.add('active');
+        loadAllPanels();
+      } else {
+        document.getElementById('loginError').classList.add('show');
+        document.getElementById('adminKey').value = '';
+      }
+    }
+
+    document.getElementById('adminKey').addEventListener('keypress', e => {
+      if (e.key === 'Enter') doLogin();
+    });
+
+    // Logout
+    function doLogout() {
+      logout();
+      location.reload();
+    }
+
+    // Toast
+    function toast(msg, isError) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.toggle('error', isError);
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    /* ============================================================
+       LOAD ALL PANELS
+       ============================================================ */
+    function loadAllPanels() {
+      const d = getData();
+
+      // Results
+      renderAdminResults();
+
+      // Hero
+      document.getElementById('heroBadge').value = d.hero.badge || '';
+      document.getElementById('heroTitle').value = d.hero.title || '';
+      document.getElementById('heroSubtitle').value = d.hero.subtitle || '';
+      d.hero.stats.forEach((s, i) => {
+        document.getElementById('stat' + (i+1) + 'n').value = s.number;
+        document.getElementById('stat' + (i+1) + 'l').value = s.label;
+      });
+
+      // Welcome
+      document.getElementById('welcomeTitle').value = d.welcome.title || '';
+      document.getElementById('welcomeP1').value = d.welcome.paragraph1 || '';
+      document.getElementById('welcomeP2').value = d.welcome.paragraph2 || '';
+      document.getElementById('welcomeQuote').value = d.welcome.quote || '';
+
+      // Photos
+      document.getElementById('photoLogo').value = d.photos.logo || '';
+      document.getElementById('photoHead').value = d.photos.headHoriro || '';
+      document.getElementById('photoDeputy').value = d.photos.deputyChibwe || '';
+      document.getElementById('photoPrefects').value = d.photos.prefects || '';
+      document.getElementById('photoUniform').value = d.photos.uniform || '';
+      document.getElementById('photoPE').value = d.photos.peUniform || '';
+      document.getElementById('photoMushroom').value = d.photos.mushroom || '';
+      document.getElementById('photoPumpkin').value = d.photos.pumpkin || '';
+      document.getElementById('photoRR').value = d.photos.roadrunners || '';
+
+      // School
+      document.getElementById('schoolName').value = d.school.name || '';
+      document.getElementById('schoolTagline').value = d.school.tagline || '';
+      document.getElementById('schoolMotto').value = d.school.motto || '';
+      document.getElementById('schoolEst').value = d.school.established || '';
+      document.getElementById('schoolPhone').value = d.school.phone || '';
+      document.getElementById('schoolHeadPhone').value = d.school.headPhone || '';
+      document.getElementById('schoolEmail').value = d.school.email || '';
+      document.getElementById('schoolAddress').value = d.school.address || '';
+
+      // Staff
+      renderStaffTable();
+
+      // Announcements
+      renderAnnList();
+
+      // Layout
+      document.getElementById('secHero').checked = d.sections.hero;
+      document.getElementById('secWelcome').checked = d.sections.welcome;
+      document.getElementById('secQuickLinks').checked = d.sections.quickLinks;
+      document.getElementById('secWhy').checked = d.sections.whyChooseUs;
+      document.getElementById('secProjects').checked = d.sections.projects;
+      document.getElementById('secCta').checked = d.sections.cta;
+
+      // Set default announcement date
+      document.getElementById('annDate').valueAsDate = new Date();
+    }
+
+    /* ============================================================
+       RESULTS
+       ============================================================ */
+    function renderAdminResults() {
+      const d = getData();
+      const students = d.results.grade7.students || [];
+      const tbody = document.getElementById('adminResultsBody');
+      tbody.innerHTML = '';
+
+      if (students.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:1.5rem; color:#6b7d75;">No students yet. Add one above.</td></tr>';
+        return;
+      }
+
+      students.forEach((s, i) => {
+        const avg = Math.round((s.english + s.maths + s.science + s.shona + s.social) / 5);
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${i + 1}</td>
+          <td><strong>${s.name}</strong></td>
+          <td>${s.english}</td>
+          <td>${s.maths}</td>
+          <td>${s.science}</td>
+          <td>${s.shona}</td>
+          <td>${s.social}</td>
+          <td><strong>${avg}%</strong></td>
+          <td>
+            <button class="btn-admin danger small" onclick="deleteStudent(${i})"><i class="fas fa-trash"></i></button>
+          </td>`;
+        tbody.appendChild(row);
+      });
+    }
+
+    function addStudent() {
+      const name = document.getElementById('sName').value.trim();
+      const eng = parseInt(document.getElementById('sEng').value);
+      const math = parseInt(document.getElementById('sMath').value);
+      const sci = parseInt(document.getElementById('sSci').value);
+      const shona = parseInt(document.getElementById('sShona').value);
+      const soc = parseInt(document.getElementById('sSoc').value);
+
+      if (!name) return toast('Please enter student name', true);
+      if ([eng, math, sci, shona, soc].some(v => isNaN(v) || v < 0 || v > 100)) {
+        return toast('All marks must be 0-100', true);
+      }
+
+      const d = getData();
+      d.results.grade7.students.push({ name, english: eng, maths: math, science: sci, shona, social: soc });
+      d.results.grade7.passRate = calcPassRate(d.results.grade7.students);
+      saveData(d);
+
+      ['sName','sEng','sMath','sSci','sShona','sSoc'].forEach(id => document.getElementById(id).value = '');
+      renderAdminResults();
+      toast('✅ Student added!');
+    }
+
+    function deleteStudent(i) {
+      if (!confirm('Delete this student?')) return;
+      const d = getData();
+      d.results.grade7.students.splice(i, 1);
+      d.results.grade7.passRate = calcPassRate(d.results.grade7.students);
+      saveData(d);
+      renderAdminResults();
+      toast('🗑️ Student deleted');
+    }
+
+    function resetResults() {
+      if (!confirm('Reset all results to defaults?')) return;
+      const d = getData();
+      d.results.grade7.students = DEFAULT_DATA.results.grade7.students.slice();
+      d.results.grade7.passRate = 80;
+      saveData(d);
+      renderAdminResults();
+      toast('✅ Results reset');
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    function saveHero() {
+      const d = getData();
+      d.hero.badge = document.getElementById('heroBadge').value;
+      d.hero.title = document.getElementById('heroTitle').value;
+      d.hero.subtitle = document.getElementById('heroSubtitle').value;
+      d.hero.stats = [1,2,3,4].map(i => ({
+        number: document.getElementById('stat' + i + 'n').value,
+        label: document.getElementById('stat' + i + 'l').value
+      }));
+      saveData(d);
+      toast('✅ Hero saved!');
+    }
+
+    /* ============================================================
+       WELCOME
+       ============================================================ */
+    function saveWelcome() {
+      const d = getData();
+      d.welcome.title = document.getElementById('welcomeTitle').value;
+      d.welcome.paragraph1 = document.getElementById('welcomeP1').value;
+      d.welcome.paragraph2 = document.getElementById('welcomeP2').value;
+      d.welcome.quote = document.getElementById('welcomeQuote').value;
+      saveData(d);
+      toast('✅ Welcome message saved!');
+    }
+
+    /* ============================================================
+       PHOTOS
+       ============================================================ */
+    function savePhotos() {
+      const d = getData();
+      d.photos.logo = document.getElementById('photoLogo').value;
+      d.photos.headHoriro = document.getElementById('photoHead').value;
+      d.photos.deputyChibwe = document.getElementById('photoDeputy').value;
+      d.photos.prefects = document.getElementById('photoPrefects').value;
+      d.photos.uniform = document.getElementById('photoUniform').value;
+      d.photos.peUniform = document.getElementById('photoPE').value;
+      d.photos.mushroom = document.getElementById('photoMushroom').value;
+      d.photos.pumpkin = document.getElementById('photoPumpkin').value;
+      d.photos.roadrunners = document.getElementById('photoRR').value;
+      saveData(d);
+      toast('✅ Photos updated!');
+    }
+
+    /* ============================================================
+       STAFF
+       ============================================================ */
+    function renderStaffTable() {
+      const d = getData();
+      const tbody = document.getElementById('staffTableBody');
+      tbody.innerHTML = '';
+
+      if (!d.staff || d.staff.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:1rem; color:#6b7d75;">No staff yet.</td></tr>';
+        return;
+      }
+
+      d.staff.forEach((s, i) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${s.position}</strong></td>
+          <td>${s.name}</td>
+          <td>${s.phone}</td>
+          <td><button class="btn-admin danger small" onclick="deleteStaff(${i})"><i class="fas fa-trash"></i></button></td>`;
+        tbody.appendChild(row);
+      });
+    }
+
+    function addStaff() {
+      const position = document.getElementById('staffPos').value.trim();
+      const name = document.getElementById('staffName').value.trim();
+      const phone = document.getElementById('staffPhone').value.trim();
+      const category = document.getElementById('staffCat').value;
+
+      if (!position || !name) return toast('Position and Name required', true);
+
+      const d = getData();
+      d.staff.push({ position, name, phone, category });
+      saveData(d);
+      renderStaffTable();
+      ['staffPos','staffName','staffPhone'].forEach(id => document.getElementById(id).value = '');
+      toast('✅ Staff added!');
+    }
+
+    function deleteStaff(i) {
+      if (!confirm('Delete this staff member?')) return;
+      const d = getData();
+      d.staff.splice(i, 1);
+      saveData(d);
+      renderStaffTable();
+      toast('🗑️ Staff deleted');
+    }
+
+    /* ============================================================
+       SCHOOL
+       ============================================================ */
+    function saveSchool() {
+      const d = getData();
+      d.school.name = document.getElementById('schoolName').value;
+      d.school.tagline = document.getElementById('schoolTagline').value;
+      d.school.motto = document.getElementById('schoolMotto').value;
+      d.school.established = document.getElementById('schoolEst').value;
+      d.school.phone = document.getElementById('schoolPhone').value;
+      d.school.headPhone = document.getElementById('schoolHeadPhone').value;
+      d.school.email = document.getElementById('schoolEmail').value;
+      d.school.address = document.getElementById('schoolAddress').value;
+      saveData(d);
+      toast('✅ School info saved!');
+    }
+
+    /* ============================================================
+       ANNOUNCEMENTS
+       ============================================================ */
+    function renderAnnList() {
+      const d = getData();
+      const list = document.getElementById('annList');
+      list.innerHTML = '';
+
+      if (!d.announcements || d.announcements.length === 0) {
+        list.innerHTML = '<p style="color:#6b7d75; padding:1rem;">No announcements yet.</p>';
+        return;
+      }
+
+      d.announcements.forEach(a => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <div class="item-card-content">
+            <span class="item-date">${a.date}</span>
+            <h4>${a.title}</h4>
+            <p>${a.content}</p>
+          </div>
+          <button class="btn-admin danger small" onclick="deleteAnn(${a.id})"><i class="fas fa-trash"></i></button>`;
+        list.appendChild(card);
+      });
+    }
+
+    function addAnnouncement() {
+      const title = document.getElementById('annTitle').value.trim();
+      const date = document.getElementById('annDate').value;
+      const content = document.getElementById('annContent').value.trim();
+      if (!title || !content) return toast('Title and content required', true);
+
+      const d = getData();
+      d.announcements.unshift({ id: Date.now(), title, date, content });
+      saveData(d);
+      renderAnnList();
+      ['annTitle','annContent'].forEach(id => document.getElementById(id).value = '');
+      toast('✅ Announcement posted!');
+    }
+
+    function deleteAnn(id) {
+      if (!confirm('Delete this announcement?')) return;
+      const d = getData();
+      d.announcements = d.announcements.filter(a => a.id !== id);
+      saveData(d);
+      renderAnnList();
+      toast('🗑️ Deleted');
+    }
+
+    /* ============================================================
+       LAYOUT SECTIONS
+       ============================================================ */
+    function toggleSection(key, visible) {
+      const d = getData();
+      d.sections[key] = visible;
+      saveData(d);
+      toast(visible ? '👁️ Section shown' : '🙈 Section hidden');
+    }
+  </script>
+</body>
+</html>
