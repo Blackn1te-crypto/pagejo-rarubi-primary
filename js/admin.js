@@ -251,7 +251,9 @@ function applyContent() {
 
   applyTheme();
 
-  /* TOP BAR */
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
   const topBar = document.querySelector('.top-bar .contact-info');
   if (topBar) {
     topBar.innerHTML = `
@@ -264,7 +266,9 @@ function applyContent() {
   const mottoEls = document.querySelectorAll('.motto');
   mottoEls.forEach(el => el.innerHTML = '<i class="fas fa-star"></i> ' + data.school.motto);
 
-  /* HEADER */
+  /* ============================================================
+     HEADER
+     ============================================================ */
   const schoolNameEls = document.querySelectorAll('.school-name h1');
   schoolNameEls.forEach(el => el.textContent = data.school.name);
 
@@ -274,7 +278,9 @@ function applyContent() {
   const badgeEls = document.querySelectorAll('.header-badge');
   badgeEls.forEach(el => el.innerHTML = '<i class="fas fa-calendar-alt"></i> Est. ' + data.school.established);
 
-  /* HERO BADGE */
+  /* ============================================================
+     HERO BADGE
+     ============================================================ */
   const heroBadge = document.querySelector('.hero-badge');
   if (heroBadge) heroBadge.innerHTML = '<i class="fas fa-award"></i> ' + data.hero.badge;
 
@@ -308,7 +314,9 @@ function applyContent() {
     }, 100);
   }
 
-  /* WELCOME */
+  /* ============================================================
+     WELCOME
+     ============================================================ */
   const welcomeTitle = document.querySelector('.welcome-text h3');
   if (welcomeTitle) welcomeTitle.textContent = data.welcome.title;
 
@@ -318,7 +326,9 @@ function applyContent() {
   const welcomeQuote = document.querySelector('.welcome-text em');
   if (welcomeQuote) welcomeQuote.textContent = data.welcome.quote;
 
-  /* PHOTOS */
+  /* ============================================================
+     PHOTOS
+     ============================================================ */
   const photoMap = {
     'images/head-horiro.jpg':   data.photos.headHoriro,
     'images/deputy-chibwe.jpg': data.photos.deputyChibwe,
@@ -337,13 +347,100 @@ function applyContent() {
     }
   });
 
-  /* FOOTER */
+  /* ============================================================
+     FOOTER
+     ============================================================ */
   const footerBottom = document.querySelectorAll('.footer-bottom p');
   if (footerBottom[1]) {
     footerBottom[1].innerHTML = `<i class="fas fa-envelope"></i> ${data.school.email} &nbsp; | &nbsp; <i class="fas fa-phone"></i> ${data.school.phone} / ${data.school.headPhone}`;
   }
 
-  /* STAFF DIRECTORY */
+  /* ============================================================
+     CONTACT PAGE — Contact Cards
+     ============================================================ */
+  const contactSchoolPhone = document.getElementById('contactSchoolPhone');
+  if (contactSchoolPhone) {
+    contactSchoolPhone.href = 'tel:' + data.school.phone.replace(/\s/g, '');
+    contactSchoolPhone.textContent = data.school.phone;
+  }
+
+  const contactHeadPhone = document.getElementById('contactHeadPhone');
+  if (contactHeadPhone) {
+    contactHeadPhone.href = 'tel:' + data.school.headPhone.replace(/\s/g, '');
+    contactHeadPhone.textContent = data.school.headPhone;
+  }
+
+  const contactEmail = document.getElementById('contactEmail');
+  if (contactEmail) {
+    contactEmail.href = 'mailto:' + data.school.email;
+    contactEmail.textContent = data.school.email;
+  }
+
+  const contactAddress = document.getElementById('contactAddress');
+  if (contactAddress) {
+    // Format: "P.O. Box CH 202, Chisipite, Ward 13, Goromonzi District"
+    const parts = data.school.address.split(',').map(p => p.trim());
+    if (parts.length >= 2) {
+      const first = parts.slice(0, parts.length - 1).join(', ');
+      const last = parts[parts.length - 1];
+      contactAddress.innerHTML = `${first}<br>${last}`;
+    } else {
+      contactAddress.textContent = data.school.address;
+    }
+  }
+
+  /* ============================================================
+     CONTACT PAGE — School Database Table
+     ============================================================ */
+  const dbSchoolPhone = document.getElementById('dbSchoolPhone');
+  if (dbSchoolPhone) {
+    dbSchoolPhone.href = 'tel:' + data.school.phone.replace(/\s/g, '');
+    dbSchoolPhone.textContent = data.school.phone;
+  }
+
+  const dbHeadPhone = document.getElementById('dbHeadPhone');
+  if (dbHeadPhone) {
+    dbHeadPhone.href = 'tel:' + data.school.headPhone.replace(/\s/g, '');
+    dbHeadPhone.textContent = data.school.headPhone;
+  }
+
+  const dbEmail = document.getElementById('dbEmail');
+  if (dbEmail) {
+    dbEmail.href = 'mailto:' + data.school.email;
+    dbEmail.textContent = data.school.email;
+  }
+
+  const dbAddress = document.getElementById('dbAddress');
+  if (dbAddress) {
+    // Format: "P.O. Box CH 202, Chisipite, Ward 13, Goromonzi District"
+    const parts = data.school.address.split(',').map(p => p.trim());
+    const lines = [
+      'PAGEJO RARUBI PRIMARY SCHOOL',
+      parts[0] ? parts[0].toUpperCase() : '',
+      parts[1] ? parts[1].toUpperCase() : ''
+    ].filter(Boolean);
+    dbAddress.innerHTML = lines.join('<br>');
+  }
+
+  const dbLocation = document.getElementById('dbLocation');
+  if (dbLocation) {
+    const parts = data.school.address.split(',').map(p => p.trim());
+    const ward = parts.find(p => p.toLowerCase().includes('ward')) || 'Ward 13, Goromonzi District';
+    dbLocation.innerHTML = `PAGEJO RARUBI FARM @ 32KM PEG MUTOKO ROAD<br>${ward.toUpperCase()}`;
+  }
+
+  /* ============================================================
+     CONTACT PAGE — Enrollment Fees Phone
+     ============================================================ */
+  const enrollPhone = document.getElementById('enrollPhone');
+  if (enrollPhone) {
+    enrollPhone.href = 'tel:' + data.school.phone.replace(/\s/g, '');
+    enrollPhone.textContent = data.school.phone;
+  }
+
+  /* ============================================================
+     STAFF DIRECTORY
+     ============================================================ */
   const staffTable = document.querySelector('.admin-table tbody');
   if (staffTable && data.staff) {
     staffTable.innerHTML = data.staff.map(s => `
@@ -355,7 +452,9 @@ function applyContent() {
     `).join('');
   }
 
-  /* ANNOUNCEMENTS */
+  /* ============================================================
+     ANNOUNCEMENTS
+     ============================================================ */
   const annContainer = document.getElementById('announcementsContainer');
   if (annContainer && data.announcements) {
     if (data.announcements.length === 0) {
@@ -373,14 +472,18 @@ function applyContent() {
     }
   }
 
-  /* CTA PHONE BUTTON */
+  /* ============================================================
+     CTA PHONE BUTTON
+     ============================================================ */
   const ctaPhoneBtn = document.querySelector('.cta-actions a[href^="tel:"]');
   if (ctaPhoneBtn) {
     ctaPhoneBtn.href = 'tel:' + data.school.phone.replace(/\s/g, '');
     ctaPhoneBtn.innerHTML = '<i class="fas fa-phone"></i> Call: ' + data.school.phone;
   }
 
-  /* SECTION VISIBILITY */
+  /* ============================================================
+     SECTION VISIBILITY
+     ============================================================ */
   const sectionMap = [
     ['hero',              data.sections.hero],
     ['welcome-section',   data.sections.welcome],
