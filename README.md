@@ -1,6 +1,6 @@
 <!-- ============================================================
      PAGEJO RARUBI PRIMARY SCHOOL — README
-     Developer: Pardon Katsande (BL@CKN1TE)
+     Developed by Pardon Katsande (BL@CKN1TE)
      GitHub: Blackn1te-crypto
      ============================================================ -->
 
@@ -118,3 +118,7 @@ From changing the phone number, adding student results, uploading photos, or swi
 ---
 
 ## 📁 Project Structure
+
+> 🖤 **Website structure designed and crafted by
+> BL@CKN1TE — THE INCISIVE TRI-HAT HACKER
+> (Pardon Katsande)**
