@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/drawer.css">
   <style>
-    /* Contact cards — theme-aware */
     .contact-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -61,14 +60,11 @@
       line-height: 1.5;
     }
     .contact-card a:hover { color: var(--accent, #d4a373); }
-
-    /* Enrollment checkmark color */
     .enroll-check { color: var(--primary-light, #2e7d5e); }
   </style>
 </head>
 <body class="page-contact">
 
-  <!-- TOP BAR -->
   <div class="top-bar">
     <div class="contact-info">
       <span><i class="fas fa-phone-alt"></i> School: 0781521551</span>
@@ -78,7 +74,6 @@
     <div class="motto"><i class="fas fa-star"></i> Knowledge · Integrity · Service</div>
   </div>
 
-  <!-- HEADER -->
   <header class="main-header" id="mainHeader">
     <div class="logo-area">
       <img src="images/logo.png" alt="School Logo" class="school-logo-svg" style="object-fit: contain;" onerror="this.outerHTML='<svg class=\'school-logo-svg\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z\' fill=\'#1e4b3a\' stroke=\'#d4a373\' stroke-width=\'2.5\'/><path d=\'M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z\' fill=\'#f9e6b3\' stroke=\'#1e4b3a\' stroke-width=\'2.2\'/><path d=\'M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z\' fill=\'#d4a373\' stroke=\'#fff\' stroke-width=\'1.2\'/></svg>';">
@@ -90,7 +85,6 @@
     <div class="header-badge"><i class="fas fa-calendar-alt"></i> Est. 1998</div>
   </header>
 
-  <!-- NAVIGATION -->
   <nav class="navbar">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="about.html"><i class="fas fa-users"></i> About Us</a>
@@ -101,7 +95,6 @@
     <a href="contact.html" class="active"><i class="fas fa-address-card"></i> Contact</a>
   </nav>
 
-  <!-- PAGE BANNER -->
   <section class="page-banner">
     <div class="page-banner-content">
       <h1>Contact &amp; Enrollment</h1>
@@ -121,22 +114,22 @@
         <div class="contact-card animate-on-scroll">
           <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
           <h3>School Phone</h3>
-          <a href="tel:0781521551">0781 521 551</a>
+          <a href="tel:0781521551" id="contactSchoolPhone">0781 521 551</a>
         </div>
         <div class="contact-card animate-on-scroll" style="transition-delay: 0.1s;">
           <div class="contact-icon"><i class="fas fa-user-tie"></i></div>
           <h3>Head's Phone</h3>
-          <a href="tel:0714168885">0714 168 885</a>
+          <a href="tel:0714168885" id="contactHeadPhone">0714 168 885</a>
         </div>
         <div class="contact-card animate-on-scroll" style="transition-delay: 0.2s;">
           <div class="contact-icon"><i class="fas fa-envelope"></i></div>
           <h3>Email Address</h3>
-          <a href="mailto:pagejorarubiprisch@gmail.com" style="font-size: 0.78rem;">pagejorarubiprisch@gmail.com</a>
+          <a href="mailto:pagejorarubiprisch@gmail.com" id="contactEmail" style="font-size: 0.78rem;">pagejorarubiprisch@gmail.com</a>
         </div>
         <div class="contact-card animate-on-scroll" style="transition-delay: 0.3s;">
           <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
           <h3>Address</h3>
-          <p style="font-size: 0.85rem;">P.O. Box CH 202, Chisipite<br>Ward 13, Goromonzi District</p>
+          <p style="font-size: 0.85rem;" id="contactAddress">P.O. Box CH 202, Chisipite<br>Ward 13, Goromonzi District</p>
         </div>
       </div>
     </div>
@@ -159,11 +152,11 @@
           <tbody>
             <tr>
               <td class="position-school-head">ADDRESS</td>
-              <td>PAGEJO RARUBI PRIMARY SCHOOL<br>P.O. BOX CH 202<br>CHISIPITE</td>
+              <td id="dbAddress">PAGEJO RARUBI PRIMARY SCHOOL<br>P.O. BOX CH 202<br>CHISIPITE</td>
             </tr>
             <tr>
               <td class="position-school-head">LOCATION</td>
-              <td>PAGEJO RARUBI FARM @ 32KM PEG MUTOKO ROAD<br>WARD 13 GOROMONZI DISTRICT</td>
+              <td id="dbLocation">PAGEJO RARUBI FARM @ 32KM PEG MUTOKO ROAD<br>WARD 13 GOROMONZI DISTRICT</td>
             </tr>
             <tr>
               <td class="position-school-head">GPS</td>
@@ -172,15 +165,15 @@
             <tr><td class="position-school-head">SCHOOL REGISTRATION NO.</td><td>6050</td></tr>
             <tr>
               <td class="position-school-head">EMAIL ADDRESS</td>
-              <td><a href="mailto:pagejorarubiprisch@gmail.com" class="contact-link">pagejorarubiprisch@gmail.com</a></td>
+              <td><a href="mailto:pagejorarubiprisch@gmail.com" id="dbEmail" class="contact-link">pagejorarubiprisch@gmail.com</a></td>
             </tr>
             <tr>
               <td class="position-school-head">CELL PHONE (1) SCHOOL</td>
-              <td><a href="tel:0781521551" class="contact-link">0781 521 551</a></td>
+              <td><a href="tel:0781521551" id="dbSchoolPhone" class="contact-link">0781 521 551</a></td>
             </tr>
             <tr>
               <td class="position-school-head">CELLPHONE (2) HEAD</td>
-              <td><a href="tel:0714168885" class="contact-link">0714 168 885</a></td>
+              <td><a href="tel:0714168885" id="dbHeadPhone" class="contact-link">0714 168 885</a></td>
             </tr>
             <tr><td class="position-school-head">RESPONSIBLE AUTHORITY</td><td>RAY AND BRIAN ENTERPRISES</td></tr>
             <tr><td class="position-school-head">DATE FOUNDED (INITIAL)</td><td>01/01/62</td></tr>
@@ -257,7 +250,7 @@
           <p>Please contact the school office for current fee structure. We offer flexible payment plans.</p>
           <p style="margin-top: 1rem; font-size: 0.85rem;">
             <i class="fas fa-phone" style="color: var(--accent, #d4a373);"></i>
-            <a href="tel:0781521551" style="color: var(--primary, #1e4b3a); font-weight: 700;">0781 521 551</a>
+            <a href="tel:0781521551" id="enrollPhone" style="color: var(--primary, #1e4b3a); font-weight: 700;">0781 521 551</a>
           </p>
         </div>
 
@@ -282,7 +275,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
@@ -307,10 +299,9 @@
 
   <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- SCRIPTS -->
   <script src="js/admin.js"></script>
   <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
 </body>
-</html>
+      </html>
