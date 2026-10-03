@@ -11,6 +11,226 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/drawer.css">
+  <style>
+    /* ============================================================
+       HOMEPAGE ANIMATIONS
+       ============================================================ */
+
+    /* ---------- Floating background orbs ---------- */
+    .hero { position: relative; overflow: hidden; }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 18s ease-in-out infinite;
+    }
+    .orb-1 { width: 320px; height: 320px; background: #d4a373; top: 10%; left: -80px; animation-delay: 0s; }
+    .orb-2 { width: 400px; height: 400px; background: #f9e6b3; top: 50%; right: -120px; animation-delay: -6s; }
+    .orb-3 { width: 260px; height: 260px; background: #2e7d5e; bottom: -60px; left: 30%; animation-delay: -12s; }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%      { transform: translate(40px, -30px) scale(1.1); }
+      66%      { transform: translate(-30px, 20px) scale(0.95); }
+    }
+    .hero-content { position: relative; z-index: 2; }
+
+    /* ---------- Hero badge pulse ---------- */
+    .hero-badge {
+      animation: badgeFloat 3s ease-in-out infinite, badgeFadeIn 0.8s ease 0.1s both;
+    }
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    @keyframes badgeFadeIn {
+      from { opacity: 0; transform: translateY(-20px) scale(0.9); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ---------- HERO TITLE — Typing Animation ---------- */
+    .hero h2 {
+      min-height: 4.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 3.5rem;
+      line-height: 1.15;
+    }
+
+    .typing-text {
+      display: inline-block;
+      background: linear-gradient(120deg, #f9e6b3 0%, #d4a373 50%, #f9e6b3 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerText 3s ease-in-out infinite;
+      word-break: break-word;
+    }
+
+    @keyframes shimmerText {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      margin-left: 6px;
+      font-weight: 300;
+      color: #f9e6b3;
+      -webkit-text-fill-color: #f9e6b3;
+      animation: blink 0.8s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+
+    /* ---------- Hero subtitle slide-up ---------- */
+    .hero p { animation: subtitleSlide 0.9s ease 0.6s both; }
+    @keyframes subtitleSlide {
+      from { opacity: 0; transform: translateY(25px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Hero stats counter pulse ---------- */
+    .hero-stat .number { transition: transform 0.3s ease; }
+    .hero-stat:hover .number {
+      transform: scale(1.15);
+      text-shadow: 0 0 30px rgba(249, 230, 179, 0.8);
+    }
+
+    /* ---------- Hero actions slide-in ---------- */
+    .hero-actions { animation: subtitleSlide 0.9s ease 0.9s both; }
+
+    /* ---------- Button shimmer ---------- */
+    .btn {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+      transition: left 0.7s ease;
+      pointer-events: none;
+    }
+    .btn:hover::before { left: 100%; }
+
+    /* ---------- Section header underline draw-in ---------- */
+    .section-header h2::after {
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .section-header.visible h2::after { transform: scaleX(1); }
+
+    /* ---------- Card stagger entrance ---------- */
+    .quick-link-card,
+    .highlight-card,
+    .project-preview,
+    .hero-stat {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .quick-link-card.visible,
+    .highlight-card.visible,
+    .project-preview.visible,
+    .hero-stat.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .quick-link-card:nth-child(1) { transition-delay: 0s; }
+    .quick-link-card:nth-child(2) { transition-delay: 0.08s; }
+    .quick-link-card:nth-child(3) { transition-delay: 0.16s; }
+    .quick-link-card:nth-child(4) { transition-delay: 0.24s; }
+    .quick-link-card:nth-child(5) { transition-delay: 0.32s; }
+    .quick-link-card:nth-child(6) { transition-delay: 0.4s; }
+
+    .highlight-card:nth-child(1) { transition-delay: 0s; }
+    .highlight-card:nth-child(2) { transition-delay: 0.1s; }
+    .highlight-card:nth-child(3) { transition-delay: 0.2s; }
+    .highlight-card:nth-child(4) { transition-delay: 0.3s; }
+
+    .project-preview:nth-child(1) { transition-delay: 0s; }
+    .project-preview:nth-child(2) { transition-delay: 0.12s; }
+    .project-preview:nth-child(3) { transition-delay: 0.24s; }
+
+    .quick-link-card:hover .quick-icon,
+    .highlight-card:hover .icon-circle {
+      animation: iconWiggle 0.6s ease;
+    }
+    @keyframes iconWiggle {
+      0%   { transform: rotate(0) scale(1); }
+      25%  { transform: rotate(-12deg) scale(1.15); }
+      50%  { transform: rotate(10deg) scale(1.1); }
+      75%  { transform: rotate(-5deg) scale(1.05); }
+      100% { transform: rotate(0) scale(1); }
+    }
+
+    /* ---------- Welcome image Ken Burns zoom ---------- */
+    .welcome-image img { transition: transform 8s ease; }
+    .welcome-image.visible img { animation: kenBurns 12s ease-in-out infinite alternate; }
+    @keyframes kenBurns {
+      0%   { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.12) translate(-3%, -2%); }
+    }
+
+    /* ---------- Navbar underline slide ---------- */
+    .navbar a { position: relative; overflow: hidden; }
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d4a373, #f9e6b3);
+      transition: width 0.35s ease, left 0.35s ease;
+      transform: translateX(-50%);
+    }
+    .navbar a:hover::after,
+    .navbar a.active::after { width: 80%; }
+
+    /* ---------- Back to top bounce-in ---------- */
+    .back-to-top.visible { animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes bounceIn {
+      0%   { opacity: 0; transform: translateY(40px) scale(0.6); }
+      60%  { opacity: 1; transform: translateY(-8px) scale(1.05); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ---------- Accessibility ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .quick-link-card, .highlight-card, .project-preview, .hero-stat { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 2rem; min-height: 5em; }
+      .typing-cursor { margin-left: 3px; }
+      .orb-1 { width: 200px; height: 200px; }
+      .orb-2 { width: 250px; height: 250px; }
+      .orb-3 { width: 160px; height: 160px; }
+    }
+  </style>
 </head>
 <body class="page-home">
 
@@ -49,16 +269,26 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
     <div class="hero-content">
       <div class="hero-badge"><i class="fas fa-award"></i> Excellence in Education</div>
-      <h2>Welcome to <span class="highlight">Pagejo Rarubi</span> Primary School</h2>
+
+      <h2 id="heroTitle">
+        <span id="typingText" class="typing-text"></span><span class="typing-cursor">|</span>
+      </h2>
+
       <p>A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
+
       <div class="hero-stats">
-        <div class="hero-stat"><div class="number">25+</div><div class="label">Years of Excellence</div></div>
-        <div class="hero-stat"><div class="number">446</div><div class="label">Happy Learners</div></div>
-        <div class="hero-stat"><div class="number">13</div><div class="label">Dedicated Staff</div></div>
-        <div class="hero-stat"><div class="number">80%</div><div class="label">Pass Rate</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="25" data-suffix="+">0+</div><div class="label">Years of Excellence</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="446">0</div><div class="label">Happy Learners</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="13">0</div><div class="label">Dedicated Staff</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="80" data-suffix="%">0%</div><div class="label">Pass Rate</div></div>
       </div>
+
       <div class="hero-actions">
         <a href="contact.html" class="btn btn-gold"><i class="fas fa-user-plus"></i> Enroll Now</a>
         <a href="about.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Learn More</a>
@@ -105,27 +335,27 @@
           <h4>Vision &amp; Mission</h4>
           <p>Discover our direction and purpose</p>
         </a>
-        <a href="about.html" class="quick-link-card animate-on-scroll" style="transition-delay: 0.1s;">
+        <a href="about.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-handshake"></i></div>
           <h4>Client's Charter</h4>
           <p>Our promise to learners and parents</p>
         </a>
-        <a href="academics.html" class="quick-link-card animate-on-scroll" style="transition-delay: 0.2s;">
+        <a href="academics.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-clock"></i></div>
           <h4>Timetable</h4>
           <p>Daily and afternoon activities</p>
         </a>
-        <a href="results.html" class="quick-link-card animate-on-scroll" style="transition-delay: 0.3s;">
+        <a href="results.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-chart-line"></i></div>
           <h4>Results</h4>
           <p>View examination performance</p>
         </a>
-        <a href="projects.html" class="quick-link-card animate-on-scroll" style="transition-delay: 0.4s;">
+        <a href="projects.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-seedling"></i></div>
           <h4>School Projects</h4>
           <p>Mushroom, pumpkins &amp; road runners</p>
         </a>
-        <a href="contact.html" class="quick-link-card animate-on-scroll" style="transition-delay: 0.5s;">
+        <a href="contact.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-address-card"></i></div>
           <h4>Contact Us</h4>
           <p>Enrollment &amp; general enquiries</p>
@@ -147,17 +377,17 @@
           <h4>Rich Curriculum</h4>
           <p>Balanced national curriculum enriched with arts, sports, and life skills.</p>
         </div>
-        <div class="highlight-card animate-on-scroll" style="transition-delay: 0.1s;">
+        <div class="highlight-card animate-on-scroll">
           <div class="icon-circle"><i class="fas fa-hand-holding-heart"></i></div>
           <h4>Care &amp; Support</h4>
           <p>Small class sizes and dedicated teachers focused on every child's growth.</p>
         </div>
-        <div class="highlight-card animate-on-scroll" style="transition-delay: 0.2s;">
+        <div class="highlight-card animate-on-scroll">
           <div class="icon-circle"><i class="fas fa-tree"></i></div>
           <h4>Green Campus</h4>
           <p>Spacious grounds and a school garden that inspire curiosity and health.</p>
         </div>
-        <div class="highlight-card animate-on-scroll" style="transition-delay: 0.3s;">
+        <div class="highlight-card animate-on-scroll">
           <div class="icon-circle"><i class="fas fa-trophy"></i></div>
           <h4>Holistic Success</h4>
           <p>We celebrate academics, sports, culture, and character development.</p>
@@ -177,21 +407,21 @@
       <div class="projects-preview-grid">
         <div class="project-preview animate-on-scroll">
           <div class="project-preview-img" style="background: linear-gradient(135deg, #8B6F47, #6B4F2F); height: 200px; padding: 0; overflow: hidden;">
-            <img src="images/mushroom.jpg" alt="Mushroom Growing Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-seedling\' style=\'font-size: 4rem; color: #fff;\'></i>';">
+            <img src="images/mushroom.jpg" alt="Mushroom Growing Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-seedling\' style=\'font-size: 4rem; color: #fff;\'></i>';">
           </div>
           <h4>Mushroom Growing</h4>
           <p>Students learn cultivation, harvesting, and marketing of mushrooms.</p>
         </div>
-        <div class="project-preview animate-on-scroll" style="transition-delay: 0.1s;">
+        <div class="project-preview animate-on-scroll">
           <div class="project-preview-img" style="background: linear-gradient(135deg, #E67E22, #D35400); height: 200px; padding: 0; overflow: hidden;">
-            <img src="images/pumpkin.jpg" alt="Pumpkin Farming Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-leaf\' style=\'font-size: 4rem; color: #fff;\'></i>';">
+            <img src="images/pumpkin.jpg" alt="Pumpkin Farming Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-leaf\' style=\'font-size: 4rem; color: #fff;\'></i>';">
           </div>
           <h4>Pumpkin Farming</h4>
           <p>Planting, nurturing, and harvesting pumpkins for nutrition and income.</p>
         </div>
-        <div class="project-preview animate-on-scroll" style="transition-delay: 0.2s;">
+        <div class="project-preview animate-on-scroll">
           <div class="project-preview-img" style="background: linear-gradient(135deg, #3498DB, #2980B9); height: 200px; padding: 0; overflow: hidden;">
-            <img src="images/roadrunners.jpg" alt="Road Runners Chicks Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-kiwi-bird\' style=\'font-size: 4rem; color: #fff;\'></i>';">
+            <img src="images/roadrunners.jpg" alt="Road Runners Chicks Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-kiwi-bird\' style=\'font-size: 4rem; color: #fff;\'></i>';">
           </div>
           <h4>Road Runners Chicks</h4>
           <p>Poultry rearing project teaching students animal husbandry skills.</p>
@@ -232,7 +462,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p><i class="fas fa-copyright"></i> 2026 Pagejo Rarubi Primary School. All rights reserved.</p>
+      <p><i class="fas fa-copyright"></i> 2025 Pagejo Rarubi Primary School. All rights reserved.</p>
       <p><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com &nbsp; | &nbsp; <i class="fas fa-phone"></i> 0781521551 / 0714168885</p>
       <p style="margin-top: 8px; font-size: 0.8rem;">Website developed by <strong style="color: var(--accent, #d4a373);">Pardon Katsande (BL@CKN1TE)</strong></p>
     </div>
@@ -246,4 +476,4 @@
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
 </body>
-</html>
+          </html>
