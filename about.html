@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us | Pagejo Rarubi Primary School</title>
+  <meta name="description" content="About Pagejo Rarubi Primary School — vision, mission, staff directory, and school administration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -11,23 +14,20 @@
 </head>
 <body class="page-about">
 
+  <!-- TOP BAR -->
   <div class="top-bar">
     <div class="contact-info">
-      <span><i class="fas fa-phone-alt"></i> School: 0779606842</span>
-      <span><i class="fas fa-phone-alt"></i> Head: 0772398893</span>
+      <span><i class="fas fa-phone-alt"></i> School: 0781521551</span>
+      <span><i class="fas fa-phone-alt"></i> Head: 0714168885</span>
       <span><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com</span>
     </div>
     <div class="motto"><i class="fas fa-star"></i> Knowledge · Integrity · Service</div>
   </div>
 
+  <!-- HEADER -->
   <header class="main-header" id="mainHeader">
     <div class="logo-area">
-      <svg class="school-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z" fill="#1e4b3a" stroke="#d4a373" stroke-width="2.5"/>
-        <path d="M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z" fill="#f9e6b3" stroke="#1e4b3a" stroke-width="2.2"/>
-        <path d="M50 38 L50 60" stroke="#1e4b3a" stroke-width="2.2"/>
-        <path d="M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z" fill="#d4a373" stroke="#fff" stroke-width="1.2"/>
-      </svg>
+      <img src="images/logo.png" alt="School Logo" class="school-logo-svg" style="object-fit: contain;" onerror="this.outerHTML='<svg class=\'school-logo-svg\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z\' fill=\'#1e4b3a\' stroke=\'#d4a373\' stroke-width=\'2.5\'/><path d=\'M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z\' fill=\'#f9e6b3\' stroke=\'#1e4b3a\' stroke-width=\'2.2\'/><path d=\'M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z\' fill=\'#d4a373\' stroke=\'#fff\' stroke-width=\'1.2\'/></svg>';">
       <div class="school-name">
         <h1>Pagejo Rarubi</h1>
         <div class="subhead"><i class="fas fa-graduation-cap"></i> Primary School</div>
@@ -36,6 +36,7 @@
     <div class="header-badge"><i class="fas fa-calendar-alt"></i> Est. 1998</div>
   </header>
 
+  <!-- NAVIGATION -->
   <nav class="navbar">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="about.html" class="active"><i class="fas fa-users"></i> About Us</a>
@@ -46,166 +47,220 @@
     <a href="contact.html"><i class="fas fa-address-card"></i> Contact</a>
   </nav>
 
+  <!-- PAGE BANNER -->
   <section class="page-banner">
     <div class="page-banner-content">
-      <h1>About Us</h1>
-      <p>Discover our history, vision, mission, and the people who make Pagejo Rarubi exceptional.</p>
+      <h1>About Our School</h1>
+      <p>A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
     </div>
   </section>
 
   <!-- VISION & MISSION -->
-  <section class="section">
+  <section class="section" id="vision-mission">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-compass"></i> Our Direction</span>
-        <h2>Vision & Mission</h2>
-        <p>Guided by our heritage and committed to holistic development for every child.</p>
+        <span class="eyebrow"><i class="fas fa-bullseye"></i> Our Direction</span>
+        <h2>Vision &amp; Mission</h2>
       </div>
       <div class="vm-grid">
         <div class="vm-card animate-on-scroll">
           <div class="vm-icon"><i class="fas fa-eye"></i></div>
-          <h3>Our Vision 2030</h3>
-          <div class="vm-text">
-            <span class="red">TOWARDS A PROSPEROUS</span><br>
-            <span class="blue">UPPER MIDDLE-INCOME</span><br>
-            <span class="green">SOCIETY BY YEAR 2030.</span>
-          </div>
+          <h3>Our Vision</h3>
+          <p class="vm-text">
+            <span class="red">TO PROVIDE</span> <span class="blue">A HERITAGE-DRIVEN EDUCATION</span>
+            <span class="green">FOR A SOCIETY</span> <span class="grey">WHERE LIFE SKILLS,</span>
+            <span class="green">GOD-GIVEN TALENTS</span> <span class="grey">AND</span>
+            <span class="blue">CHARACTER BUILDING</span> <span class="red">ARE NURTURED.</span>
+          </p>
         </div>
-        <div class="vm-card animate-on-scroll" style="transition-delay: 0.15s;">
-          <div class="vm-icon"><i class="fas fa-bullseye"></i></div>
-          <h3>Our Mission Statement</h3>
-          <div class="vm-text">
-            <span class="blue">"A HERITAGE-DRIVEN EDUCATION FOR A SOCIETY,</span><br>
-            <span class="grey">NOT ONLY ACADEMIC-ORIENTED BUT ONE WHERE LIFE SKILLS, GOD-GIVEN TALENTS,</span><br>
-            <span class="red">AND CHARACTER BUILDING ARE NURTURED."</span>
-          </div>
+        <div class="vm-card animate-on-scroll" style="transition-delay: 0.1s;">
+          <div class="vm-icon"><i class="fas fa-flag"></i></div>
+          <h3>Our Mission</h3>
+          <p class="vm-text">
+            <span class="green">TO PRODUCE</span> <span class="blue">A LEARNER</span>
+            <span class="grey">WHO IS</span> <span class="red">SELF-RELIANT</span>
+            <span class="grey">AND</span> <span class="green">HOLISTICALLY DEVELOPED</span>
+            <span class="grey">FOR</span> <span class="red">VISION 2030</span>
+            <span class="grey">— TOWARDS A PROSPEROUS UPPER MIDDLE-INCOME SOCIETY.</span>
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CHARTER -->
-  <section class="section" style="background: rgba(255,255,255,0.7);">
+  <!-- CLIENT'S CHARTER -->
+  <section class="section" id="charter" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
         <span class="eyebrow"><i class="fas fa-handshake"></i> Our Promise</span>
         <h2>Client's Charter</h2>
-        <p>The school undertakes to deliver on these commitments to our learners, parents, and community.</p>
       </div>
       <div class="charter-container animate-on-scroll">
-        <div class="charter-subtitle">Pagejo Rarubi Primary School</div>
-        <div class="charter-title">The School Undertakes To</div>
+        <div class="charter-title">CLIENT'S CHARTER</div>
+        <div class="charter-subtitle">PAGEJO RARUBI PRIMARY SCHOOL</div>
         <ol class="charter-list">
-          <li>TEACH, SUPERVISE, AND MARK ALL THE WORKING CURRICULUM.</li>
-          <li>DEVELOP THE SOCIAL AND MORAL VALUES ACCEPTED IN SOCIETY DAILY.</li>
-          <li>PARRICIPATE IN THE VARIOUS SPORTING DISCIPLINES STERNLY FOR FUTURE CARRIER PROSPECTS.</li>
-          <li>SOURCE AND PROCURE AFFORDABLE AND APPROPRIATE TEACHING AND LEARNING MATERIAL.</li>
-          <li>IDENTIFY ACCESS AND ASSIST PUPILS WITH SPECIAL NEEDS ON A DAILY BASIS.</li>
-          <li>INTERACT WITH PARENTS ON CONSULTATION DAYS SPEECH PRIZE GIVING DAYS AND GENERAL MEETING.</li>
-          <li>ASSIST CLIENTS COURTEOUSLY, EFFECTIVELY WITHIN THE SHORTEST POSSIBLE TIME.</li>
-          <li>ANSWER PHONE CALLS WITHIN THE FIRST THREE (3) RINGS AND SPEND THE SHORTEST TIME POSSIBLE ON THE CALL.</li>
+          <li>PROVIDE QUALITY EDUCATION TO ALL LEARNERS WITHOUT DISCRIMINATION.</li>
+          <li>MAINTAIN A SAFE, CLEAN, AND CONDUCIVE LEARNING ENVIRONMENT.</li>
+          <li>TREAT ALL CLIENTS WITH RESPECT, DIGNITY, AND COURTESY.</li>
+          <li>COMMUNICATE EFFECTIVELY AND TRANSPARENTLY WITH PARENTS AND GUARDIANS.</li>
+          <li>ENSURE PUNCTUAL AND REGULAR ATTENDANCE BY TEACHING STAFF.</li>
+          <li>PROVIDE TIMELY FEEDBACK ON LEARNER PROGRESS AND WELFARE.</li>
+          <li>UPHOLD PROFESSIONAL ETHICS AND CONFIDENTIALITY.</li>
+          <li>DELIVER SERVICES WITH INTEGRITY, ACCOUNTABILITY, AND TRANSPARENCY.</li>
         </ol>
-        <div class="charter-motto"><i class="fas fa-quote-left"></i> In Pursuit of Excellence for Holistic Development <i class="fas fa-quote-right"></i></div>
+        <div class="charter-motto"><i class="fas fa-star"></i> In Pursuit of Excellence for Holistic Development</div>
       </div>
     </div>
   </section>
 
   <!-- CODE OF CONDUCT -->
-  <section class="section">
+  <section class="section" id="conduct">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-user-shield"></i> Our Standards</span>
-        <h2>Members of Staff Code of Conduct</h2>
+        <span class="eyebrow"><i class="fas fa-gavel"></i> Our Standards</span>
+        <h2>Code of Conduct</h2>
       </div>
       <div class="conduct-container animate-on-scroll">
-        <div class="conduct-subtitle">Pagejo Rarubi Primary School</div>
+        <div class="conduct-title">CODE OF CONDUCT</div>
+        <div class="conduct-subtitle">PAGEJO RARUBI PRIMARY SCHOOL</div>
         <ul class="conduct-list">
-          <li>MEMBERS OF STAFF SHOULD BE HARD WORKING, TRUSTWORTHY AND HONEST.</li>
-          <li>MEMBERS SHOULD ALWAYS ACT IN LOCO PARENTIS.</li>
-          <li>MEMBERS SHOULD LOOK AFTER SCHOOL PROPERTY.</li>
-          <li>MEMBERS SHOULD MAINTAIN GOOD SCHOOL TONE.</li>
-          <li>MEMBERS SHOULD OBSERVE PUNCTUALITY.</li>
-          <li>MEMBERS SHOULD TAKE SAFETY PRECAUTIONS WHENEVER ENGAGING IN SCHOOL ACTIVITIES WITH PUPILS.</li>
-          <li>MEMBERS SHOULD OBSERVE THE OFFICIAL SECRET ACT.</li>
-          <li>MEMBERS SHOULD ADHERE TO ALL MINISTRY OF PRIMARY AND SECONDARY EDUCATION POLICIES.</li>
+          <li>LEARNERS MUST BE PUNCTUAL AND REGULAR IN ATTENDANCE.</li>
+          <li>RESPECT TOWARDS TEACHERS, STAFF, AND FELLOW LEARNERS IS MANDATORY.</li>
+          <li>SCHOOL PROPERTY MUST BE HANDLED WITH CARE AND RESPONSIBILITY.</li>
+          <li>BULLYING, FIGHTING, AND ANY FORM OF VIOLENCE IS STRICTLY PROHIBITED.</li>
+          <li>SCHOOL UNIFORM MUST BE WORN CORRECTLY AND WITH PRIDE.</li>
+          <li>HOMEWORK AND ASSIGNMENTS MUST BE COMPLETED AND SUBMITTED ON TIME.</li>
+          <li>LEARNERS MUST PARTICIPATE IN ALL SCHOOL ACTIVITIES AND PROGRAMS.</li>
+          <li>PARENTS ARE ENCOURAGED TO SUPPORT SCHOOL ACTIVITIES AND POLICIES.</li>
         </ul>
-        <div class="conduct-motto"><i class="fas fa-shield-alt"></i> Professionalism · Integrity · Dedication</div>
+        <div class="conduct-motto"><i class="fas fa-check-circle"></i> Discipline · Respect · Responsibility</div>
       </div>
     </div>
   </section>
 
-  <!-- ORGANOGRAM -->
-  <section class="section" style="background: rgba(255,255,255,0.7);">
+  <!-- ADMINISTRATION / STAFF DIRECTORY -->
+  <section class="section" id="administration" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-sitemap"></i> Structure</span>
-        <h2>Ministry's Organogram</h2>
-      </div>
-      <div class="organogram-wrapper animate-on-scroll">
-        <div class="organogram-header">
-          <div class="country">Republic of Zimbabwe<br>Ministry of Primary and Secondary Education</div>
-          <h3>Ministry's Organogram</h3>
-        </div>
-        <ul class="org-list">
-          <li><span class="role">Minister</span><span class="name">Hon. Torerai Moyo</span></li>
-          <li><span class="role">Deputy Minister</span><span class="name">Hon. Angeline Gata</span></li>
-          <li><span class="role">Secretary</span><span class="name">Mr Moses Mhike</span></li>
-          <li><span class="role">Chief Director Education Services</span><span class="name">Mash: -East Province · Mrs Ncube Anatoria</span></li>
-          <li><span class="role">District Schools Inspector (D.S.I)</span><span class="name">Mr Chigariro .Manuel.</span></li>
-          <li><span class="role">School Head</span><span class="name">Mrs Horiro Ruth</span></li>
-          <li><span class="role">Deputy Head</span><span class="name">Mr Chibwe .C.</span></li>
-          <li><span class="role">T.I.C</span><span class="name">Mrs Muzhizhizhi Primrose</span></li>
-          <li><span class="role">Senior Teacher</span><span class="name">Ms Dehwa .N.</span></li>
-          <li><span class="role">Senior Teacher</span><span class="name">Mr Matinyarare J.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ADMINISTRATION -->
-  <section class="section">
-    <div class="section-container">
-      <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-address-book"></i> Contact Directory</span>
+        <span class="eyebrow"><i class="fas fa-user-tie"></i> Our Team</span>
         <h2>School Administration</h2>
+        <p>Meet the dedicated team leading Pagejo Rarubi Primary School.</p>
       </div>
+
       <div class="admin-card animate-on-scroll">
         <div class="admin-header">
-          <h3>Administration Directory</h3>
-          <p>Pagejo Rarubi Primary School</p>
+          <h3><i class="fas fa-users"></i> Administration Directory</h3>
         </div>
         <table class="admin-table">
           <thead>
-            <tr><th>Position</th><th>Name</th><th>Contact</th></tr>
+            <tr>
+              <th>Position</th>
+              <th>Name</th>
+              <th>Contact</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td class="position-school-head">SCHOOL HEAD</td><td>HORIRO R.</td><td><a href="tel:+263714168885" class="contact-link"><i class="fas fa-phone"></i> +263 714 168 885</a></td></tr>
-            <tr><td class="position-deputy-head">DEPUTY HEAD</td><td>CHIBWE C.</td><td><a href="tel:+263785028599" class="contact-link"><i class="fas fa-phone"></i> +263 785 028 599</a></td></tr>
-            <tr><td class="position-tic">T.I.C</td><td>MUZHIZHIZHI P.</td><td><a href="tel:+263779762195" class="contact-link"><i class="fas fa-phone"></i> +263 779 762 195</a></td></tr>
-            <tr><td class="position-senior">SENIOR TEACHER</td><td>DEHWA N.</td><td><a href="tel:+263772382569" class="contact-link"><i class="fas fa-phone"></i> +263 772 382 569</a></td></tr>
-            <tr><td class="position-senior">SENIOR TEACHER</td><td>MATINYARARE J.</td><td><a href="tel:+263773162854" class="contact-link"><i class="fas fa-phone"></i> +263 773 162 854</a></td></tr>
+            <!-- Auto-populated by admin.js from CMS data -->
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <section class="cta-banner">
-    <div class="cta-content">
-      <h2>Have Questions About Our School?</h2>
-      <p>We're here to help. Reach out to us today.</p>
-      <a href="contact.html" class="btn btn-gold"><i class="fas fa-envelope"></i> Contact Us</a>
+  <!-- SCHOOL DATABASE -->
+  <section class="section" id="school-database">
+    <div class="section-container">
+      <div class="section-header animate-on-scroll">
+        <span class="eyebrow"><i class="fas fa-database"></i> Official Records</span>
+        <h2>School Database</h2>
+        <p>Official registration and operational information.</p>
+      </div>
+
+      <div class="admin-card animate-on-scroll">
+        <div class="admin-header">
+          <h3><i class="fas fa-school"></i> School Database</h3>
+        </div>
+        <table class="admin-table">
+          <tbody>
+            <tr>
+              <td class="position-school-head">ADDRESS</td>
+              <td id="dbAddress">PAGEJO RARUBI PRIMARY SCHOOL<br>P.O. BOX CH 202<br>CHISIPITE</td>
+            </tr>
+            <tr>
+              <td class="position-school-head">LOCATION</td>
+              <td id="dbLocation">PAGEJO RARUBI FARM @ 32KM PEG MUTOKO ROAD<br>WARD 13 GOROMONZI DISTRICT</td>
+            </tr>
+            <tr>
+              <td class="position-school-head">GPS</td>
+              <td>Latitude: S 17°44'7"<br>Longitude: E 31°18'43"<br>Altitude: 1294.5m<br>Accuracy: 4.5m</td>
+            </tr>
+            <tr><td class="position-school-head">SCHOOL REGISTRATION NO.</td><td>6050</td></tr>
+            <tr>
+              <td class="position-school-head">EMAIL ADDRESS</td>
+              <td><a href="mailto:pagejorarubiprisch@gmail.com" id="dbEmail" class="contact-link">pagejorarubiprisch@gmail.com</a></td>
+            </tr>
+            <tr>
+              <td class="position-school-head">CELL PHONE (1) SCHOOL</td>
+              <td><a href="tel:0781521551" id="dbSchoolPhone" class="contact-link">0781 521 551</a></td>
+            </tr>
+            <tr>
+              <td class="position-school-head">CELLPHONE (2) HEAD</td>
+              <td><a href="tel:0714168885" id="dbHeadPhone" class="contact-link">0714 168 885</a></td>
+            </tr>
+            <tr><td class="position-school-head">RESPONSIBLE AUTHORITY</td><td>RAY AND BRIAN ENTERPRISES</td></tr>
+            <tr><td class="position-school-head">DATE FOUNDED (INITIAL)</td><td>01/01/62</td></tr>
+            <tr><td class="position-school-head">RE-ESTABLISHED</td><td>01/01/2003</td></tr>
+            <tr><td class="position-school-head">STATION CODE</td><td>7020</td></tr>
+            <tr><td class="position-school-head">DEPARTMENT CODE</td><td>2330</td></tr>
+            <tr><td class="position-school-head">SECTION</td><td>02</td></tr>
+            <tr><td class="position-school-head">SUBSECTION</td><td>220</td></tr>
+            <tr><td class="position-school-head">ENROLLMENT</td><td>446</td></tr>
+            <tr><td class="position-school-head">EXAMINATION REGISTRATION NO.</td><td>037305</td></tr>
+            <tr>
+              <td class="position-school-head">AVERAGE PASS RATE</td>
+              <td><strong style="color: #2e7d32; font-size: 1.1rem;">80%</strong></td>
+            </tr>
+            <tr><td class="position-school-head">CBZ ACC. NAME</td><td>PAGEJO RARUBI PRIMARY</td></tr>
+            <tr>
+              <td class="position-school-head">ACC NO.</td>
+              <td>01124170430019 RTGS<br>01124170430029 NOSTRO</td>
+            </tr>
+            <tr><td class="position-school-head">ZESA PRE-PAID ELECTRICITY NO.</td><td>37132572100</td></tr>
+            <tr><td class="position-school-head">ACCOUNT NAME</td><td>REMARH CHIGA</td></tr>
+            <tr>
+              <td class="position-school-head">HELP LINE POLICE JURU</td>
+              <td><a href="tel:0773611611" class="contact-link">0773 611 611</a></td>
+            </tr>
+            <tr><td class="position-school-head">SIG: ZB BANK</td><td>4118-793239-406</td></tr>
+            <tr><td class="position-school-head">GOROMONZI NORTH ZONE</td><td>4112-525106-200</td></tr>
+            <tr><td class="position-school-head">NAPH GOROMONZI DISTRICT</td><td>4112-552170-200</td></tr>
+            <tr>
+              <td class="position-school-head">BSPZ: NOSTRO ZB BANK</td>
+              <td>FIRST STREET<br>Acc No. 4112-524996-405</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
+  <!-- CTA BANNER -->
+  <section class="cta-banner" id="cta-banner">
+    <div class="cta-content">
+      <h2>Want to Learn More?</h2>
+      <p>Visit our school or reach out for a friendly chat.</p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-gold"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="tel:0781521551" class="btn btn-outline"><i class="fas fa-phone"></i> Call: 0781521551</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z" fill="#1e4b3a" stroke="#d4a373" stroke-width="2.5"/>
-          <path d="M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z" fill="#f9e6b3" stroke="#1e4b3a" stroke-width="2.2"/>
-          <path d="M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z" fill="#d4a373" stroke="#fff" stroke-width="1.2"/>
-        </svg>
+        <img src="images/logo.png" alt="School Logo" style="width: 50px; height: 50px; object-fit: contain;" onerror="this.style.display='none';">
         <span>Pagejo Rarubi Primary</span>
       </div>
       <div class="footer-links">
@@ -219,15 +274,17 @@
     </div>
     <div class="footer-bottom">
       <p><i class="fas fa-copyright"></i> 2025 Pagejo Rarubi Primary School. All rights reserved.</p>
-      <p><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com &nbsp; | &nbsp; <i class="fas fa-phone"></i> 0779606842 / 0772398893</p>
-      <p style="margin-top: 8px; font-size: 0.8rem;">Website developed by <strong style="color: #d4a373;">Pardon Katsande (BL@CKN1TE)</strong></p>
+      <p><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com &nbsp; | &nbsp; <i class="fas fa-phone"></i> 0781521551 / 0714168885</p>
+      <p style="margin-top: 8px; font-size: 0.8rem;">Website developed by <strong style="color: var(--accent, #d4a373);">Pardon Katsande (BL@CKN1TE)</strong></p>
     </div>
   </footer>
 
   <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
+  <!-- SCRIPTS -->
   <script src="js/admin.js"></script>
+  <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
 </body>
-</html>
+        </html>
