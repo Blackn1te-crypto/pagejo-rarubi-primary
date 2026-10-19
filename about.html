@@ -11,8 +11,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/drawer.css">
+  <style>
+    /* ============================================================
+       EDIT MODE STYLES (matches the rest of the site)
+       ============================================================ */
+    .edit-toggle-btn { background: linear-gradient(135deg,#d4a373,#b88645); color: #1e4b3a; border: none; border-radius: 30px; padding: 8px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); vertical-align: middle; font-family: 'Montserrat', sans-serif; }
+    .edit-toggle-btn:hover { background: linear-gradient(135deg,#c49a6c,#a8783d); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .edit-toggle-btn.is-saving { background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; }
+    .section-header .header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .section-header .header-actions .eyebrow { margin-right: 8px; }
+    
+    [contenteditable="true"] { outline: 2px dashed rgba(212,163,115,0.6); outline-offset: 2px; background: rgba(255,255,255,0.5); border-radius: 4px; transition: outline 0.2s, background 0.2s; min-width: 20px; display: inline-block; padding: 1px 3px; }
+    [contenteditable="true"]:hover { outline: 2px dashed #d4a373; background: rgba(255,255,255,0.8); }
+    [contenteditable="true"]:focus { outline: 2px solid #1e4b3a; background: #fff; box-shadow: 0 0 0 3px rgba(30,75,58,0.15); }
+    td[contenteditable="true"] { display: table-cell; }
+    
+    .edit-save-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 9998; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; pointer-events: none; }
+    .edit-save-banner.show { transform: translateX(-50%) translateY(0); }
+    .edit-save-banner i { color: #f9e6b3; }
+    
+    @media (max-width: 600px) { .edit-toggle-btn { padding: 6px 12px; font-size: 0.78rem; } .section-header .header-actions { flex-direction: column; align-items: flex-start; } .edit-save-banner { font-size: 0.8rem; padding: 10px 18px; } }
+  </style>
 </head>
 <body class="page-about">
+
+  <!-- SAVE TOAST -->
+  <div id="saveBanner" class="edit-save-banner" aria-live="polite">
+    <i class="fas fa-check-circle"></i> <span id="saveBannerText">Changes saved!</span>
+  </div>
 
   <!-- TOP BAR -->
   <div class="top-bar">
@@ -50,8 +76,8 @@
   <!-- PAGE BANNER -->
   <section class="page-banner">
     <div class="page-banner-content">
-      <h1>About Our School</h1>
-      <p>A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
+      <h1 data-edit-key="about.banner.title">About Our School</h1>
+      <p data-edit-key="about.banner.desc">A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
     </div>
   </section>
 
@@ -59,14 +85,17 @@
   <section class="section" id="vision-mission">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-bullseye"></i> Our Direction</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-bullseye"></i> Our Direction</span>
+          <button class="edit-toggle-btn" data-target="vision-mission"><i class="fas fa-pen"></i> Edit</button>
+        </div>
         <h2>Vision &amp; Mission</h2>
       </div>
       <div class="vm-grid">
         <div class="vm-card animate-on-scroll">
           <div class="vm-icon"><i class="fas fa-eye"></i></div>
-          <h3>Our Vision</h3>
-          <p class="vm-text">
+          <h3 data-edit-key="vm.vision.title">Our Vision</h3>
+          <p class="vm-text" data-edit-key="vm.vision.text">
             <span class="red">TO PROVIDE</span> <span class="blue">A HERITAGE-DRIVEN EDUCATION</span>
             <span class="green">FOR A SOCIETY</span> <span class="grey">WHERE LIFE SKILLS,</span>
             <span class="green">GOD-GIVEN TALENTS</span> <span class="grey">AND</span>
@@ -75,8 +104,8 @@
         </div>
         <div class="vm-card animate-on-scroll" style="transition-delay: 0.1s;">
           <div class="vm-icon"><i class="fas fa-flag"></i></div>
-          <h3>Our Mission</h3>
-          <p class="vm-text">
+          <h3 data-edit-key="vm.mission.title">Our Mission</h3>
+          <p class="vm-text" data-edit-key="vm.mission.text">
             <span class="green">TO PRODUCE</span> <span class="blue">A LEARNER</span>
             <span class="grey">WHO IS</span> <span class="red">SELF-RELIANT</span>
             <span class="grey">AND</span> <span class="green">HOLISTICALLY DEVELOPED</span>
@@ -92,23 +121,28 @@
   <section class="section" id="charter" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-handshake"></i> Our Promise</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-handshake"></i> Our Promise</span>
+          <button class="edit-toggle-btn" data-target="charter"><i class="fas fa-pen"></i> Edit</button>
+        </div>
         <h2>Client's Charter</h2>
       </div>
       <div class="charter-container animate-on-scroll">
-        <div class="charter-title">CLIENT'S CHARTER</div>
-        <div class="charter-subtitle">PAGEJO RARUBI PRIMARY SCHOOL</div>
+        <div class="charter-title" data-edit-key="charter.title">CLIENT'S CHARTER</div>
+        <div class="charter-subtitle" data-edit-key="charter.subtitle">PAGEJO RARUBI PRIMARY SCHOOL</div>
         <ol class="charter-list">
-          <li>PROVIDE QUALITY EDUCATION TO ALL LEARNERS WITHOUT DISCRIMINATION.</li>
-          <li>MAINTAIN A SAFE, CLEAN, AND CONDUCIVE LEARNING ENVIRONMENT.</li>
-          <li>TREAT ALL CLIENTS WITH RESPECT, DIGNITY, AND COURTESY.</li>
-          <li>COMMUNICATE EFFECTIVELY AND TRANSPARENTLY WITH PARENTS AND GUARDIANS.</li>
-          <li>ENSURE PUNCTUAL AND REGULAR ATTENDANCE BY TEACHING STAFF.</li>
-          <li>PROVIDE TIMELY FEEDBACK ON LEARNER PROGRESS AND WELFARE.</li>
-          <li>UPHOLD PROFESSIONAL ETHICS AND CONFIDENTIALITY.</li>
-          <li>DELIVER SERVICES WITH INTEGRITY, ACCOUNTABILITY, AND TRANSPARENCY.</li>
+          <li data-edit-key="charter.1">PROVIDE QUALITY EDUCATION TO ALL LEARNERS WITHOUT DISCRIMINATION.</li>
+          <li data-edit-key="charter.2">MAINTAIN A SAFE, CLEAN, AND CONDUCIVE LEARNING ENVIRONMENT.</li>
+          <li data-edit-key="charter.3">TREAT ALL CLIENTS WITH RESPECT, DIGNITY, AND COURTESY.</li>
+          <li data-edit-key="charter.4">COMMUNICATE EFFECTIVELY AND TRANSPARENTLY WITH PARENTS AND GUARDIANS.</li>
+          <li data-edit-key="charter.5">ENSURE PUNCTUAL AND REGULAR ATTENDANCE BY TEACHING STAFF.</li>
+          <li data-edit-key="charter.6">PROVIDE TIMELY FEEDBACK ON LEARNER PROGRESS AND WELFARE.</li>
+          <li data-edit-key="charter.7">UPHOLD PROFESSIONAL ETHICS AND CONFIDENTIALITY.</li>
+          <li data-edit-key="charter.8">DELIVER SERVICES WITH INTEGRITY, ACCOUNTABILITY, AND TRANSPARENCY.</li>
         </ol>
-        <div class="charter-motto"><i class="fas fa-star"></i> In Pursuit of Excellence for Holistic Development</div>
+        <div class="charter-motto" data-edit-key="charter.motto">
+          <i class="fas fa-star"></i> <span data-edit-key="charter.motto.text">In Pursuit of Excellence for Holistic Development</span>
+        </div>
       </div>
     </div>
   </section>
@@ -117,23 +151,28 @@
   <section class="section" id="conduct">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-gavel"></i> Our Standards</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-gavel"></i> Our Standards</span>
+          <button class="edit-toggle-btn" data-target="conduct"><i class="fas fa-pen"></i> Edit</button>
+        </div>
         <h2>Code of Conduct</h2>
       </div>
       <div class="conduct-container animate-on-scroll">
-        <div class="conduct-title">CODE OF CONDUCT</div>
-        <div class="conduct-subtitle">PAGEJO RARUBI PRIMARY SCHOOL</div>
+        <div class="conduct-title" data-edit-key="conduct.title">CODE OF CONDUCT</div>
+        <div class="conduct-subtitle" data-edit-key="conduct.subtitle">PAGEJO RARUBI PRIMARY SCHOOL</div>
         <ul class="conduct-list">
-          <li>LEARNERS MUST BE PUNCTUAL AND REGULAR IN ATTENDANCE.</li>
-          <li>RESPECT TOWARDS TEACHERS, STAFF, AND FELLOW LEARNERS IS MANDATORY.</li>
-          <li>SCHOOL PROPERTY MUST BE HANDLED WITH CARE AND RESPONSIBILITY.</li>
-          <li>BULLYING, FIGHTING, AND ANY FORM OF VIOLENCE IS STRICTLY PROHIBITED.</li>
-          <li>SCHOOL UNIFORM MUST BE WORN CORRECTLY AND WITH PRIDE.</li>
-          <li>HOMEWORK AND ASSIGNMENTS MUST BE COMPLETED AND SUBMITTED ON TIME.</li>
-          <li>LEARNERS MUST PARTICIPATE IN ALL SCHOOL ACTIVITIES AND PROGRAMS.</li>
-          <li>PARENTS ARE ENCOURAGED TO SUPPORT SCHOOL ACTIVITIES AND POLICIES.</li>
+          <li data-edit-key="conduct.1">LEARNERS MUST BE PUNCTUAL AND REGULAR IN ATTENDANCE.</li>
+          <li data-edit-key="conduct.2">RESPECT TOWARDS TEACHERS, STAFF, AND FELLOW LEARNERS IS MANDATORY.</li>
+          <li data-edit-key="conduct.3">SCHOOL PROPERTY MUST BE HANDLED WITH CARE AND RESPONSIBILITY.</li>
+          <li data-edit-key="conduct.4">BULLYING, FIGHTING, AND ANY FORM OF VIOLENCE IS STRICTLY PROHIBITED.</li>
+          <li data-edit-key="conduct.5">SCHOOL UNIFORM MUST BE WORN CORRECTLY AND WITH PRIDE.</li>
+          <li data-edit-key="conduct.6">HOMEWORK AND ASSIGNMENTS MUST BE COMPLETED AND SUBMITTED ON TIME.</li>
+          <li data-edit-key="conduct.7">LEARNERS MUST PARTICIPATE IN ALL SCHOOL ACTIVITIES AND PROGRAMS.</li>
+          <li data-edit-key="conduct.8">PARENTS ARE ENCOURAGED TO SUPPORT SCHOOL ACTIVITIES AND POLICIES.</li>
         </ul>
-        <div class="conduct-motto"><i class="fas fa-check-circle"></i> Discipline · Respect · Responsibility</div>
+        <div class="conduct-motto" data-edit-key="conduct.motto">
+          <i class="fas fa-check-circle"></i> <span data-edit-key="conduct.motto.text">Discipline · Respect · Responsibility</span>
+        </div>
       </div>
     </div>
   </section>
@@ -142,7 +181,10 @@
   <section class="section" id="administration" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-user-tie"></i> Our Team</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-user-tie"></i> Our Team</span>
+          <button class="edit-toggle-btn" data-target="administration"><i class="fas fa-pen"></i> Edit</button>
+        </div>
         <h2>School Administration</h2>
         <p>Meet the dedicated team leading Pagejo Rarubi Primary School.</p>
       </div>
@@ -160,7 +202,27 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Auto-populated by admin.js from CMS data -->
+            <!-- Inline editing is applied to these cells -->
+            <tr>
+              <td class="position-head" data-edit-key="admin.head.pos">HEAD</td>
+              <td data-edit-key="admin.head.name">MRS HORIRO RUTH</td>
+              <td data-edit-key="admin.head.phone">0714 168 885</td>
+            </tr>
+            <tr>
+              <td class="position-deputy" data-edit-key="admin.deputy.pos">DEPUTY HEAD</td>
+              <td data-edit-key="admin.deputy.name">MR MURIRA C.</td>
+              <td data-edit-key="admin.deputy.phone">0771 234 567</td>
+            </tr>
+            <tr>
+              <td class="position-tic" data-edit-key="admin.tic.pos">TIC</td>
+              <td data-edit-key="admin.tic.name">MR KATSANDE P.</td>
+              <td data-edit-key="admin.tic.phone">0781 521 551</td>
+            </tr>
+            <tr>
+              <td class="position-senior" data-edit-key="admin.senior.pos">SENIOR TEACHER</td>
+              <td data-edit-key="admin.senior.name">MRS CHIGA R.</td>
+              <td data-edit-key="admin.senior.phone">0712 345 678</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -171,7 +233,10 @@
   <section class="section" id="school-database">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-database"></i> Official Records</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-database"></i> Official Records</span>
+          <button class="edit-toggle-btn" data-target="school-database"><i class="fas fa-pen"></i> Edit</button>
+        </div>
         <h2>School Database</h2>
         <p>Official registration and operational information.</p>
       </div>
@@ -184,59 +249,59 @@
           <tbody>
             <tr>
               <td class="position-school-head">ADDRESS</td>
-              <td id="dbAddress">PAGEJO RARUBI PRIMARY SCHOOL<br>P.O. BOX CH 202<br>CHISIPITE</td>
+              <td data-edit-key="db.address">PAGEJO RARUBI PRIMARY SCHOOL<br>P.O. BOX CH 202<br>CHISIPITE</td>
             </tr>
             <tr>
               <td class="position-school-head">LOCATION</td>
-              <td id="dbLocation">PAGEJO RARUBI FARM @ 32KM PEG MUTOKO ROAD<br>WARD 13 GOROMONZI DISTRICT</td>
+              <td data-edit-key="db.location">PAGEJO RARUBI FARM @ 32KM PEG MUTOKO ROAD<br>WARD 13 GOROMONZI DISTRICT</td>
             </tr>
             <tr>
               <td class="position-school-head">GPS</td>
-              <td>Latitude: S 17°44'7"<br>Longitude: E 31°18'43"<br>Altitude: 1294.5m<br>Accuracy: 4.5m</td>
+              <td data-edit-key="db.gps">Latitude: S 17°44'7"<br>Longitude: E 31°18'43"<br>Altitude: 1294.5m<br>Accuracy: 4.5m</td>
             </tr>
-            <tr><td class="position-school-head">SCHOOL REGISTRATION NO.</td><td>6050</td></tr>
+            <tr><td class="position-school-head">SCHOOL REGISTRATION NO.</td><td data-edit-key="db.reg">6050</td></tr>
             <tr>
               <td class="position-school-head">EMAIL ADDRESS</td>
-              <td><a href="mailto:pagejorarubiprisch@gmail.com" id="dbEmail" class="contact-link">pagejorarubiprisch@gmail.com</a></td>
+              <td data-edit-key="db.email"><a href="mailto:pagejorarubiprisch@gmail.com" class="contact-link">pagejorarubiprisch@gmail.com</a></td>
             </tr>
             <tr>
               <td class="position-school-head">CELL PHONE (1) SCHOOL</td>
-              <td><a href="tel:0781521551" id="dbSchoolPhone" class="contact-link">0781 521 551</a></td>
+              <td data-edit-key="db.phone1"><a href="tel:0781521551" class="contact-link">0781 521 551</a></td>
             </tr>
             <tr>
               <td class="position-school-head">CELLPHONE (2) HEAD</td>
-              <td><a href="tel:0714168885" id="dbHeadPhone" class="contact-link">0714 168 885</a></td>
+              <td data-edit-key="db.phone2"><a href="tel:0714168885" class="contact-link">0714 168 885</a></td>
             </tr>
-            <tr><td class="position-school-head">RESPONSIBLE AUTHORITY</td><td>RAY AND BRIAN ENTERPRISES</td></tr>
-            <tr><td class="position-school-head">DATE FOUNDED (INITIAL)</td><td>01/01/62</td></tr>
-            <tr><td class="position-school-head">RE-ESTABLISHED</td><td>01/01/2003</td></tr>
-            <tr><td class="position-school-head">STATION CODE</td><td>7020</td></tr>
-            <tr><td class="position-school-head">DEPARTMENT CODE</td><td>2330</td></tr>
-            <tr><td class="position-school-head">SECTION</td><td>02</td></tr>
-            <tr><td class="position-school-head">SUBSECTION</td><td>220</td></tr>
-            <tr><td class="position-school-head">ENROLLMENT</td><td>446</td></tr>
-            <tr><td class="position-school-head">EXAMINATION REGISTRATION NO.</td><td>037305</td></tr>
+            <tr><td class="position-school-head">RESPONSIBLE AUTHORITY</td><td data-edit-key="db.auth">RAY AND BRIAN ENTERPRISES</td></tr>
+            <tr><td class="position-school-head">DATE FOUNDED (INITIAL)</td><td data-edit-key="db.founded">01/01/62</td></tr>
+            <tr><td class="position-school-head">RE-ESTABLISHED</td><td data-edit-key="db.reestab">01/01/2003</td></tr>
+            <tr><td class="position-school-head">STATION CODE</td><td data-edit-key="db.station">7020</td></tr>
+            <tr><td class="position-school-head">DEPARTMENT CODE</td><td data-edit-key="db.dept">2330</td></tr>
+            <tr><td class="position-school-head">SECTION</td><td data-edit-key="db.section">02</td></tr>
+            <tr><td class="position-school-head">SUBSECTION</td><td data-edit-key="db.subsec">220</td></tr>
+            <tr><td class="position-school-head">ENROLLMENT</td><td data-edit-key="db.enroll">446</td></tr>
+            <tr><td class="position-school-head">EXAMINATION REGISTRATION NO.</td><td data-edit-key="db.examreg">037305</td></tr>
             <tr>
               <td class="position-school-head">AVERAGE PASS RATE</td>
-              <td><strong style="color: #2e7d32; font-size: 1.1rem;">80%</strong></td>
+              <td data-edit-key="db.passrate"><strong style="color: #2e7d32; font-size: 1.1rem;">80%</strong></td>
             </tr>
-            <tr><td class="position-school-head">CBZ ACC. NAME</td><td>PAGEJO RARUBI PRIMARY</td></tr>
+            <tr><td class="position-school-head">CBZ ACC. NAME</td><td data-edit-key="db.cbzname">PAGEJO RARUBI PRIMARY</td></tr>
             <tr>
               <td class="position-school-head">ACC NO.</td>
-              <td>01124170430019 RTGS<br>01124170430029 NOSTRO</td>
+              <td data-edit-key="db.cbzacc">01124170430019 RTGS<br>01124170430029 NOSTRO</td>
             </tr>
-            <tr><td class="position-school-head">ZESA PRE-PAID ELECTRICITY NO.</td><td>37132572100</td></tr>
-            <tr><td class="position-school-head">ACCOUNT NAME</td><td>REMARH CHIGA</td></tr>
+            <tr><td class="position-school-head">ZESA PRE-PAID ELECTRICITY NO.</td><td data-edit-key="db.zesa">37132572100</td></tr>
+            <tr><td class="position-school-head">ACCOUNT NAME</td><td data-edit-key="db.acctname">REMARH CHIGA</td></tr>
             <tr>
               <td class="position-school-head">HELP LINE POLICE JURU</td>
-              <td><a href="tel:0773611611" class="contact-link">0773 611 611</a></td>
+              <td data-edit-key="db.police"><a href="tel:0773611611" class="contact-link">0773 611 611</a></td>
             </tr>
-            <tr><td class="position-school-head">SIG: ZB BANK</td><td>4118-793239-406</td></tr>
-            <tr><td class="position-school-head">GOROMONZI NORTH ZONE</td><td>4112-525106-200</td></tr>
-            <tr><td class="position-school-head">NAPH GOROMONZI DISTRICT</td><td>4112-552170-200</td></tr>
+            <tr><td class="position-school-head">SIG: ZB BANK</td><td data-edit-key="db.zbbank">4118-793239-406</td></tr>
+            <tr><td class="position-school-head">GOROMONZI NORTH ZONE</td><td data-edit-key="db.goromonzi">4112-525106-200</td></tr>
+            <tr><td class="position-school-head">NAPH GOROMONZI DISTRICT</td><td data-edit-key="db.naph">4112-552170-200</td></tr>
             <tr>
               <td class="position-school-head">BSPZ: NOSTRO ZB BANK</td>
-              <td>FIRST STREET<br>Acc No. 4112-524996-405</td>
+              <td data-edit-key="db.bspz">FIRST STREET<br>Acc No. 4112-524996-405</td>
             </tr>
           </tbody>
         </table>
@@ -287,4 +352,4 @@
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
 </body>
-        </html>
+  </html>
