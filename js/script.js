@@ -267,11 +267,93 @@
   }
 
   /* ============================================================
+     APPLY THEME (reads from CMS data in localStorage)
+     ============================================================ */
+  window.applyTheme = function () {
+    try {
+      let cmsData = null;
+      const v2 = localStorage.getItem('pagejo_rarubi_cms_data_v2');
+      const v1 = localStorage.getItem('pagejo_rarubi_cms_data');
+      if (v2) cmsData = JSON.parse(v2);
+      else if (v1) cmsData = JSON.parse(v1);
+
+      if (!cmsData) return;
+
+      const theme = cmsData.theme || cmsData.colors;
+      if (theme && typeof theme === 'object') {
+        const map = {
+          primary:      theme.primary,
+          primaryDark:  theme.primaryDark || theme['primary-dark'],
+          primaryLight: theme.primaryLight || theme['primary-light'],
+          accent:       theme.accent,
+          accentLight:  theme.accentLight || theme['accent-light']
+        };
+        const root = document.documentElement;
+        if (map.primary)      root.style.setProperty('--primary', map.primary);
+        if (map.primaryDark)  root.style.setProperty('--primary-dark', map.primaryDark);
+        if (map.primaryLight) root.style.setProperty('--primary-light', map.primaryLight);
+        if (map.accent)       root.style.setProperty('--accent', map.accent);
+        if (map.accentLight)  root.style.setProperty('--accent-light', map.accentLight);
+      }
+    } catch (err) {
+      console.warn('Theme apply skipped:', err);
+    }
+  };
+
+  /* ============================================================
      AUTO-UPDATE YEAR
      ============================================================ */
   function updateYear() {
     const el = document.getElementById('currentYear');
     if (el) el.textContent = new Date().getFullYear();
+  }
+
+  /* ============================================================
+     MOBILE DRAWER / HAMBURGER MENU
+     ============================================================ */
+  function setupDrawer() {
+    const drawer = document.getElementById('drawer');
+    const hamburger = document.getElementById('hamburgerBtn');
+    const closeBtn = document.getElementById('drawerClose');
+    const overlay = document.getElementById('drawerOverlay');
+
+    if (!hamburger) return;
+
+    function openDrawer() {
+      if (drawer) drawer.classList.add('open');
+      if (overlay) overlay.classList.add('open');
+      document.body.classList.add('drawer-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDrawer() {
+      if (drawer) drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+      document.body.classList.remove('drawer-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    hamburger.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (drawer && drawer.classList.contains('open')) closeDrawer();
+      else openDrawer();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
+    });
+
+    // Close drawer when a link inside is clicked
+    if (drawer) {
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', closeDrawer);
+      });
+    }
   }
 
   /* ============================================================
@@ -284,7 +366,9 @@
     highlightCurrentNav();
     setupSmoothHashScroll();
     setupCounters();
+    setupDrawer();
     updateYear();
+    window.applyTheme();
     startTypingLoop();
   });
 
