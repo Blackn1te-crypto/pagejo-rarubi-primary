@@ -1,5 +1,5 @@
 /* ============================================================
-   MAIN JAVASCRIPT
+   MAIN JAVASCRIPT & INLINE EDITING ENGINE
    Pagejo Rarubi Primary School
    Developed by Pardon Katsande (BL@CKN1TE)
    ============================================================ */
@@ -9,10 +9,10 @@
 
   let observer = null;
   let typingTimeout = null;
+  const EDIT_PREFIX = 'pagejo_live_edit_v3_'; // Fresh cache namespace
 
   /* ============================================================
      TYPING ANIMATION MESSAGES
-     First message is overridden by admin's Hero Title if set.
      ============================================================ */
   window.TYPING_MESSAGES = [
     'Welcome to Pagejo Rarubi Primary School',
@@ -20,6 +20,147 @@
     'A Heritage-Driven Education',
     'Knowledge · Integrity · Service'
   ];
+
+  /* ============================================================
+     INLINE EDITING ENGINE
+     ============================================================ */
+  
+  // Create and manage the toast notification
+  let bannerTimer = null;
+  function showToast(msg) {
+    let banner = document.getElementById('saveBanner');
+    
+    // If the HTML doesn't have a banner, create one dynamically
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'saveBanner';
+      banner.className = 'edit-save-banner';
+      banner.setAttribute('aria-live', 'polite');
+      banner.innerHTML = '<i class="fas fa-check-circle"></i> <span id="saveBannerText"></span>';
+      document.body.appendChild(banner);
+    }
+
+    const textSpan = banner.querySelector('#saveBannerText') || banner;
+    if (textSpan !== banner) textSpan.textContent = msg;
+    else banner.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+
+    banner.classList.add('show');
+    clearTimeout(bannerTimer);
+    bannerTimer = setTimeout(() => {
+      banner.classList.remove('show');
+    }, 2500);
+  }
+
+  // Save to localStorage
+  function saveEdit(key, value) {
+    try {
+      localStorage.setItem(EDIT_PREFIX + key, value);
+      return true;
+    } catch (e) {
+      console.error('Storage failed', e);
+      showToast('Error: Could not save changes');
+      return false;
+    }
+  }
+
+  // Restore all saved edits on page load
+  function restoreEdits() {
+    const nodes = document.querySelectorAll('[data-edit-key]');
+    nodes.forEach(node => {
+      const key = node.getAttribute('data-edit-key');
+      if (!key) return;
+      
+      const savedValue = localStorage.getItem(EDIT_PREFIX + key);
+      if (savedValue !== null) {
+        if (node.classList.contains('number') && node.hasAttribute('data-count')) {
+          node.textContent = savedValue;
+          node.setAttribute('data-counted', 'true'); // Prevent from re-animating
+        } else {
+          node.innerHTML = savedValue;
+        }
+      }
+    });
+  }
+
+  // Setup toggles and listeners
+  function setupEditEngine() {
+    // 1. Restore any previously saved edits
+    restoreEdits();
+
+    // 2. Initialize input listeners for all editable nodes
+    const editableNodes = document.querySelectorAll('[data-edit-key]');
+    editableNodes.forEach(node => {
+      const key = node.getAttribute('data-edit-key');
+      
+      // Auto-save on blur
+      node.addEventListener('blur', function() {
+        if (this.getAttribute('contenteditable') === 'true') {
+          saveEdit(key, this.innerHTML);
+        }
+      });
+
+      // Auto-save on typing (debounced to prevent spamming storage)
+      let debounce;
+      node.addEventListener('input', function() {
+        if (this.getAttribute('contenteditable') !== 'true') return;
+        clearTimeout(debounce);
+        const self = this;
+        debounce = setTimeout(() => {
+          saveEdit(key, self.innerHTML);
+        }, 600);
+      });
+    });
+
+    // 3. Bind all Edit buttons using data-target
+    const editButtons = document.querySelectorAll('.edit-toggle-btn');
+    editButtons.forEach(btn => {
+      if (btn.dataset.editBound === 'true') return;
+      btn.dataset.editBound = 'true';
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('data-target');
+        if (!targetId) return;
+
+        const section = document.getElementById(targetId);
+        if (!section) return;
+
+        const editables = section.querySelectorAll('[data-edit-key]');
+        if (!editables.length) return;
+
+        // Check current state
+        const isEditing = editables[0].getAttribute('contenteditable') === 'true';
+        const newState = isEditing ? 'false' : 'true';
+
+        // Apply new state
+        editables.forEach(el => {
+          el.setAttribute('contenteditable', newState);
+        });
+
+        // Update button UI and trigger actions
+        if (newState === 'true') {
+          // Entering Edit Mode
+          this.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+          this.classList.add('is-saving');
+          if (editables[0]) editables[0].focus();
+          showToast('Editing enabled. Tap Save when done.');
+        } else {
+          // Saving Mode
+          let savedCount = 0;
+          editables.forEach(el => {
+            const key = el.getAttribute('data-edit-key');
+            if (key && saveEdit(key, el.innerHTML)) savedCount++;
+          });
+          this.innerHTML = '<i class="fas fa-pen"></i> Edit';
+          this.classList.remove('is-saving');
+          showToast(`Saved ${savedCount} field${savedCount === 1 ? '' : 's'} ✓`);
+          
+          // Trigger custom event for other scripts (like typing animation)
+          window.dispatchEvent(new Event('dataChanged'));
+        }
+      });
+    });
+  }
 
   /* ============================================================
      SCROLL ANIMATIONS
@@ -54,7 +195,6 @@
   function typeWriter(el, text, speed, callback) {
     let i = 0;
     el.textContent = '';
-
     function type() {
       if (i < text.length) {
         el.textContent += text.charAt(i);
@@ -84,7 +224,6 @@
     const el = document.getElementById('typingText');
     if (!el) return;
 
-    // Reset any previous timeout
     if (typingTimeout) {
       clearTimeout(typingTimeout);
       typingTimeout = null;
@@ -110,7 +249,6 @@
         }, holdTime);
       });
     }
-
     nextMessage();
   }
 
@@ -124,7 +262,7 @@
   }
 
   /* ============================================================
-     STICKY HEADER
+     STICKY HEADER & NAVIGATION
      ============================================================ */
   function setupStickyHeader() {
     const mainHeader = document.getElementById('mainHeader');
@@ -138,8 +276,27 @@
     onScroll();
   }
 
+  function highlightCurrentNav() {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.navbar a, .drawer-nav a');
+
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const cleanHref = href.split('#')[0].split('?')[0];
+      link.classList.remove('active');
+      if (
+        cleanHref === path ||
+        (path === '' && cleanHref === 'index.html') ||
+        (path === 'index.html' && cleanHref === 'index.html')
+      ) {
+        link.classList.add('active');
+      }
+    });
+  }
+
   /* ============================================================
-     BACK TO TOP
+     BACK TO TOP & SMOOTH SCROLL
      ============================================================ */
   function setupBackToTop() {
     const backToTop = document.getElementById('backToTop');
@@ -156,33 +313,6 @@
     onScroll();
   }
 
-  /* ============================================================
-     NAV HIGHLIGHTING
-     ============================================================ */
-  function highlightCurrentNav() {
-    const path = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.navbar a, .drawer-nav a');
-
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      if (!href) return;
-
-      const cleanHref = href.split('#')[0].split('?')[0];
-      link.classList.remove('active');
-
-      if (
-        cleanHref === path ||
-        (path === '' && cleanHref === 'index.html') ||
-        (path === 'index.html' && cleanHref === 'index.html')
-      ) {
-        link.classList.add('active');
-      }
-    });
-  }
-
-  /* ============================================================
-     SMOOTH SCROLL FOR HASH LINKS
-     ============================================================ */
   function setupSmoothHashScroll() {
     document.addEventListener('click', function (e) {
       const link = e.target.closest('a[href^="#"]');
@@ -196,8 +326,7 @@
 
       e.preventDefault();
       const headerOffset = 100;
-      const targetY =
-        target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      const targetY = target.getBoundingClientRect().top + window.scrollY - headerOffset;
       window.scrollTo({ top: targetY, behavior: 'smooth' });
     });
   }
@@ -249,7 +378,7 @@
   }
 
   /* ============================================================
-     THEME FALLBACK
+     THEME FALLBACK & APPLY
      ============================================================ */
   function ensureThemeFallback() {
     const root = document.documentElement;
@@ -266,9 +395,6 @@
     }
   }
 
-  /* ============================================================
-     APPLY THEME (reads from CMS data in localStorage)
-     ============================================================ */
   window.applyTheme = function () {
     try {
       let cmsData = null;
@@ -309,7 +435,7 @@
   }
 
   /* ============================================================
-     MOBILE DRAWER / HAMBURGER MENU
+     MOBILE DRAWER
      ============================================================ */
   function setupDrawer() {
     const drawer = document.getElementById('drawer');
@@ -348,7 +474,6 @@
       }
     });
 
-    // Close drawer when a link inside is clicked
     if (drawer) {
       drawer.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', closeDrawer);
@@ -360,6 +485,7 @@
      INIT
      ============================================================ */
   document.addEventListener('DOMContentLoaded', function () {
+    // Core UI
     setupScrollAnimations();
     setupStickyHeader();
     setupBackToTop();
@@ -369,16 +495,20 @@
     setupDrawer();
     updateYear();
     window.applyTheme();
+
+    // Animations
     startTypingLoop();
+
+    // INLINE EDITING ENGINE
+    setupEditEngine();
   });
 
-  /* Re-run animations after CMS updates */
+  /* Re-run animations after edits are saved */
   window.addEventListener('dataChanged', function () {
     setTimeout(function () {
       setupScrollAnimations();
       highlightCurrentNav();
       setupCounters();
-      // Restart typing in case hero title changed
       stopTyping();
       startTypingLoop();
     }, 80);
@@ -397,7 +527,7 @@
   /* Safety net */
   window.addEventListener('load', ensureThemeFallback);
 
-  /* Expose for admin to trigger */
+  /* Expose for admin */
   window.__restartTyping = function () {
     stopTyping();
     startTypingLoop();
