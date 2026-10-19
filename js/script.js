@@ -9,7 +9,7 @@
 
   let observer = null;
   let typingTimeout = null;
-  const EDIT_PREFIX = 'pagejo_live_edit_v3_'; // Fresh cache namespace
+  const EDIT_PREFIX = 'pagejo_live_edit_v4_'; // Updated cache namespace
 
   /* ============================================================
      TYPING ANIMATION MESSAGES
@@ -132,9 +132,20 @@
         const isEditing = editables[0].getAttribute('contenteditable') === 'true';
         const newState = isEditing ? 'false' : 'true';
 
-        // Apply new state
+        // Apply new state and explicit styling for table cells to fix clickability
         editables.forEach(el => {
           el.setAttribute('contenteditable', newState);
+          
+          // FORCE TABLE CELLS TO REMAIN BLOCK-LEVEL AND EDITABLE
+          if (el.tagName.toLowerCase() === 'td') {
+            if (newState === 'true') {
+              el.style.display = 'table-cell';
+              el.style.minWidth = '50px';
+            } else {
+              el.style.display = '';
+              el.style.minWidth = '';
+            }
+          }
         });
 
         // Update button UI and trigger actions
