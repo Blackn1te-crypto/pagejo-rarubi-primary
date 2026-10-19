@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="css/drawer.css">
   <style>
     /* ============================================================
-       HOMEPAGE ANIMATIONS
+       HOMEPAGE ANIMATIONS (unchanged)
        ============================================================ */
 
     /* ---------- Floating background orbs ---------- */
@@ -230,9 +230,248 @@
       .orb-2 { width: 250px; height: 250px; }
       .orb-3 { width: 160px; height: 160px; }
     }
+
+    /* ============================================================
+       WELCOME LOADER — spinning rounded rings with logo
+       ============================================================ */
+    #welcomeLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 40%, #1e4b3a 0%, #0f2a20 60%, #081a12 100%);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #welcomeLoader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-logo-wrap {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Spinning rings */
+    .loader-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      box-sizing: border-box;
+    }
+    .ring-1 {
+      width: 100%;
+      height: 100%;
+      border-top-color: #d4a373;
+      border-right-color: #d4a373;
+      animation: spinCW 1.6s linear infinite;
+      box-shadow: 0 0 25px rgba(212, 163, 115, 0.5);
+    }
+    .ring-2 {
+      width: 80%;
+      height: 80%;
+      border-bottom-color: #f9e6b3;
+      border-left-color: #f9e6b3;
+      animation: spinCCW 2.1s linear infinite;
+      box-shadow: 0 0 20px rgba(249, 230, 179, 0.4);
+    }
+    .ring-3 {
+      width: 60%;
+      height: 60%;
+      border-top-color: #6ee7b7;
+      border-right-color: #6ee7b7;
+      animation: spinCW 2.8s linear infinite;
+      box-shadow: 0 0 18px rgba(110, 231, 183, 0.4);
+    }
+
+    @keyframes spinCW {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinCCW {
+      to { transform: rotate(-360deg); }
+    }
+
+    .loader-logo {
+      position: relative;
+      z-index: 2;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #f9e6b3;
+      padding: 10px;
+      box-shadow: 0 0 30px rgba(249, 230, 179, 0.6), 0 0 60px rgba(212, 163, 115, 0.3);
+      animation: logoPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.06); }
+    }
+
+    .loader-text {
+      margin-top: 28px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f9e6b3;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.3s forwards;
+    }
+    .loader-sub {
+      margin-top: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.85rem;
+      color: #a8d5c0;
+      letter-spacing: 1.5px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.6s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .loader-dots {
+      margin-top: 18px;
+      display: flex;
+      gap: 8px;
+    }
+    .loader-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #d4a373;
+      opacity: 0.4;
+      animation: dotPulse 1.2s ease-in-out infinite;
+    }
+    .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.85); }
+      50%      { opacity: 1; transform: scale(1.2); }
+    }
+
+    @media (max-width: 480px) {
+      .loader-logo-wrap { width: 130px; height: 130px; }
+      .loader-logo { width: 64px; height: 64px; }
+      .loader-text { font-size: 0.9rem; letter-spacing: 2px; }
+      .loader-sub { font-size: 0.75rem; }
+    }
+
+    /* ============================================================
+       EDIT MODE STYLES (additions only, matching academics page)
+       ============================================================ */
+    .edit-toggle-btn {
+      background: #d4a373;
+      color: #1e4b3a;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      vertical-align: middle;
+    }
+    .edit-toggle-btn:hover {
+      background: #c49a6c;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .edit-toggle-btn i { font-size: 0.95rem; }
+    .section-header .header-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .section-header .header-actions .eyebrow { margin-right: 8px; }
+
+    [contenteditable="true"] {
+      outline: 2px dashed rgba(212, 163, 115, 0.6);
+      outline-offset: 2px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      transition: outline 0.2s;
+      min-width: 20px;
+      display: inline-block;
+    }
+    [contenteditable="true"]:hover {
+      outline: 2px dashed #d4a373;
+      background: rgba(255, 255, 255, 0.75);
+    }
+    [contenteditable="true"]:focus {
+      outline: 2px solid #1e4b3a;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(30, 75, 58, 0.15);
+    }
+    td[contenteditable="true"] { display: table-cell; }
+    .sop-list li[contenteditable="true"] { display: list-item; }
+    .catchment-item span[contenteditable="true"] { display: inline-block; }
+
+    .save-indicator {
+      font-size: 0.75rem;
+      color: #2e7d32;
+      margin-left: 6px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .save-indicator.show { opacity: 1; }
+
+    .edit-mode-active .edit-toggle-btn {
+      background: #1e4b3a;
+      color: #fff;
+    }
+    .edit-mode-active .edit-toggle-btn:hover { background: #14352a; }
+    .edit-mode-active .section-header .eyebrow { opacity: 0.7; }
+
+    .table-wrapper { position: relative; }
+
+    @media (max-width: 600px) {
+      .edit-toggle-btn {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+      }
+      .section-header .header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body class="page-home">
+
+  <!-- ============================================================
+       WELCOME LOADER
+       ============================================================ -->
+  <div id="welcomeLoader" aria-hidden="true">
+    <div class="loader-logo-wrap">
+      <span class="loader-ring ring-1"></span>
+      <span class="loader-ring ring-2"></span>
+      <span class="loader-ring ring-3"></span>
+      <img src="images/logo.png" alt="Pagejo Rarubi Primary School Logo" class="loader-logo"
+        onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<svg class=\'loader-logo\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z\' fill=\'#1e4b3a\' stroke=\'#d4a373\' stroke-width=\'2.5\'/><path d=\'M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z\' fill=\'#f9e6b3\' stroke=\'#1e4b3a\' stroke-width=\'2.2\'/><path d=\'M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z\' fill=\'#d4a373\' stroke=\'#fff\' stroke-width=\'1.2\'/></svg>');">
+    </div>
+    <div class="loader-text">Pagejo Rarubi Primary</div>
+    <div class="loader-sub">Knowledge · Integrity · Service</div>
+    <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
 
   <!-- TOP BAR -->
   <div class="top-bar">
@@ -280,18 +519,25 @@
         <span id="typingText" class="typing-text"></span><span class="typing-cursor">|</span>
       </h2>
 
-      <p>A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
+      <p contenteditable="false" id="heroSubtitle">A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
 
       <div class="hero-stats">
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="25" data-suffix="+">0+</div><div class="label">Years of Excellence</div></div>
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="446">0</div><div class="label">Happy Learners</div></div>
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="13">0</div><div class="label">Dedicated Staff</div></div>
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="80" data-suffix="%">0%</div><div class="label">Pass Rate</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="25" data-suffix="+">0+</div><div class="label" contenteditable="false">Years of Excellence</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="446">0</div><div class="label" contenteditable="false">Happy Learners</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="13">0</div><div class="label" contenteditable="false">Dedicated Staff</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="80" data-suffix="%">0%</div><div class="label" contenteditable="false">Pass Rate</div></div>
       </div>
 
       <div class="hero-actions">
         <a href="contact.html" class="btn btn-gold"><i class="fas fa-user-plus"></i> Enroll Now</a>
         <a href="about.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Learn More</a>
+      </div>
+
+      <!-- Hero Edit Button -->
+      <div style="margin-top: 20px; text-align: center; position: relative; z-index: 10;">
+        <button class="edit-toggle-btn" data-target="hero" id="heroEditBtn" style="background: rgba(212,163,115,0.9);">
+          <i class="fas fa-pen"></i> Edit Hero
+        </button>
       </div>
     </div>
   </section>
@@ -300,22 +546,27 @@
   <section class="section" id="welcome-section">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-hand-wave"></i> Welcome</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-hand-wave"></i> Welcome</span>
+          <button class="edit-toggle-btn" data-target="welcome" title="Enable editing for welcome section">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>A Message from Our Leadership</h2>
       </div>
       <div class="welcome-grid">
         <div class="welcome-image animate-on-scroll" style="padding: 0; overflow: hidden;">
           <img src="images/head-horiro.jpg" alt="Mrs Horiro Ruth - Headmistress" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; min-height: 350px; position: absolute; top: 0; left: 0;" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<i class=\'fas fa-female placeholder-icon\'></i>');">
           <div class="image-caption">
-            <strong>Mrs Horiro Ruth</strong>
-            <span>Headmistress</span>
+            <strong contenteditable="false">Mrs Horiro Ruth</strong>
+            <span contenteditable="false">Headmistress</span>
           </div>
         </div>
         <div class="welcome-text animate-on-scroll">
-          <h3>Welcome to Our School Family</h3>
-          <p>At Pagejo Rarubi Primary School, we believe every child is a unique gift with boundless potential. Our dedicated team of educators works tirelessly to nurture not just academic excellence, but also strong moral values, life skills, and God-given talents.</p>
-          <p>We are guided by our Vision 2030 — towards a prosperous upper middle-income society — and our mission to provide a heritage-driven education where character building is paramount.</p>
-          <p><em>"In Pursuit of Excellence for Holistic Development"</em></p>
+          <h3 contenteditable="false">Welcome to Our School Family</h3>
+          <p contenteditable="false">At Pagejo Rarubi Primary School, we believe every child is a unique gift with boundless potential. Our dedicated team of educators works tirelessly to nurture not just academic excellence, but also strong moral values, life skills, and God-given talents.</p>
+          <p contenteditable="false">We are guided by our Vision 2030 — towards a prosperous upper middle-income society — and our mission to provide a heritage-driven education where character building is paramount.</p>
+          <p contenteditable="false"><em>"In Pursuit of Excellence for Holistic Development"</em></p>
           <a href="about.html" class="btn btn-green"><i class="fas fa-arrow-right"></i> Read Our Full Story</a>
         </div>
       </div>
@@ -326,39 +577,44 @@
   <section class="section" id="quick-links" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-th-large"></i> Explore</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-th-large"></i> Explore</span>
+          <button class="edit-toggle-btn" data-target="quicklinks" title="Enable editing for quick links">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>Quick Links</h2>
       </div>
-      <div class="quick-links-grid">
+      <div class="quick-links-grid" id="quickLinksGrid">
         <a href="about.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-bullseye"></i></div>
-          <h4>Vision &amp; Mission</h4>
-          <p>Discover our direction and purpose</p>
+          <h4 contenteditable="false">Vision &amp; Mission</h4>
+          <p contenteditable="false">Discover our direction and purpose</p>
         </a>
         <a href="about.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-handshake"></i></div>
-          <h4>Client's Charter</h4>
-          <p>Our promise to learners and parents</p>
+          <h4 contenteditable="false">Client's Charter</h4>
+          <p contenteditable="false">Our promise to learners and parents</p>
         </a>
         <a href="academics.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-clock"></i></div>
-          <h4>Timetable</h4>
-          <p>Daily and afternoon activities</p>
+          <h4 contenteditable="false">Timetable</h4>
+          <p contenteditable="false">Daily and afternoon activities</p>
         </a>
         <a href="results.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-chart-line"></i></div>
-          <h4>Results</h4>
-          <p>View examination performance</p>
+          <h4 contenteditable="false">Results</h4>
+          <p contenteditable="false">View examination performance</p>
         </a>
         <a href="projects.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-seedling"></i></div>
-          <h4>School Projects</h4>
-          <p>Mushroom, pumpkins &amp; road runners</p>
+          <h4 contenteditable="false">School Projects</h4>
+          <p contenteditable="false">Mushroom, pumpkins &amp; road runners</p>
         </a>
         <a href="contact.html" class="quick-link-card animate-on-scroll">
           <div class="quick-icon"><i class="fas fa-address-card"></i></div>
-          <h4>Contact Us</h4>
-          <p>Enrollment &amp; general enquiries</p>
+          <h4 contenteditable="false">Contact Us</h4>
+          <p contenteditable="false">Enrollment &amp; general enquiries</p>
         </a>
       </div>
     </div>
@@ -368,29 +624,34 @@
   <section class="section" id="why-choose">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-heart"></i> Our Difference</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-heart"></i> Our Difference</span>
+          <button class="edit-toggle-btn" data-target="highlights" title="Enable editing for highlights">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>Why Choose Pagejo Rarubi?</h2>
       </div>
-      <div class="highlights-grid">
+      <div class="highlights-grid" id="highlightsGrid">
         <div class="highlight-card animate-on-scroll">
           <div class="icon-circle"><i class="fas fa-book"></i></div>
-          <h4>Rich Curriculum</h4>
-          <p>Balanced national curriculum enriched with arts, sports, and life skills.</p>
+          <h4 contenteditable="false">Rich Curriculum</h4>
+          <p contenteditable="false">Balanced national curriculum enriched with arts, sports, and life skills.</p>
         </div>
         <div class="highlight-card animate-on-scroll">
           <div class="icon-circle"><i class="fas fa-hand-holding-heart"></i></div>
-          <h4>Care &amp; Support</h4>
-          <p>Small class sizes and dedicated teachers focused on every child's growth.</p>
+          <h4 contenteditable="false">Care &amp; Support</h4>
+          <p contenteditable="false">Small class sizes and dedicated teachers focused on every child's growth.</p>
         </div>
         <div class="highlight-card animate-on-scroll">
           <div class="icon-circle"><i class="fas fa-tree"></i></div>
-          <h4>Green Campus</h4>
-          <p>Spacious grounds and a school garden that inspire curiosity and health.</p>
+          <h4 contenteditable="false">Green Campus</h4>
+          <p contenteditable="false">Spacious grounds and a school garden that inspire curiosity and health.</p>
         </div>
         <div class="highlight-card animate-on-scroll">
           <div class="icon-circle"><i class="fas fa-trophy"></i></div>
-          <h4>Holistic Success</h4>
-          <p>We celebrate academics, sports, culture, and character development.</p>
+          <h4 contenteditable="false">Holistic Success</h4>
+          <p contenteditable="false">We celebrate academics, sports, culture, and character development.</p>
         </div>
       </div>
     </div>
@@ -400,31 +661,36 @@
   <section class="section" id="projects-preview" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-seedling"></i> Our Projects</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-seedling"></i> Our Projects</span>
+          <button class="edit-toggle-btn" data-target="projectpreview" title="Enable editing for project previews">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>Learning by Doing</h2>
         <p>Our hands-on agricultural projects teach life skills and entrepreneurship.</p>
       </div>
-      <div class="projects-preview-grid">
+      <div class="projects-preview-grid" id="projectsPreviewGrid">
         <div class="project-preview animate-on-scroll">
           <div class="project-preview-img" style="background: linear-gradient(135deg, #8B6F47, #6B4F2F); height: 200px; padding: 0; overflow: hidden;">
             <img src="images/mushroom.jpg" alt="Mushroom Growing Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-seedling\' style=\'font-size: 4rem; color: #fff;\'></i>';">
           </div>
-          <h4>Mushroom Growing</h4>
-          <p>Students learn cultivation, harvesting, and marketing of mushrooms.</p>
+          <h4 contenteditable="false">Mushroom Growing</h4>
+          <p contenteditable="false">Students learn cultivation, harvesting, and marketing of mushrooms.</p>
         </div>
         <div class="project-preview animate-on-scroll">
           <div class="project-preview-img" style="background: linear-gradient(135deg, #E67E22, #D35400); height: 200px; padding: 0; overflow: hidden;">
             <img src="images/pumpkin.jpg" alt="Pumpkin Farming Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-leaf\' style=\'font-size: 4rem; color: #fff;\'></i>';">
           </div>
-          <h4>Pumpkin Farming</h4>
-          <p>Planting, nurturing, and harvesting pumpkins for nutrition and income.</p>
+          <h4 contenteditable="false">Pumpkin Farming</h4>
+          <p contenteditable="false">Planting, nurturing, and harvesting pumpkins for nutrition and income.</p>
         </div>
         <div class="project-preview animate-on-scroll">
           <div class="project-preview-img" style="background: linear-gradient(135deg, #3498DB, #2980B9); height: 200px; padding: 0; overflow: hidden;">
             <img src="images/roadrunners.jpg" alt="Road Runners Chicks Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-kiwi-bird\' style=\'font-size: 4rem; color: #fff;\'></i>';">
           </div>
-          <h4>Road Runners Chicks</h4>
-          <p>Poultry rearing project teaching students animal husbandry skills.</p>
+          <h4 contenteditable="false">Road Runners Chicks</h4>
+          <p contenteditable="false">Poultry rearing project teaching students animal husbandry skills.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 2rem;">
@@ -475,5 +741,168 @@
   <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
+
+  <!-- EDIT MODE SCRIPT (Homepage) -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ============================================================
+      // 1. WELCOME LOADER — hide after page load / timeout
+      // ============================================================
+      const loader = document.getElementById('welcomeLoader');
+      function hideLoader() {
+        if (loader && !loader.classList.contains('hide')) {
+          loader.classList.add('hide');
+          setTimeout(() => { loader.style.display = 'none'; }, 900);
+        }
+      }
+      window.addEventListener('load', () => setTimeout(hideLoader, 700));
+      setTimeout(hideLoader, 3500); // safety net
+
+      // ============================================================
+      // 2. EDIT MODE — toggle contenteditable per section
+      // ============================================================
+      function toggleSectionEdit(targetId) {
+        const section = document.getElementById(targetId);
+        if (!section) return;
+
+        const editableSelectors = {
+          hero: '#heroSubtitle[contenteditable], #hero .hero-stat .label[contenteditable]',
+          welcome: '#welcome-section [contenteditable]',
+          quicklinks: '#quickLinksGrid [contenteditable]',
+          highlights: '#highlightsGrid [contenteditable]',
+          projectpreview: '#projectsPreviewGrid [contenteditable]'
+        };
+
+        let selector = editableSelectors[targetId];
+        if (!selector) {
+          // fallback: all contenteditable within section
+          selector = '[contenteditable]';
+        }
+
+        const editables = section.querySelectorAll(selector);
+        if (editables.length === 0) return;
+
+        // Determine current state from first editable
+        const isCurrentlyEditing = editables[0].getAttribute('contenteditable') === 'true';
+        const newState = isCurrentlyEditing ? 'false' : 'true';
+
+        editables.forEach(el => el.setAttribute('contenteditable', newState));
+
+        // Toggle button appearance
+        const btn = section.querySelector('.edit-toggle-btn') ||
+                    document.querySelector(`.edit-toggle-btn[data-target="${targetId}"]`);
+        if (btn) {
+          if (newState === 'true') {
+            btn.innerHTML = '<i class="fas fa-save"></i> Save';
+            btn.style.background = '#1e4b3a';
+            btn.style.color = '#fff';
+          } else {
+            btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
+            btn.style.background = '#d4a373';
+            btn.style.color = '#1e4b3a';
+          }
+        }
+
+        if (newState === 'true' && editables.length > 0) {
+          editables[0].focus();
+        }
+      }
+
+      // ============================================================
+      // 3. Attach listeners to all edit buttons
+      // ============================================================
+      document.addEventListener('DOMContentLoaded', function() {
+        // Welcome loader hide fallback
+        if (document.readyState === 'complete') {
+          setTimeout(hideLoader, 400);
+        }
+
+        // Bind edit buttons
+        document.querySelectorAll('.edit-toggle-btn').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('data-target');
+            if (target) toggleSectionEdit(target);
+          });
+        });
+
+        // ============================================================
+        // 4. PERSISTENCE — assign keys & restore from localStorage
+        // ============================================================
+        function assignKeys() {
+          // Hero
+          const heroSub = document.getElementById('heroSubtitle');
+          if (heroSub && !heroSub.dataset.editKey) heroSub.dataset.editKey = 'home_hero_subtitle';
+
+          document.querySelectorAll('#hero .hero-stat .label[contenteditable]').forEach((el, idx) => {
+            if (!el.dataset.editKey) el.dataset.editKey = 'home_hero_label_' + idx;
+          });
+
+          // Welcome
+          const welcomeSection = document.getElementById('welcome-section');
+          if (welcomeSection) {
+            welcomeSection.querySelectorAll('[contenteditable]').forEach((el, idx) => {
+              if (!el.dataset.editKey) el.dataset.editKey = 'home_welcome_' + idx;
+            });
+          }
+
+          // Quick links
+          const qlGrid = document.getElementById('quickLinksGrid');
+          if (qlGrid) {
+            qlGrid.querySelectorAll('[contenteditable]').forEach((el, idx) => {
+              if (!el.dataset.editKey) el.dataset.editKey = 'home_quicklink_' + idx;
+            });
+          }
+
+          // Highlights
+          const hlGrid = document.getElementById('highlightsGrid');
+          if (hlGrid) {
+            hlGrid.querySelectorAll('[contenteditable]').forEach((el, idx) => {
+              if (!el.dataset.editKey) el.dataset.editKey = 'home_highlight_' + idx;
+            });
+          }
+
+          // Projects preview
+          const ppGrid = document.getElementById('projectsPreviewGrid');
+          if (ppGrid) {
+            ppGrid.querySelectorAll('[contenteditable]').forEach((el, idx) => {
+              if (!el.dataset.editKey) el.dataset.editKey = 'home_project_' + idx;
+            });
+          }
+        }
+
+        assignKeys();
+
+        // Restore saved content
+        document.querySelectorAll('[data-edit-key]').forEach(el => {
+          const key = el.dataset.editKey;
+          const saved = localStorage.getItem('pagejo_home_' + key);
+          if (saved !== null) {
+            el.innerHTML = saved;
+          }
+        });
+
+        // Save on blur
+        document.addEventListener('blur', function(e) {
+          const target = e.target;
+          if (target.hasAttribute('contenteditable') && target.dataset.editKey) {
+            const key = target.dataset.editKey;
+            localStorage.setItem('pagejo_home_' + key, target.innerHTML);
+          }
+        }, true);
+
+        // Save on input (real-time)
+        document.addEventListener('input', function(e) {
+          const target = e.target;
+          if (target.hasAttribute('contenteditable') && target.dataset.editKey) {
+            const key = target.dataset.editKey;
+            localStorage.setItem('pagejo_home_' + key, target.innerHTML);
+          }
+        });
+      });
+    })();
+  </script>
 </body>
-          </html>
+      </html>
