@@ -127,15 +127,45 @@
     @media (max-width: 480px) { .loader-logo-wrap { width: 150px; height: 150px; } .ring-1 { width: 150px; height: 150px; } .ring-2 { width: 116px; height: 116px; } .ring-3 { width: 84px; height: 84px; } .loader-logo { width: 72px; height: 72px; padding: 9px; } .loader-text { font-size: 0.95rem; letter-spacing: 2.5px; } .loader-sub { font-size: 0.72rem; letter-spacing: 1.2px; } }
 
     /* ============================================================
-       EDIT MODE STYLES
+       EDIT MODE STYLES (Fixing visibility)
        ============================================================ */
-    .edit-toggle-btn { background: linear-gradient(135deg,#d4a373,#b88645); color: #1e4b3a; border: none; border-radius: 30px; padding: 8px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); vertical-align: middle; font-family: 'Montserrat', sans-serif; }
+    .edit-toggle-btn { background: linear-gradient(135deg,#d4a373,#b88645); color: #1e4b3a; border: none; border-radius: 30px; padding: 8px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); vertical-align: middle; font-family: 'Montserrat', sans-serif; z-index: 10; position: relative; }
     .edit-toggle-btn:hover { background: linear-gradient(135deg,#c49a6c,#a8783d); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     .edit-toggle-btn.is-saving { background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; }
     .section-header .header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; justify-content: center; }
-    [contenteditable="true"] { outline: 2px dashed rgba(212,163,115,0.6); outline-offset: 2px; background: rgba(255,255,255,0.5); border-radius: 4px; transition: outline 0.2s; min-width: 20px; display: inline-block; padding: 1px 3px; }
-    [contenteditable="true"]:hover { outline: 2px dashed #d4a373; background: rgba(255,255,255,0.75); }
-    [contenteditable="true"]:focus { outline: 2px solid #1e4b3a; background: #fff; box-shadow: 0 0 0 3px rgba(30,75,58,0.15); }
+    
+    /* Force high-contrast text during editing so it's not a blank box */
+    [contenteditable="true"] {
+      outline: 2px dashed rgba(212,163,115,0.8);
+      outline-offset: 2px;
+      background: rgba(255, 255, 255, 0.95) !important;
+      color: #0b2b1e !important;
+      border-radius: 4px;
+      transition: outline 0.2s;
+      min-width: 20px;
+      display: inline-block;
+      padding: 4px 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10;
+      position: relative;
+      font-weight: 600;
+    }
+    [contenteditable="true"]:hover {
+      outline: 2px dashed #d4a373;
+      background: #fff !important;
+    }
+    [contenteditable="true"]:focus {
+      outline: 2px solid #1e4b3a;
+      background: #fff !important;
+      box-shadow: 0 0 0 4px rgba(30,75,58,0.2);
+    }
+    /* Specifically for hero subtitle text */
+    .hero p[contenteditable="true"] {
+      color: #0b2b1e !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      font-size: 1.1rem;
+    }
+
     .edit-save-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 9998; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; pointer-events: none; }
     .edit-save-banner.show { transform: translateX(-50%) translateY(0); }
     .edit-save-banner i { color: #f9e6b3; }
