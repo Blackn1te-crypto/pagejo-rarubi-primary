@@ -163,7 +163,7 @@
     <i class="fas fa-check-circle"></i> <span id="saveBannerText">Changes saved!</span>
   </div>
 
-  <!-- HEADER (Top bar removed as requested) -->
+  <!-- HEADER -->
   <header class="main-header" id="mainHeader">
     <div class="logo-area">
       <div class="header-logo-wrap">
@@ -221,7 +221,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-hand-wave"></i> Welcome</span>
-          <button class="edit-toggle-btn" data-target="welcome"><i class="fas fa-pen"></i> Edit</button>
+          <button class="edit-toggle-btn" data-target="welcome-section"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>A Message from Our Leadership</h2>
       </div>
@@ -250,7 +250,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-th-large"></i> Explore</span>
-          <button class="edit-toggle-btn" data-target="quicklinks"><i class="fas fa-pen"></i> Edit</button>
+          <button class="edit-toggle-btn" data-target="quick-links"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Quick Links</h2>
       </div>
@@ -271,7 +271,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-heart"></i> Our Difference</span>
-          <button class="edit-toggle-btn" data-target="highlights"><i class="fas fa-pen"></i> Edit</button>
+          <button class="edit-toggle-btn" data-target="why-choose"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Why Choose Pagejo Rarubi?</h2>
       </div>
@@ -290,7 +290,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-seedling"></i> Our Projects</span>
-          <button class="edit-toggle-btn" data-target="projectpreview"><i class="fas fa-pen"></i> Edit</button>
+          <button class="edit-toggle-btn" data-target="projects-preview"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Learning by Doing</h2>
         <p>Our hands-on agricultural projects teach life skills and entrepreneurship.</p>
@@ -347,177 +347,33 @@
 
   <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
+  <!-- Core Scripts -->
   <script src="js/admin.js"></script>
   <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
 
+  <!-- Loader Timer Script (Standalone) -->
   <script>
-  /* ============================================================
-     PAGEJO RARUBI — SHARED EDIT ENGINE
-     Real persistence via localStorage.
-     ============================================================ */
-  (function () {
-    'use strict';
-
-    const STORAGE_PREFIX = 'pagejo_edit_';
-
-    // Loader: 7s, once per session
-    const loader = document.getElementById('welcomeLoader');
-    const LOADER_MS = 7000;
-    function hideLoader() {
-      if (loader && !loader.classList.contains('hide')) {
-        loader.classList.add('hide');
-        setTimeout(() => { loader.style.display = 'none'; }, 950);
+    (function() {
+      const loader = document.getElementById('welcomeLoader');
+      const LOADER_MS = 7000;
+      function hideLoader() {
+        if (loader && !loader.classList.contains('hide')) {
+          loader.classList.add('hide');
+          setTimeout(() => { loader.style.display = 'none'; }, 950);
+        }
       }
-    }
-    let shown = false;
-    try { shown = sessionStorage.getItem('pagejo_loader_shown') === '1'; } catch (e) {}
-    if (shown) {
-      if (loader) loader.style.display = 'none';
-    } else {
-      setTimeout(hideLoader, LOADER_MS);
-      setTimeout(hideLoader, LOADER_MS + 2000);
-      try { sessionStorage.setItem('pagejo_loader_shown', '1'); } catch (e) {}
-    }
-
-    const banner = document.getElementById('saveBanner');
-    const bannerText = document.getElementById('saveBannerText');
-    let bannerTimer = null;
-    function toast(msg) {
-      if (!banner) return;
-      if (bannerText) bannerText.textContent = msg;
-      banner.classList.add('show');
-      clearTimeout(bannerTimer);
-      bannerTimer = setTimeout(() => banner.classList.remove('show'), 2200);
-    }
-
-    function saveValue(key, value) {
-      try {
-        localStorage.setItem(STORAGE_PREFIX + key, value);
-        return true;
-      } catch (e) {
-        console.error('Save failed for', key, e);
-        toast('Could not save — storage full or blocked');
-        return false;
-      }
-    }
-    function readAll() {
-      const out = {};
-      try {
-        for (let i = 0; i < localStorage.length; i++) {
-          const k = localStorage.key(i);
-          if (k && k.indexOf(STORAGE_PREFIX) === 0) {
-            out[k.slice(STORAGE_PREFIX.length)] = localStorage.getItem(k);
-          }
-        }
-      } catch (e) {}
-      return out;
-    }
-
-    function restoreAll() {
-      const saved = readAll();
-      document.querySelectorAll('[data-edit-key]').forEach(node => {
-        const key = node.getAttribute('data-edit-key');
-        if (saved.hasOwnProperty(key)) {
-          if (node.classList.contains('number') && node.dataset.count) {
-            const stored = saved[key];
-            node.textContent = stored;
-            node.setAttribute('data-counted', 'true');
-            node.dataset.restoredText = stored;
-          } else {
-            node.innerHTML = saved[key];
-          }
-        }
-      });
-    }
-
-    function initEditable(node) {
-      const key = node.getAttribute('data-edit-key');
-      if (!key) return;
-      node.setAttribute('contenteditable', 'false');
-
-      node.addEventListener('blur', function () {
-        if (this.getAttribute('contenteditable') !== 'true') return;
-        const val = this.innerHTML;
-        if (saveValue(key, val)) {
-          // Silent save
-        }
-      }, true);
-
-      let inputTimer = null;
-      node.addEventListener('input', function () {
-        if (this.getAttribute('contenteditable') !== 'true') return;
-        const self = this;
-        clearTimeout(inputTimer);
-        inputTimer = setTimeout(function () {
-          saveValue(key, self.innerHTML);
-        }, 500);
-      });
-    }
-
-    function toggleSectionEdit(targetId, btn) {
-      const section = document.getElementById(targetId);
-      if (!section) return;
-
-      const editables = section.querySelectorAll('[data-edit-key]');
-      if (!editables.length) return;
-
-      const first = editables[0];
-      const entering = first.getAttribute('contenteditable') !== 'true';
-      const newState = entering ? 'true' : 'false';
-
-      editables.forEach(el => {
-        el.setAttribute('contenteditable', newState);
-      });
-
-      if (entering) {
-        editables[0].focus();
-        if (btn) {
-          btn.classList.add('is-saving');
-          btn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
-        }
-        toast('Editing enabled — click Save Changes when done');
+      let shown = false;
+      try { shown = sessionStorage.getItem('pagejo_loader_shown') === '1'; } catch (e) {}
+      if (shown) {
+        if (loader) loader.style.display = 'none';
       } else {
-        let savedCount = 0;
-        editables.forEach(el => {
-          const key = el.getAttribute('data-edit-key');
-          if (!key) return;
-          if (saveValue(key, el.innerHTML)) savedCount++;
-        });
-        if (btn) {
-          btn.classList.remove('is-saving');
-          btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
-        }
-        toast(savedCount + ' field' + (savedCount === 1 ? '' : 's') + ' saved ✓');
+        setTimeout(hideLoader, LOADER_MS);
+        setTimeout(hideLoader, LOADER_MS + 2000);
+        try { sessionStorage.setItem('pagejo_loader_shown', '1'); } catch (e) {}
       }
-    }
-
-    function bindButtons() {
-      document.querySelectorAll('.edit-toggle-btn').forEach(btn => {
-        if (btn.dataset.bound === '1') return;
-        btn.dataset.bound = '1';
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = this.getAttribute('data-target');
-          if (!target) return;
-          toggleSectionEdit(target, this);
-        });
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('[data-edit-key]').forEach(initEditable);
-      restoreAll();
-      bindButtons();
-    });
-
-    window.PagejoEdits = {
-      save: saveValue,
-      readAll: readAll,
-      toast: toast
-    };
-  })();
+    })();
   </script>
 </body>
-</html>
+    </html>
