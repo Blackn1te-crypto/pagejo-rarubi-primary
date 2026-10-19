@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/drawer.css">
   <style>
+    /* ============================================================
+       HOMEPAGE ANIMATIONS
+       ============================================================ */
     .hero { position: relative; overflow: hidden; }
     .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.35; pointer-events: none; z-index: 0; animation: orbFloat 18s ease-in-out infinite; }
     .orb-1 { width: 320px; height: 320px; background: #d4a373; top: 10%; left: -80px; }
@@ -22,6 +25,7 @@
     .hero-badge { animation: badgeFloat 3s ease-in-out infinite, badgeFadeIn 0.8s ease 0.1s both; }
     @keyframes badgeFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
     @keyframes badgeFadeIn { from { opacity: 0; transform: translateY(-20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
     .hero h2 { min-height: 4.2em; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; font-size: 3.5rem; line-height: 1.15; }
     .typing-text { display: inline-block; background: linear-gradient(120deg, #f9e6b3 0%, #d4a373 50%, #f9e6b3 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerText 3s ease-in-out infinite; word-break: break-word; }
     @keyframes shimmerText { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
@@ -55,7 +59,55 @@
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } .quick-link-card, .highlight-card, .project-preview, .hero-stat { opacity: 1; transform: none; } }
     @media (max-width: 768px) { .hero h2 { font-size: 2rem; min-height: 5em; } .typing-cursor { margin-left: 3px; } .orb-1 { width: 200px; height: 200px; } .orb-2 { width: 250px; height: 250px; } .orb-3 { width: 160px; height: 160px; } }
 
-    /* WELCOME LOADER */
+    /* ============================================================
+       HEADER LOGO — SPINNING RINGS DESIGN
+       ============================================================ */
+    .header-logo-wrap {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .header-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      box-sizing: border-box;
+    }
+    .header-ring.r1 {
+      width: 100%; height: 100%;
+      border-top-color: var(--accent);
+      border-right-color: var(--accent);
+      animation: spinCW 3s linear infinite;
+    }
+    .header-ring.r2 {
+      width: 85%; height: 85%;
+      border-bottom-color: var(--primary-light);
+      border-left-color: var(--primary-light);
+      animation: spinCCW 4s linear infinite;
+    }
+    .header-logo-img {
+      position: relative;
+      z-index: 2;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+      padding: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    @keyframes spinCW { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+    @keyframes spinCCW { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+    /* ============================================================
+       WELCOME LOADER (7 seconds)
+       ============================================================ */
     #welcomeLoader { position: fixed; inset: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, #1e4b3a 0%, #0f2a20 60%, #081a12 100%); transition: opacity 0.9s ease, visibility 0.9s ease; }
     #welcomeLoader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     .loader-logo-wrap { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
@@ -63,8 +115,6 @@
     .ring-1 { width: 200px; height: 200px; border-top-color: #d4a373; border-right-color: #d4a373; animation: spinCW 1.6s linear infinite; box-shadow: 0 0 30px rgba(212,163,115,0.5); }
     .ring-2 { width: 156px; height: 156px; border-bottom-color: #f9e6b3; border-left-color: #f9e6b3; animation: spinCCW 2.1s linear infinite; box-shadow: 0 0 24px rgba(249,230,179,0.4); }
     .ring-3 { width: 112px; height: 112px; border-top-color: #6ee7b7; border-right-color: #6ee7b7; animation: spinCW 2.8s linear infinite; box-shadow: 0 0 20px rgba(110,231,183,0.4); }
-    @keyframes spinCW { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
-    @keyframes spinCCW { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(-360deg); } }
     .loader-logo { position: relative; z-index: 2; width: 96px; height: 96px; border-radius: 50%; object-fit: contain; background: #f9e6b3; padding: 12px; box-shadow: 0 0 35px rgba(249,230,179,0.6), 0 0 70px rgba(212,163,115,0.3); animation: logoPulse 2s ease-in-out infinite; }
     @keyframes logoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
     .loader-text { margin-top: 30px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: 3.5px; text-transform: uppercase; color: #f9e6b3; opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards; text-align: center; padding: 0 20px; }
@@ -76,7 +126,9 @@
     @keyframes dotPulse { 0%,100% { opacity: 0.3; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.2); } }
     @media (max-width: 480px) { .loader-logo-wrap { width: 150px; height: 150px; } .ring-1 { width: 150px; height: 150px; } .ring-2 { width: 116px; height: 116px; } .ring-3 { width: 84px; height: 84px; } .loader-logo { width: 72px; height: 72px; padding: 9px; } .loader-text { font-size: 0.95rem; letter-spacing: 2.5px; } .loader-sub { font-size: 0.72rem; letter-spacing: 1.2px; } }
 
-    /* EDIT MODE */
+    /* ============================================================
+       EDIT MODE STYLES
+       ============================================================ */
     .edit-toggle-btn { background: linear-gradient(135deg,#d4a373,#b88645); color: #1e4b3a; border: none; border-radius: 30px; padding: 8px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); vertical-align: middle; font-family: 'Montserrat', sans-serif; }
     .edit-toggle-btn:hover { background: linear-gradient(135deg,#c49a6c,#a8783d); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     .edit-toggle-btn.is-saving { background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; }
@@ -84,7 +136,7 @@
     [contenteditable="true"] { outline: 2px dashed rgba(212,163,115,0.6); outline-offset: 2px; background: rgba(255,255,255,0.5); border-radius: 4px; transition: outline 0.2s; min-width: 20px; display: inline-block; padding: 1px 3px; }
     [contenteditable="true"]:hover { outline: 2px dashed #d4a373; background: rgba(255,255,255,0.75); }
     [contenteditable="true"]:focus { outline: 2px solid #1e4b3a; background: #fff; box-shadow: 0 0 0 3px rgba(30,75,58,0.15); }
-    .edit-save-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 9998; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; }
+    .edit-save-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 9998; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; pointer-events: none; }
     .edit-save-banner.show { transform: translateX(-50%) translateY(0); }
     .edit-save-banner i { color: #f9e6b3; }
     @media (max-width: 600px) { .edit-toggle-btn { padding: 6px 12px; font-size: 0.78rem; } .section-header .header-actions { flex-direction: column; align-items: flex-start; } .edit-save-banner { font-size: 0.8rem; padding: 10px 18px; } }
@@ -111,20 +163,14 @@
     <i class="fas fa-check-circle"></i> <span id="saveBannerText">Changes saved!</span>
   </div>
 
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <div class="contact-info">
-      <span><i class="fas fa-phone-alt"></i> School: 0781521551</span>
-      <span><i class="fas fa-phone-alt"></i> Head: 0714168885</span>
-      <span><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com</span>
-    </div>
-    <div class="motto"><i class="fas fa-star"></i> Knowledge · Integrity · Service</div>
-  </div>
-
-  <!-- HEADER -->
+  <!-- HEADER (Top bar removed as requested) -->
   <header class="main-header" id="mainHeader">
     <div class="logo-area">
-      <img src="images/logo.png" alt="Pagejo Rarubi Logo" class="school-logo-svg" style="object-fit: contain;" onerror="this.outerHTML='<svg class=\'school-logo-svg\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z\' fill=\'#1e4b3a\' stroke=\'#d4a373\' stroke-width=\'2.5\'/><path d=\'M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z\' fill=\'#f9e6b3\' stroke=\'#1e4b3a\' stroke-width=\'2.2\'/><path d=\'M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z\' fill=\'#d4a373\' stroke=\'#fff\' stroke-width=\'1.2\'/></svg>';">
+      <div class="header-logo-wrap">
+        <span class="header-ring r1"></span>
+        <span class="header-ring r2"></span>
+        <img src="images/logo.png" alt="Pagejo Rarubi Logo" class="header-logo-img" onerror="this.outerHTML='<svg class=\'header-logo-img\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M50 8 L88 26 L88 54 C88 74 70 90 50 96 C30 90 12 74 12 54 L12 26 L50 8 Z\' fill=\'#1e4b3a\' stroke=\'#d4a373\' stroke-width=\'2.5\'/><path d=\'M30 48 L50 38 L70 48 L70 70 L50 60 L30 70 L30 48 Z\' fill=\'#f9e6b3\' stroke=\'#1e4b3a\' stroke-width=\'2.2\'/><path d=\'M50 26 L53.5 34 L62 35 L55.5 41 L58 49 L50 44.5 L42 49 L44.5 41 L38 35 L46.5 34 L50 26 Z\' fill=\'#d4a373\' stroke=\'#fff\' stroke-width=\'1.2\'/></svg>';">
+      </div>
       <div class="school-name">
         <h1>Pagejo Rarubi</h1>
         <div class="subhead"><i class="fas fa-graduation-cap"></i> Primary School</div>
@@ -309,15 +355,14 @@
   <script>
   /* ============================================================
      PAGEJO RARUBI — SHARED EDIT ENGINE
-     Real persistence via localStorage. Every key is namespaced
-     so edits survive reloads, tab closes, and browser restarts.
+     Real persistence via localStorage.
      ============================================================ */
   (function () {
     'use strict';
 
-    const STORAGE_PREFIX = 'pagejo_edit_'; // single namespace for all edits
+    const STORAGE_PREFIX = 'pagejo_edit_';
 
-    /* ---------- Loader (7s, once per session) ---------- */
+    // Loader: 7s, once per session
     const loader = document.getElementById('welcomeLoader');
     const LOADER_MS = 7000;
     function hideLoader() {
@@ -332,11 +377,10 @@
       if (loader) loader.style.display = 'none';
     } else {
       setTimeout(hideLoader, LOADER_MS);
-      setTimeout(hideLoader, LOADER_MS + 2000); // safety net
+      setTimeout(hideLoader, LOADER_MS + 2000);
       try { sessionStorage.setItem('pagejo_loader_shown', '1'); } catch (e) {}
     }
 
-    /* ---------- Toast ---------- */
     const banner = document.getElementById('saveBanner');
     const bannerText = document.getElementById('saveBannerText');
     let bannerTimer = null;
@@ -348,7 +392,6 @@
       bannerTimer = setTimeout(() => banner.classList.remove('show'), 2200);
     }
 
-    /* ---------- Storage helpers ---------- */
     function saveValue(key, value) {
       try {
         localStorage.setItem(STORAGE_PREFIX + key, value);
@@ -358,10 +401,6 @@
         toast('Could not save — storage full or blocked');
         return false;
       }
-    }
-    function readValue(key) {
-      try { return localStorage.getItem(STORAGE_PREFIX + key); }
-      catch (e) { return null; }
     }
     function readAll() {
       const out = {};
@@ -376,17 +415,13 @@
       return out;
     }
 
-    /* ---------- Restore all saved edits on page load ---------- */
     function restoreAll() {
       const saved = readAll();
-      const nodes = document.querySelectorAll('[data-edit-key]');
-      nodes.forEach(node => {
+      document.querySelectorAll('[data-edit-key]').forEach(node => {
         const key = node.getAttribute('data-edit-key');
         if (saved.hasOwnProperty(key)) {
-          // Handle number counters separately (see applyCounterRestore below)
           if (node.classList.contains('number') && node.dataset.count) {
             const stored = saved[key];
-            // If the saved value is purely text like "25+", keep it, but still allow counter
             node.textContent = stored;
             node.setAttribute('data-counted', 'true');
             node.dataset.restoredText = stored;
@@ -397,25 +432,19 @@
       });
     }
 
-    /* ---------- Initialize editing on a single element ---------- */
     function initEditable(node) {
       const key = node.getAttribute('data-edit-key');
       if (!key) return;
-
-      // Do not make buttons/links editable, only textual content
-      // Everything with data-edit-key is intended to be editable.
       node.setAttribute('contenteditable', 'false');
 
-      // Save on blur
       node.addEventListener('blur', function () {
         if (this.getAttribute('contenteditable') !== 'true') return;
         const val = this.innerHTML;
         if (saveValue(key, val)) {
-          toast('Saved: ' + key);
+          // Silent save
         }
       }, true);
 
-      // Live save on input (debounced)
       let inputTimer = null;
       node.addEventListener('input', function () {
         if (this.getAttribute('contenteditable') !== 'true') return;
@@ -427,12 +456,10 @@
       });
     }
 
-    /* ---------- Toggle entire section ---------- */
     function toggleSectionEdit(targetId, btn) {
       const section = document.getElementById(targetId);
       if (!section) return;
 
-      // Scope: only elements with data-edit-key inside this section
       const editables = section.querySelectorAll('[data-edit-key]');
       if (!editables.length) return;
 
@@ -445,8 +472,6 @@
       });
 
       if (entering) {
-        // Also enable hero title via typing? No — keep typing text as-is.
-        // But we allow editing the badge and subtitle.
         editables[0].focus();
         if (btn) {
           btn.classList.add('is-saving');
@@ -454,7 +479,6 @@
         }
         toast('Editing enabled — click Save Changes when done');
       } else {
-        // Save all fields in this section immediately
         let savedCount = 0;
         editables.forEach(el => {
           const key = el.getAttribute('data-edit-key');
@@ -469,10 +493,8 @@
       }
     }
 
-    /* ---------- Bind all edit buttons ---------- */
     function bindButtons() {
       document.querySelectorAll('.edit-toggle-btn').forEach(btn => {
-        // avoid double-binding
         if (btn.dataset.bound === '1') return;
         btn.dataset.bound = '1';
         btn.addEventListener('click', function (e) {
@@ -484,20 +506,14 @@
       });
     }
 
-    /* ---------- Boot ---------- */
     document.addEventListener('DOMContentLoaded', function () {
-      // 1. Initialize all editable nodes
       document.querySelectorAll('[data-edit-key]').forEach(initEditable);
-      // 2. Restore saved values
       restoreAll();
-      // 3. Bind buttons
       bindButtons();
     });
 
-    // Expose a small API for other pages
     window.PagejoEdits = {
       save: saveValue,
-      read: readValue,
       readAll: readAll,
       toast: toast
     };
