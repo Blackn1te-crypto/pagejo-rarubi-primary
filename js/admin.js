@@ -62,15 +62,7 @@ const DEFAULT_DATA = {
     { position: 'DEPUTY HEAD',    name: 'CHIBWE C.',       phone: '+263 785 028 599', category: 'deputy' },
     { position: 'T.I.C',          name: 'MUZHIZHIZHI P.',  phone: '+263 779 762 195', category: 'tic' },
     { position: 'SENIOR TEACHER', name: 'DEHWA N.',        phone: '+263 772 382 569', category: 'senior' },
-    { position: 'SENIOR TEACHER', name: 'MATINYARARE J.',  phone: '+263 773 162 854', category: 'senior' },
-    { position: 'TEACHER',        name: 'MOYO T.',         phone: '+263 771 000 001', category: 'senior' },
-    { position: 'TEACHER',        name: 'NCUBE S.',        phone: '+263 771 000 002', category: 'senior' },
-    { position: 'TEACHER',        name: 'DUBE M.',         phone: '+263 771 000 003', category: 'senior' },
-    { position: 'TEACHER',        name: 'SIBANDA L.',      phone: '+263 771 000 004', category: 'senior' },
-    { position: 'TEACHER',        name: 'CHIRWA K.',       phone: '+263 771 000 005', category: 'senior' },
-    { position: 'TEACHER',        name: 'MUTARE B.',       phone: '+263 771 000 006', category: 'senior' },
-    { position: 'TEACHER',        name: 'GONDO P.',        phone: '+263 771 000 007', category: 'senior' },
-    { position: 'TEACHER',        name: 'MLAMBO R.',       phone: '+263 771 000 008', category: 'senior' }
+    { position: 'SENIOR TEACHER', name: 'MATINYARARE J.',  phone: '+263 773 162 854', category: 'senior' }
   ],
 
   photos: {
@@ -88,10 +80,6 @@ const DEFAULT_DATA = {
   announcements: [
     { id: 1, title: 'Term 2 Enrollment Now Open', date: '2025-05-01', content: 'Enrollment for Term 2 is now open. Please visit the school office with the required documents.' },
     { id: 2, title: 'Prize Giving Day',           date: '2025-06-15', content: 'Annual Prize Giving Day will be held on 15 June 2025. All parents are invited.' }
-  ],
-
-  updates: [
-    { id: 1, title: 'New School Uniform Launched', date: '2025-04-10', content: 'We are excited to announce the launch of our new school uniform.' }
   ],
 
   theme: {
@@ -378,7 +366,6 @@ function applyContent() {
 
   const contactAddress = document.getElementById('contactAddress');
   if (contactAddress) {
-    // Format: "P.O. Box CH 202, Chisipite, Ward 13, Goromonzi District"
     const parts = data.school.address.split(',').map(p => p.trim());
     if (parts.length >= 2) {
       const first = parts.slice(0, parts.length - 1).join(', ');
@@ -412,7 +399,6 @@ function applyContent() {
 
   const dbAddress = document.getElementById('dbAddress');
   if (dbAddress) {
-    // Format: "P.O. Box CH 202, Chisipite, Ward 13, Goromonzi District"
     const parts = data.school.address.split(',').map(p => p.trim());
     const lines = [
       'PAGEJO RARUBI PRIMARY SCHOOL',
