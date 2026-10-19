@@ -15,95 +15,21 @@
     /* ============================================================
        EDIT MODE STYLES
        ============================================================ */
-    .edit-toggle-btn {
-      background: linear-gradient(135deg, #d4a373, #b88645);
-      color: #1e4b3a;
-      border: none;
-      border-radius: 30px;
-      padding: 8px 20px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      vertical-align: middle;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .edit-toggle-btn:hover {
-      background: linear-gradient(135deg, #c49a6c, #a8783d);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .edit-toggle-btn i { font-size: 0.95rem; }
-    .edit-toggle-btn.is-saving {
-      background: linear-gradient(135deg, #1e4b3a, #2e7d5e);
-      color: #fff;
-    }
-    .section-header .header-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-    }
+    .edit-toggle-btn { background: linear-gradient(135deg,#d4a373,#b88645); color: #1e4b3a; border: none; border-radius: 30px; padding: 8px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); vertical-align: middle; font-family: 'Montserrat', sans-serif; }
+    .edit-toggle-btn:hover { background: linear-gradient(135deg,#c49a6c,#a8783d); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .edit-toggle-btn.is-saving { background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; }
+    .section-header .header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; justify-content: center; }
     .section-header .header-actions .eyebrow { margin-right: 8px; }
-
-    [contenteditable="true"] {
-      outline: 2px dashed rgba(212, 163, 115, 0.6);
-      outline-offset: 2px;
-      background: rgba(255, 255, 255, 0.55);
-      border-radius: 4px;
-      transition: outline 0.2s, background 0.2s;
-      min-width: 20px;
-      display: inline-block;
-      padding: 1px 3px;
-    }
-    [contenteditable="true"]:hover {
-      outline: 2px dashed #d4a373;
-      background: rgba(255, 255, 255, 0.8);
-    }
-    [contenteditable="true"]:focus {
-      outline: 2px solid #1e4b3a;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(30, 75, 58, 0.15);
-    }
+    [contenteditable="true"] { outline: 2px dashed rgba(212,163,115,0.6); outline-offset: 2px; background: rgba(255,255,255,0.55); border-radius: 4px; transition: outline 0.2s, background 0.2s; min-width: 20px; display: inline-block; padding: 1px 3px; }
+    [contenteditable="true"]:hover { outline: 2px dashed #d4a373; background: rgba(255,255,255,0.8); }
+    [contenteditable="true"]:focus { outline: 2px solid #1e4b3a; background: #fff; box-shadow: 0 0 0 3px rgba(30,75,58,0.15); }
     td[contenteditable="true"] { display: table-cell; }
     .sop-list li[contenteditable="true"] { display: list-item; }
     .catchment-item span[contenteditable="true"] { display: inline-block; }
-
-    /* Save toast */
-    .edit-save-banner {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(120%);
-      background: linear-gradient(135deg, #1e4b3a, #2e7d5e);
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      z-index: 9998;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Montserrat', sans-serif;
-      pointer-events: none;
-    }
+    .edit-save-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 9998; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; pointer-events: none; }
     .edit-save-banner.show { transform: translateX(-50%) translateY(0); }
     .edit-save-banner i { color: #f9e6b3; }
-
-    @media (max-width: 600px) {
-      .edit-toggle-btn { padding: 6px 12px; font-size: 0.78rem; }
-      .section-header .header-actions { flex-direction: column; align-items: flex-start; }
-      .edit-save-banner { font-size: 0.8rem; padding: 10px 18px; }
-    }
+    @media (max-width: 600px) { .edit-toggle-btn { padding: 6px 12px; font-size: 0.78rem; } .section-header .header-actions { flex-direction: column; align-items: flex-start; } .edit-save-banner { font-size: 0.8rem; padding: 10px 18px; } }
   </style>
 </head>
 <body class="page-academics">
@@ -111,16 +37,6 @@
   <!-- SAVE TOAST -->
   <div id="saveBanner" class="edit-save-banner" aria-live="polite">
     <i class="fas fa-check-circle"></i> <span id="saveBannerText">Changes saved!</span>
-  </div>
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <div class="contact-info">
-      <span><i class="fas fa-phone-alt"></i> School: 0781521551</span>
-      <span><i class="fas fa-phone-alt"></i> Head: 0714168885</span>
-      <span><i class="fas fa-envelope"></i> pagejorarubiprisch@gmail.com</span>
-    </div>
-    <div class="motto"><i class="fas fa-star"></i> Knowledge · Integrity · Service</div>
   </div>
 
   <!-- HEADER -->
@@ -160,9 +76,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-clock"></i> Daily Schedule</span>
-          <button class="edit-toggle-btn" data-target="timetable" title="Enable editing for timetable">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="timetable" title="Enable editing for timetable"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Afternoon Activities</h2>
         <p>Structured afternoon programmes that balance study, sport, and responsibility.</p>
@@ -214,9 +128,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-clipboard-check"></i> Term 1</span>
-          <button class="edit-toggle-btn" data-target="supervision" title="Enable editing for supervision schedule">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="supervision" title="Enable editing for supervision schedule"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Supervision Schedule</h2>
       </div>
@@ -251,9 +163,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-tasks"></i> Our Procedures</span>
-          <button class="edit-toggle-btn" data-target="sop" title="Enable editing for SOP">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="sop" title="Enable editing for SOP"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Standards Operating Procedure</h2>
       </div>
@@ -282,9 +192,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-map-pin"></i> Where We Serve</span>
-          <button class="edit-toggle-btn" data-target="catchment" title="Enable editing for catchment areas">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="catchment" title="Enable editing for catchment areas"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>School Enrollment Catchment Areas</h2>
       </div>
@@ -348,155 +256,10 @@
 
   <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- SCRIPTS -->
+  <!-- Core Scripts -->
   <script src="js/admin.js"></script>
   <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
-
-  <!-- ============================================================
-       REAL EDIT ENGINE — persists to localStorage
-       ============================================================ -->
-  <script>
-  (function () {
-    'use strict';
-
-    const STORAGE_PREFIX = 'pagejo_edit_';
-
-    /* ---------- Toast ---------- */
-    const banner = document.getElementById('saveBanner');
-    const bannerText = document.getElementById('saveBannerText');
-    let bannerTimer = null;
-    function toast(msg) {
-      if (!banner) return;
-      if (bannerText) bannerText.textContent = msg;
-      banner.classList.add('show');
-      clearTimeout(bannerTimer);
-      bannerTimer = setTimeout(() => banner.classList.remove('show'), 2400);
-    }
-
-    /* ---------- Storage ---------- */
-    function saveValue(key, value) {
-      try {
-        localStorage.setItem(STORAGE_PREFIX + key, value);
-        return true;
-      } catch (e) {
-        console.error('Save failed:', key, e);
-        toast('Could not save — storage blocked');
-        return false;
-      }
-    }
-    function readAll() {
-      const out = {};
-      try {
-        for (let i = 0; i < localStorage.length; i++) {
-          const k = localStorage.key(i);
-          if (k && k.indexOf(STORAGE_PREFIX) === 0) {
-            out[k.slice(STORAGE_PREFIX.length)] = localStorage.getItem(k);
-          }
-        }
-      } catch (e) {}
-      return out;
-    }
-
-    /* ---------- Restore ---------- */
-    function restoreAll() {
-      const saved = readAll();
-      document.querySelectorAll('[data-edit-key]').forEach(node => {
-        const key = node.getAttribute('data-edit-key');
-        if (saved.hasOwnProperty(key)) {
-          node.innerHTML = saved[key];
-        }
-      });
-    }
-
-    /* ---------- Init per-element editing ---------- */
-    function initEditable(node) {
-      const key = node.getAttribute('data-edit-key');
-      if (!key) return;
-      node.setAttribute('contenteditable', 'false');
-
-      // Save on blur
-      node.addEventListener('blur', function () {
-        if (this.getAttribute('contenteditable') !== 'true') return;
-        if (saveValue(key, this.innerHTML)) {
-          // Silent save on blur to avoid toast spam — toast only on section save
-        }
-      }, true);
-
-      // Live debounce save while typing
-      let inputTimer = null;
-      node.addEventListener('input', function () {
-        if (this.getAttribute('contenteditable') !== 'true') return;
-        const self = this;
-        clearTimeout(inputTimer);
-        inputTimer = setTimeout(() => saveValue(key, self.innerHTML), 600);
-      });
-    }
-
-    /* ---------- Toggle a whole section ---------- */
-    function toggleSectionEdit(targetId, btn) {
-      const section = document.getElementById(targetId);
-      if (!section) return;
-
-      const editables = section.querySelectorAll('[data-edit-key]');
-      if (!editables.length) return;
-
-      const entering = editables[0].getAttribute('contenteditable') !== 'true';
-      const newState = entering ? 'true' : 'false';
-
-      editables.forEach(el => el.setAttribute('contenteditable', newState));
-
-      if (entering) {
-        // Focus first editable
-        if (editables[0]) editables[0].focus();
-        if (btn) {
-          btn.classList.add('is-saving');
-          btn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
-        }
-        toast('Editing enabled — click Save Changes when done');
-      } else {
-        // Save all fields in the section
-        let count = 0;
-        editables.forEach(el => {
-          const key = el.getAttribute('data-edit-key');
-          if (key && saveValue(key, el.innerHTML)) count++;
-        });
-        if (btn) {
-          btn.classList.remove('is-saving');
-          btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
-        }
-        toast(count + ' field' + (count === 1 ? '' : 's') + ' saved ✓');
-      }
-    }
-
-    /* ---------- Boot ---------- */
-    document.addEventListener('DOMContentLoaded', function () {
-      // 1. Make every tagged element editable-aware
-      document.querySelectorAll('[data-edit-key]').forEach(initEditable);
-
-      // 2. Restore saved edits from localStorage
-      restoreAll();
-
-      // 3. Bind all Edit buttons
-      document.querySelectorAll('.edit-toggle-btn').forEach(btn => {
-        if (btn.dataset.bound === '1') return;
-        btn.dataset.bound = '1';
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = this.getAttribute('data-target');
-          if (target) toggleSectionEdit(target, this);
-        });
-      });
-    });
-
-    // Expose a small API for cross-page coordination if needed
-    window.PagejoEdits = {
-      save: saveValue,
-      readAll: readAll,
-      toast: toast
-    };
-  })();
-  </script>
 </body>
 </html>
