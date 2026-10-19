@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/drawer.css">
   <style>
-    /* Results stat cards — theme-aware */
+    /* ============================================================
+       RESULTS PAGE STYLES
+       ============================================================ */
     .results-stats {
       display: flex;
       justify-content: center;
@@ -30,9 +32,8 @@
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .results-stat-card:nth-child(2) {
-      border-top-color: var(--primary-light, #2e7d5e);
-    }
+    .results-stat-card:nth-child(2) { border-top-color: var(--primary-light, #2e7d5e); }
+    .results-stat-card:nth-child(3) { border-top-color: var(--red-bright, #d32f2f); }
     .results-stat-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 40px -12px rgba(10,40,30,0.15);
@@ -57,16 +58,53 @@
       font-weight: 700;
       text-decoration: none;
     }
-    .results-admin-link:hover {
-      text-decoration: underline;
+    .results-admin-link:hover { text-decoration: underline; }
+
+    /* Status badges */
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+    .status-pass { background: #e8f5ee; color: #2e7d32; }
+    .status-fail { background: #ffebee; color: #d32f2f; }
+
+    /* ============================================================
+       EDIT MODE STYLES
+       ============================================================ */
+    .edit-toggle-btn { background: linear-gradient(135deg,#d4a373,#b88645); color: #1e4b3a; border: none; border-radius: 30px; padding: 8px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); vertical-align: middle; font-family: 'Montserrat', sans-serif; }
+    .edit-toggle-btn:hover { background: linear-gradient(135deg,#c49a6c,#a8783d); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .edit-toggle-btn.is-saving { background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; }
+    .section-header .header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .section-header .header-actions .eyebrow { margin-right: 8px; }
+    
+    [contenteditable="true"] { outline: 2px dashed rgba(212,163,115,0.6); outline-offset: 2px; background: rgba(255,255,255,0.5); border-radius: 4px; transition: outline 0.2s, background 0.2s; min-width: 20px; display: inline-block; padding: 1px 3px; }
+    [contenteditable="true"]:hover { outline: 2px dashed #d4a373; background: rgba(255,255,255,0.8); }
+    [contenteditable="true"]:focus { outline: 2px solid #1e4b3a; background: #fff; box-shadow: 0 0 0 3px rgba(30,75,58,0.15); }
+    
+    .edit-save-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 9998; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; pointer-events: none; }
+    .edit-save-banner.show { transform: translateX(-50%) translateY(0); }
+    .edit-save-banner i { color: #f9e6b3; }
+    
     @media (max-width: 768px) {
       .results-stat-card { min-width: 160px; padding: 1.5rem 1.6rem; }
       .results-stat-card .number { font-size: 1.8rem; }
+      .edit-toggle-btn { padding: 6px 12px; font-size: 0.78rem; }
+      .section-header .header-actions { flex-direction: column; align-items: flex-start; }
+      .edit-save-banner { font-size: 0.8rem; padding: 10px 18px; }
     }
   </style>
 </head>
 <body class="page-results">
+
+  <!-- SAVE TOAST -->
+  <div id="saveBanner" class="edit-save-banner" aria-live="polite">
+    <i class="fas fa-check-circle"></i> <span id="saveBannerText">Changes saved!</span>
+  </div>
 
   <!-- TOP BAR -->
   <div class="top-bar">
@@ -104,8 +142,8 @@
   <!-- PAGE BANNER -->
   <section class="page-banner">
     <div class="page-banner-content">
-      <h1><i class="fas fa-chart-line"></i> Examination Results</h1>
-      <p>Celebrating academic excellence at Pagejo Rarubi Primary School</p>
+      <h1 data-edit-key="results.banner.title"><i class="fas fa-chart-line"></i> Examination Results</h1>
+      <p data-edit-key="results.banner.desc">Celebrating academic excellence at Pagejo Rarubi Primary School</p>
     </div>
   </section>
 
@@ -113,23 +151,27 @@
   <section class="section" id="results-overview">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-trophy"></i> Academic Performance</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-trophy"></i> Academic Performance</span>
+          <button class="edit-toggle-btn" data-target="results-overview"><i class="fas fa-pen"></i> Edit Stats</button>
+        </div>
         <h2>Our Results Overview</h2>
         <p>Our learners consistently achieve outstanding results, a testament to our dedicated teachers and hardworking students.</p>
       </div>
 
       <div class="results-stats animate-on-scroll">
         <div class="results-stat-card">
-          <div class="number" id="avgPassRate">80%</div>
-          <div class="label">Average Pass Rate</div>
+          <!-- Note: This is driven by admin.js logic, but editable manually here if needed -->
+          <div class="number" id="avgPassRate" data-edit-key="results.stat1.value">80%</div>
+          <div class="label" data-edit-key="results.stat1.label">Average Pass Rate</div>
         </div>
         <div class="results-stat-card">
-          <div class="number">446</div>
-          <div class="label">Total Enrollment</div>
+          <div class="number" data-edit-key="results.stat2.value">446</div>
+          <div class="label" data-edit-key="results.stat2.label">Total Enrollment</div>
         </div>
         <div class="results-stat-card">
-          <div class="number">037305</div>
-          <div class="label">Exam Registration No.</div>
+          <div class="number" data-edit-key="results.stat3.value">037305</div>
+          <div class="label" data-edit-key="results.stat3.label">Exam Registration No.</div>
         </div>
       </div>
     </div>
@@ -139,7 +181,10 @@
   <section class="section" id="detailed-results" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-table"></i> Detailed Results</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-table"></i> Detailed Results</span>
+          <button class="edit-toggle-btn" data-target="detailed-results"><i class="fas fa-pen"></i> Edit Headers</button>
+        </div>
         <h2>Student Examination Results</h2>
         <p>Results are managed by the school administration. <a href="admin.html" class="results-admin-link">Admin login</a></p>
       </div>
@@ -148,15 +193,15 @@
         <table class="styled-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Student Name</th>
-              <th>English</th>
-              <th>Maths</th>
-              <th>Science</th>
-              <th>Shona</th>
-              <th>Social</th>
-              <th>Average</th>
-              <th>Status</th>
+              <th data-edit-key="results.th.num">#</th>
+              <th data-edit-key="results.th.name">Student Name</th>
+              <th data-edit-key="results.th.eng">English</th>
+              <th data-edit-key="results.th.math">Maths</th>
+              <th data-edit-key="results.th.sci">Science</th>
+              <th data-edit-key="results.th.shona">Shona</th>
+              <th data-edit-key="results.th.soc">Social</th>
+              <th data-edit-key="results.th.avg">Average</th>
+              <th data-edit-key="results.th.status">Status</th>
             </tr>
           </thead>
           <tbody id="resultsBody">
@@ -205,5 +250,69 @@
   <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
+
+  <!-- RESULTS ENGINE SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Render the results from admin.js data
+      renderResultsTable();
+
+      // 2. Set the pass rate from the database
+      const d = getData();
+      const avgPassRateEl = document.getElementById('avgPassRate');
+      // Only update if we haven't overridden it manually via the inline editor
+      const manualEdit = localStorage.getItem('pagejo_live_edit_v3_results.stat1.value');
+      if (!manualEdit && avgPassRateEl) {
+        avgPassRateEl.textContent = (d.results.grade7.passRate || 0) + '%';
+      }
+    });
+
+    function renderResultsTable() {
+      const d = getData();
+      const students = d.results.grade7.students || [];
+      const tbody = document.getElementById('resultsBody');
+      const footer = document.getElementById('resultsFooter');
+
+      if (students.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" style="text-align:center; padding:2rem; color:#6b7d75;">
+              No results published yet. <br>
+              <a href="admin.html" style="color:var(--accent); font-weight:700;">Login to add results</a>
+            </td>
+          </tr>`;
+        footer.innerHTML = '<i class="fas fa-info-circle"></i> No results available.';
+        return;
+      }
+
+      tbody.innerHTML = '';
+      let passCount = 0;
+
+      students.forEach((s, i) => {
+        const avg = Math.round((s.english + s.maths + s.science + s.shona + s.social) / 5);
+        const isPass = avg >= 50;
+        if (isPass) passCount++;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${i + 1}</td>
+          <td><strong>${s.name}</strong></td>
+          <td>${s.english}</td>
+          <td>${s.maths}</td>
+          <td>${s.science}</td>
+          <td>${s.shona}</td>
+          <td>${s.social}</td>
+          <td><strong style="color: ${isPass ? '#2e7d32' : '#d32f2f'};">${avg}%</strong></td>
+          <td><span class="status-badge ${isPass ? 'status-pass' : 'status-fail'}">${isPass ? 'Pass' : 'Fail'}</span></td>`;
+        tbody.appendChild(row);
+      });
+
+      const rate = Math.round((passCount / students.length) * 100);
+      footer.innerHTML = `<i class="fas fa-info-circle"></i> ${students.length} students published · ${passCount} passed · ${rate}% pass rate`;
+    }
+
+    // Listen for data changes from admin.js (if open in same tab)
+    window.addEventListener('dataChanged', renderResultsTable);
+  </script>
 </body>
 </html>
