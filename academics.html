@@ -11,6 +11,111 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/drawer.css">
+  <style>
+    /* ----- EDIT MODE STYLES (only additions, no modification of existing) ----- */
+    .edit-toggle-btn {
+      background: #d4a373;
+      color: #1e4b3a;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      vertical-align: middle;
+    }
+    .edit-toggle-btn:hover {
+      background: #c49a6c;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .edit-toggle-btn i {
+      font-size: 0.95rem;
+    }
+    .section-header .header-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .section-header .header-actions .eyebrow {
+      margin-right: 8px;
+    }
+    /* Editable areas – subtle outline on hover */
+    [contenteditable="true"] {
+      outline: 2px dashed rgba(212, 163, 115, 0.6);
+      outline-offset: 2px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      transition: outline 0.2s;
+      min-width: 20px;
+      display: inline-block;
+    }
+    [contenteditable="true"]:hover {
+      outline: 2px dashed #d4a373;
+      background: rgba(255, 255, 255, 0.75);
+    }
+    [contenteditable="true"]:focus {
+      outline: 2px solid #1e4b3a;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(30, 75, 58, 0.15);
+    }
+    /* Table cells editable */
+    td[contenteditable="true"] {
+      display: table-cell;
+    }
+    /* For list items */
+    .sop-list li[contenteditable="true"] {
+      display: list-item;
+    }
+    .catchment-item span[contenteditable="true"] {
+      display: inline-block;
+    }
+    /* Save indicator */
+    .save-indicator {
+      font-size: 0.75rem;
+      color: #2e7d32;
+      margin-left: 6px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .save-indicator.show {
+      opacity: 1;
+    }
+    /* Disable editing style for non-edit mode */
+    .edit-mode-active .edit-toggle-btn {
+      background: #1e4b3a;
+      color: #fff;
+    }
+    .edit-mode-active .edit-toggle-btn:hover {
+      background: #14352a;
+    }
+    /* Compact header when edit mode is on */
+    .edit-mode-active .section-header .eyebrow {
+      opacity: 0.7;
+    }
+    /* Make sure table wrapper allows overflow for buttons */
+    .table-wrapper {
+      position: relative;
+    }
+    /* Small responsive fixes */
+    @media (max-width: 600px) {
+      .edit-toggle-btn {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+      }
+      .section-header .header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body class="page-academics">
 
@@ -59,21 +164,26 @@
   <section class="section" id="timetable">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-clock"></i> Daily Schedule</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-clock"></i> Daily Schedule</span>
+          <button class="edit-toggle-btn" data-target="timetable" title="Enable editing for timetable">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>Afternoon Activities</h2>
         <p>Structured afternoon programmes that balance study, sport, and responsibility.</p>
       </div>
       <div class="table-wrapper animate-on-scroll">
-        <table class="styled-table">
+        <table class="styled-table" id="timetableTable">
           <thead>
             <tr><th>Day</th><th>1:00 - 2:00</th><th>2:00 - 3:00</th><th>3:00 - 3:30</th></tr>
           </thead>
           <tbody>
-            <tr><td class="day-mon">MONDAY</td><td>LUNCH</td><td>STUDY</td><td>GENERAL CLEANING</td></tr>
-            <tr><td class="day-tue">TUESDAY</td><td>LUNCH</td><td>SPORT</td><td>SPORT</td></tr>
-            <tr><td class="day-wed">WEDNESDAY</td><td>LUNCH</td><td>STUDY</td><td>STUDY</td></tr>
-            <tr><td class="day-thu">THURSDAY</td><td>LUNCH</td><td>SPORT</td><td>SPORT</td></tr>
-            <tr><td class="day-fri">FRIDAY</td><td colspan="2">GENERAL CLEANING</td><td>—</td></tr>
+            <tr><td class="day-mon" contenteditable="false">MONDAY</td><td contenteditable="false">LUNCH</td><td contenteditable="false">STUDY</td><td contenteditable="false">GENERAL CLEANING</td></tr>
+            <tr><td class="day-tue" contenteditable="false">TUESDAY</td><td contenteditable="false">LUNCH</td><td contenteditable="false">SPORT</td><td contenteditable="false">SPORT</td></tr>
+            <tr><td class="day-wed" contenteditable="false">WEDNESDAY</td><td contenteditable="false">LUNCH</td><td contenteditable="false">STUDY</td><td contenteditable="false">STUDY</td></tr>
+            <tr><td class="day-thu" contenteditable="false">THURSDAY</td><td contenteditable="false">LUNCH</td><td contenteditable="false">SPORT</td><td contenteditable="false">SPORT</td></tr>
+            <tr><td class="day-fri" contenteditable="false">FRIDAY</td><td colspan="2" contenteditable="false">GENERAL CLEANING</td><td contenteditable="false">—</td></tr>
           </tbody>
         </table>
       </div>
@@ -84,28 +194,33 @@
   <section class="section" id="supervision" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-clipboard-check"></i> Term 1</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-clipboard-check"></i> Term 1</span>
+          <button class="edit-toggle-btn" data-target="supervision" title="Enable editing for supervision schedule">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>Supervision Schedule</h2>
       </div>
       <div class="table-wrapper animate-on-scroll">
-        <table class="styled-table supervision-table">
+        <table class="styled-table supervision-table" id="supervisionTable">
           <thead>
             <tr><th>Week</th><th>Supervision Activity</th></tr>
           </thead>
           <tbody>
-            <tr><td>1</td><td style="color:#1976d2;">GROUNDS INSPECTION</td></tr>
-            <tr><td>2</td><td style="color:#d32f2f;">IRBM</td></tr>
-            <tr><td>3</td><td style="color:#f57c00;">BOOK INSPECTION</td></tr>
-            <tr><td>4</td><td style="color:#2e7d32;">LESSON OBSERVATION</td></tr>
-            <tr><td>5</td><td style="color:#d32f2f;">RECORD BOOKS</td></tr>
-            <tr><td>6</td><td style="color:#2e7d32;">LESSON OBSERVATIONS</td></tr>
-            <tr><td>7</td><td style="color:#1976d2;">CLASSROOM INSPECTION</td></tr>
-            <tr><td>8</td><td style="color:#f57c00;">BOOK INSPECTION</td></tr>
-            <tr><td>9</td><td style="color:#d32f2f;">RECORD BOOKS</td></tr>
-            <tr><td>10</td><td style="color:#1976d2;">REGISTERS TO BE SUBMITTED EVERY MONDAY</td></tr>
+            <tr><td contenteditable="false">1</td><td contenteditable="false" style="color:#1976d2;">GROUNDS INSPECTION</td></tr>
+            <tr><td contenteditable="false">2</td><td contenteditable="false" style="color:#d32f2f;">IRBM</td></tr>
+            <tr><td contenteditable="false">3</td><td contenteditable="false" style="color:#f57c00;">BOOK INSPECTION</td></tr>
+            <tr><td contenteditable="false">4</td><td contenteditable="false" style="color:#2e7d32;">LESSON OBSERVATION</td></tr>
+            <tr><td contenteditable="false">5</td><td contenteditable="false" style="color:#d32f2f;">RECORD BOOKS</td></tr>
+            <tr><td contenteditable="false">6</td><td contenteditable="false" style="color:#2e7d32;">LESSON OBSERVATIONS</td></tr>
+            <tr><td contenteditable="false">7</td><td contenteditable="false" style="color:#1976d2;">CLASSROOM INSPECTION</td></tr>
+            <tr><td contenteditable="false">8</td><td contenteditable="false" style="color:#f57c00;">BOOK INSPECTION</td></tr>
+            <tr><td contenteditable="false">9</td><td contenteditable="false" style="color:#d32f2f;">RECORD BOOKS</td></tr>
+            <tr><td contenteditable="false">10</td><td contenteditable="false" style="color:#1976d2;">REGISTERS TO BE SUBMITTED EVERY MONDAY</td></tr>
           </tbody>
         </table>
-        <div class="supervision-note">
+        <div class="supervision-note" contenteditable="false" id="supervisionNote">
           <i class="fas fa-exclamation-circle"></i> REGISTERS TO BE SUBMITTED EVERY MONDAY
         </div>
       </div>
@@ -116,22 +231,27 @@
   <section class="section" id="sop">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-tasks"></i> Our Procedures</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-tasks"></i> Our Procedures</span>
+          <button class="edit-toggle-btn" data-target="sop" title="Enable editing for SOP">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>Standards Operating Procedure</h2>
       </div>
       <div class="sop-container animate-on-scroll">
-        <div class="sop-subtitle">Pagejo Rarubi Primary School</div>
-        <ol class="sop-list">
-          <li>TEACHERS TO SUBMIT THEIR SCHEMES OF WORK ON OPENING DAY OF EVERY TERM.</li>
-          <li>SCHEMES OF WORK ARE TO BE PREPARED USING HBC SYLLABI.</li>
-          <li>LESSONS ARE TO BE CONDUCTED AS PER THE HBC TIME TABLE.</li>
-          <li>ENSURE TO ABIDE BY SI 21 OF 2024 ON TEACHING WORK LOAD.</li>
-          <li>EVALUATED SCHEMES OF WORK TO BE SUBMITTED TO THE D/HEAD'S OFFICE ON MONDAYS MORNING.</li>
-          <li>PROFESSIONAL RECORDS ARE SUBMITTED TO THE DEPUTY HEAD'S OFFICE FORTNIGHTLY.</li>
-          <li>REGISTERS TO BE SUBMITTED TO THE OFFICE AT 0900 ON MONDAYS.</li>
-          <li>FORTNIGHT TESTS ARE WRITTEN AND RECORDED IN BOTH TESTS AND PROGRESS RECORDS.</li>
+        <div class="sop-subtitle" contenteditable="false" id="sopSubtitle">Pagejo Rarubi Primary School</div>
+        <ol class="sop-list" id="sopList">
+          <li contenteditable="false">TEACHERS TO SUBMIT THEIR SCHEMES OF WORK ON OPENING DAY OF EVERY TERM.</li>
+          <li contenteditable="false">SCHEMES OF WORK ARE TO BE PREPARED USING HBC SYLLABI.</li>
+          <li contenteditable="false">LESSONS ARE TO BE CONDUCTED AS PER THE HBC TIME TABLE.</li>
+          <li contenteditable="false">ENSURE TO ABIDE BY SI 21 OF 2024 ON TEACHING WORK LOAD.</li>
+          <li contenteditable="false">EVALUATED SCHEMES OF WORK TO BE SUBMITTED TO THE D/HEAD'S OFFICE ON MONDAYS MORNING.</li>
+          <li contenteditable="false">PROFESSIONAL RECORDS ARE SUBMITTED TO THE DEPUTY HEAD'S OFFICE FORTNIGHTLY.</li>
+          <li contenteditable="false">REGISTERS TO BE SUBMITTED TO THE OFFICE AT 0900 ON MONDAYS.</li>
+          <li contenteditable="false">FORTNIGHT TESTS ARE WRITTEN AND RECORDED IN BOTH TESTS AND PROGRESS RECORDS.</li>
         </ol>
-        <div class="sop-motto">
+        <div class="sop-motto" contenteditable="false" id="sopMotto">
           <i class="fas fa-check-circle"></i> Excellence · Accountability · Professionalism
         </div>
       </div>
@@ -142,7 +262,12 @@
   <section class="section" id="catchment" style="background: rgba(255,255,255,0.7);">
     <div class="section-container">
       <div class="section-header animate-on-scroll">
-        <span class="eyebrow"><i class="fas fa-map-pin"></i> Where We Serve</span>
+        <div class="header-actions">
+          <span class="eyebrow"><i class="fas fa-map-pin"></i> Where We Serve</span>
+          <button class="edit-toggle-btn" data-target="catchment" title="Enable editing for catchment areas">
+            <i class="fas fa-pen"></i> Edit
+          </button>
+        </div>
         <h2>School Enrollment Catchment Areas</h2>
       </div>
       <div class="catchment-wrapper animate-on-scroll">
@@ -150,22 +275,22 @@
           <i class="fas fa-school"></i>
           SCHOOL<br>ENROLLMENT<br>CATCHMENT<br>AREAS
         </div>
-        <div class="catchment-grid">
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#1976d2;"></i> BLUE</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#d32f2f;"></i> HURUDZA RIDGE</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#2e7d32;"></i> LAROCCO</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#f57c00;"></i> SARADANE</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#7b1fa2;"></i> PLEASANT VALLEY</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#c2185b;"></i> CHIPFUMBI</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#00796b;"></i> CHIDYAUSIKU</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#5d4037;"></i> NYAMASVISVA</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#d32f2f;"></i> PEACO</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#1976d2;"></i> CHINGOSHO</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#2e7d32;"></i> IC</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#f57c00;"></i> EDWART CHINGWENA</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#7b1fa2;"></i> SAMUDZIMU</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#c2185b;"></i> RUNDOGO</div>
-          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#00796b;"></i> STOBAT</div>
+        <div class="catchment-grid" id="catchmentGrid">
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#1976d2;"></i> <span contenteditable="false">BLUE</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#d32f2f;"></i> <span contenteditable="false">HURUDZA RIDGE</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#2e7d32;"></i> <span contenteditable="false">LAROCCO</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#f57c00;"></i> <span contenteditable="false">SARADANE</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#7b1fa2;"></i> <span contenteditable="false">PLEASANT VALLEY</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#c2185b;"></i> <span contenteditable="false">CHIPFUMBI</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#00796b;"></i> <span contenteditable="false">CHIDYAUSIKU</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#5d4037;"></i> <span contenteditable="false">NYAMASVISVA</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#d32f2f;"></i> <span contenteditable="false">PEACO</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#1976d2;"></i> <span contenteditable="false">CHINGOSHO</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#2e7d32;"></i> <span contenteditable="false">IC</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#f57c00;"></i> <span contenteditable="false">EDWART CHINGWENA</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#7b1fa2;"></i> <span contenteditable="false">SAMUDZIMU</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#c2185b;"></i> <span contenteditable="false">RUNDOGO</span></div>
+          <div class="catchment-item"><i class="fas fa-map-marker-alt" style="color:#00796b;"></i> <span contenteditable="false">STOBAT</span></div>
         </div>
       </div>
     </div>
@@ -210,5 +335,213 @@
   <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
+
+  <!-- EDIT MODE SCRIPT (only addition, no modification to existing) -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Store original content for reset (optional, not required but useful)
+      // We'll just toggle contenteditable attributes.
+
+      // Helper: toggle edit mode for a specific section
+      function toggleSectionEdit(targetId) {
+        const section = document.getElementById(targetId);
+        if (!section) return;
+
+        // Find all elements within this section that should be editable
+        // Strategy: select all elements with contenteditable attribute (even if false)
+        // and toggle them. But also we want to make sure we don't toggle non-editable elements.
+
+        // We'll use a data attribute to mark editability candidates.
+        // But since we already have contenteditable="false" on target elements, we can
+        // simply toggle that attribute.
+
+        // However, for the timetable, we have td elements with contenteditable="false".
+        // For supervision, td + note. For SOP, li + subtitle + motto.
+        // For catchment, spans.
+
+        // Let's define selectors per section to be precise:
+        const editableSelectors = {
+          timetable: '#timetableTable td[contenteditable]',
+          supervision: '#supervisionTable td[contenteditable], #supervisionNote[contenteditable]',
+          sop: '#sopSubtitle[contenteditable], #sopList li[contenteditable], #sopMotto[contenteditable]',
+          catchment: '#catchmentGrid span[contenteditable]'
+        };
+
+        const selector = editableSelectors[targetId];
+        if (!selector) return;
+
+        const editables = section.querySelectorAll(selector);
+
+        // Determine current mode: if first element is 'true', we switch to false, and vice versa.
+        // If there are no editables, do nothing.
+        if (editables.length === 0) return;
+
+        const isCurrentlyEditing = editables[0].getAttribute('contenteditable') === 'true';
+        const newState = isCurrentlyEditing ? 'false' : 'true';
+
+        editables.forEach(el => {
+          el.setAttribute('contenteditable', newState);
+        });
+
+        // Also toggle the edit button text/icon for feedback
+        const btn = section.querySelector('.edit-toggle-btn');
+        if (btn) {
+          if (newState === 'true') {
+            btn.innerHTML = '<i class="fas fa-save"></i> Save';
+            btn.style.background = '#1e4b3a';
+            btn.style.color = '#fff';
+          } else {
+            btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
+            btn.style.background = '#d4a373';
+            btn.style.color = '#1e4b3a';
+          }
+        }
+
+        // Optional: Show a small toast or indicator
+        if (newState === 'true') {
+          // Focus first editable
+          if (editables.length > 0) {
+            editables[0].focus();
+          }
+        }
+      }
+
+      // Attach event listeners to all edit buttons
+      document.addEventListener('DOMContentLoaded', function() {
+        const editButtons = document.querySelectorAll('.edit-toggle-btn');
+        editButtons.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('data-target');
+            if (target) {
+              toggleSectionEdit(target);
+            }
+          });
+        });
+
+        // Prevent default on Enter key in contenteditable to avoid new lines (optional)
+        // But we'll allow normal behaviour, it's fine.
+
+        // Optional: For better UX, on blur of a contenteditable, we could save to localStorage,
+        // but that's beyond the scope. We'll just keep it simple.
+
+        // Save to localStorage on page unload (optional, but could be nice)
+        // We'll implement a simple persistence: when a contenteditable loses focus, save its content to localStorage.
+        // Then on page load, restore from localStorage. This makes edits stick.
+        // This is an enhancement to "update anytime" - it persists across reloads.
+        // We'll do it for all editable elements, but only when in edit mode.
+        // Actually, we want to persist regardless of mode, but only if user has edited.
+        // We'll use a key per element based on its id or index.
+
+        // Let's assign a unique key to each editable element if not already.
+        // We'll do this after DOM load.
+        const allEditables = document.querySelectorAll('[contenteditable]');
+        // But we only want to persist elements that are meant to be editable (within sections).
+        // We'll target those with contenteditable attribute (true or false) in the sections.
+        // However, we also have other contenteditable elements? No, only these.
+
+        // For persistence, we'll assign keys to elements that have contenteditable attribute,
+        // within our sections. We'll use a prefix + id or index.
+
+        function assignKeys() {
+          // Timetable cells
+          const timetableCells = document.querySelectorAll('#timetableTable td[contenteditable]');
+          timetableCells.forEach((el, idx) => {
+            if (!el.dataset.editKey) {
+              el.dataset.editKey = 'timetable_cell_' + idx;
+            }
+          });
+          // Supervision cells
+          const supCells = document.querySelectorAll('#supervisionTable td[contenteditable]');
+          supCells.forEach((el, idx) => {
+            if (!el.dataset.editKey) {
+              el.dataset.editKey = 'sup_cell_' + idx;
+            }
+          });
+          const supNote = document.getElementById('supervisionNote');
+          if (supNote && !supNote.dataset.editKey) {
+            supNote.dataset.editKey = 'sup_note';
+          }
+          // SOP
+          const sopSubtitle = document.getElementById('sopSubtitle');
+          if (sopSubtitle && !sopSubtitle.dataset.editKey) {
+            sopSubtitle.dataset.editKey = 'sop_subtitle';
+          }
+          const sopItems = document.querySelectorAll('#sopList li[contenteditable]');
+          sopItems.forEach((el, idx) => {
+            if (!el.dataset.editKey) {
+              el.dataset.editKey = 'sop_item_' + idx;
+            }
+          });
+          const sopMotto = document.getElementById('sopMotto');
+          if (sopMotto && !sopMotto.dataset.editKey) {
+            sopMotto.dataset.editKey = 'sop_motto';
+          }
+          // Catchment spans
+          const catchmentSpans = document.querySelectorAll('#catchmentGrid span[contenteditable]');
+          catchmentSpans.forEach((el, idx) => {
+            if (!el.dataset.editKey) {
+              el.dataset.editKey = 'catchment_' + idx;
+            }
+          });
+        }
+
+        assignKeys();
+
+        // Load saved content
+        const allEditableWithKeys = document.querySelectorAll('[data-edit-key]');
+        allEditableWithKeys.forEach(el => {
+          const key = el.dataset.editKey;
+          const saved = localStorage.getItem('pagejo_academics_' + key);
+          if (saved !== null) {
+            // Only restore if it's not the default? We'll just set it.
+            // But careful: for list items, we don't want to lose the icon if any.
+            // For simplicity, we'll set innerHTML for most, but for elements with icons inside
+            // (like supervision note, sop motto, catchment items with <i> tags), we need to be careful.
+            // For supervision note, it has <i> icon. We should only update the text part.
+            // Better approach: store only textContent for those with icons, but we want to keep icons.
+            // So we'll store innerHTML and restore it. But then icons might be duplicated if user edits?
+            // Actually, if user edits, they might delete the icon. That's fine.
+            // We'll store innerHTML to preserve formatting.
+            // But for list items, innerHTML is fine.
+            // For catchment spans, innerHTML is fine (they are just text, no icons inside span).
+            // For supervision note, innerHTML includes the icon. If user deletes icon, we won't restore it.
+            // That's acceptable.
+
+            // However, for elements that are inside a parent with icons (like catchment items),
+            // we are only editing the span, so innerHTML is safe.
+            el.innerHTML = saved;
+          }
+        });
+
+        // Save on blur (when contenteditable loses focus)
+        document.addEventListener('blur', function(e) {
+          const target = e.target;
+          if (target.hasAttribute('contenteditable') && target.dataset.editKey) {
+            const key = target.dataset.editKey;
+            const content = target.innerHTML;
+            localStorage.setItem('pagejo_academics_' + key, content);
+            // Optional: show a brief indicator
+            const indicator = document.createElement('span');
+            indicator.className = 'save-indicator show';
+            indicator.textContent = 'Saved';
+            // We can append to parent, but it's messy. Let's skip.
+          }
+        }, true);
+
+        // Also save on input for real-time persistence (optional)
+        document.addEventListener('input', function(e) {
+          const target = e.target;
+          if (target.hasAttribute('contenteditable') && target.dataset.editKey) {
+            const key = target.dataset.editKey;
+            const content = target.innerHTML;
+            localStorage.setItem('pagejo_academics_' + key, content);
+          }
+        });
+      });
+    })();
+  </script>
 </body>
-</html>
+  </html>
