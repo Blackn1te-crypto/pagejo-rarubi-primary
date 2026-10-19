@@ -1,19 +1,18 @@
 /* ============================================================
    MOBILE DRAWER & HAMBURGER MENU
    Pagejo Rarubi Primary School
-   Includes spinning overlay rings logo design
    Developed by Pardon Katsande (BL@CKN1TE)
    ============================================================ */
 
 (function () {
   'use strict';
 
-  // Inject the required CSS for the drawer and spinning rings
+  // Inject the drawer CSS dynamically (just in case it's not in drawer.css)
   function injectDrawerStyles() {
-    if (document.getElementById('drawer-styles')) return;
+    if (document.getElementById('pagejo-drawer-styles')) return;
     
     const style = document.createElement('style');
-    style.id = 'drawer-styles';
+    style.id = 'pagejo-drawer-styles';
     style.textContent = `
       /* ---- Drawer Overlay ---- */
       .drawer-overlay {
@@ -171,7 +170,6 @@
         margin-left: auto;
       }
 
-      /* Show hamburger on mobile/tablet */
       @media (max-width: 1024px) {
         .hamburger-btn {
           display: flex;
@@ -207,7 +205,7 @@
         height: 100%;
         border-top-color: #d4a373;
         border-right-color: #d4a373;
-        animation: spinCW 3s linear infinite;
+        animation: hamburgerSpinCW 3s linear infinite;
       }
 
       .hamburger-ring.r2 {
@@ -215,7 +213,7 @@
         height: 85%;
         border-bottom-color: #2e7d5e;
         border-left-color: #2e7d5e;
-        animation: spinCCW 4s linear infinite;
+        animation: hamburgerSpinCCW 4s linear infinite;
       }
 
       .hamburger-logo-img {
@@ -230,16 +228,6 @@
         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       }
 
-      @keyframes spinCW {
-        from { transform: translate(-50%, -50%) rotate(0deg); }
-        to   { transform: translate(-50%, -50%) rotate(360deg); }
-      }
-      @keyframes spinCCW {
-        from { transform: translate(-50%, -50%) rotate(0deg); }
-        to   { transform: translate(-50%, -50%) rotate(-360deg); }
-      }
-
-      /* Fallback for missing image */
       .hamburger-fallback-icon {
         position: relative;
         z-index: 2;
@@ -254,6 +242,15 @@
         justify-content: center;
       }
 
+      @keyframes hamburgerSpinCW {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to   { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      @keyframes hamburgerSpinCCW {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to   { transform: translate(-50%, -50%) rotate(-360deg); }
+      }
+
       /* Body lock */
       body.drawer-open {
         overflow: hidden;
@@ -262,78 +259,69 @@
     document.head.appendChild(style);
   }
 
-  // Build the drawer HTML dynamically
   function buildDrawer() {
-    if (document.getElementById('drawer')) return;
-
-    // --- 1. Build Overlay ---
-    const overlay = document.createElement('div');
-    overlay.id = 'drawerOverlay';
-    overlay.className = 'drawer-overlay';
-    document.body.appendChild(overlay);
-
-    // --- 2. Build Drawer Panel ---
-    const drawer = document.createElement('aside');
-    drawer.id = 'drawer';
-    drawer.className = 'drawer';
-    drawer.setAttribute('aria-hidden', 'true');
-
-    // Drawer Header
-    const headerHTML = `
-      <div class="drawer-header">
-        <div class="drawer-brand">
-          <img src="images/logo.png" alt="Logo" class="drawer-brand-logo" 
-               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<i class=\\'fas fa-graduation-cap\\' style=\\'color:#f9e6b3; font-size:1.2rem;\\'></i>');">
-          <span>Pagejo Rarubi</span>
-        </div>
-        <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-    `;
-
-    // Drawer Links (Copy from navbar)
-    const navLinks = document.querySelectorAll('.navbar a');
-    let linksHTML = '<nav class="drawer-nav">';
+    // 1. Check if drawer already exists in HTML
+    let drawer = document.getElementById('drawer');
     
-    if (navLinks.length > 0) {
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href') || '#';
-        const isActive = link.classList.contains('active');
-        const icon = link.querySelector('i') ? link.querySelector('i').outerHTML : '';
-        const text = link.textContent.trim();
-        
-        linksHTML += `<a href="${href}" class="${isActive ? 'active' : ''}">
-          ${icon} <span>${text}</span>
-        </a>`;
-      });
-    } else {
-      // Fallback links if navbar not found
-      linksHTML += `
-        <a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a>
-        <a href="about.html"><i class="fas fa-users"></i> <span>About Us</span></a>
-        <a href="academics.html"><i class="fas fa-book-open"></i> <span>Academics</span></a>
-        <a href="results.html"><i class="fas fa-chart-line"></i> <span>Results</span></a>
-        <a href="projects.html"><i class="fas fa-seedling"></i> <span>Projects</span></a>
-        <a href="gallery.html"><i class="fas fa-images"></i> <span>Gallery</span></a>
-        <a href="contact.html"><i class="fas fa-address-card"></i> <span>Contact</span></a>
+    // If not, build it dynamically
+    if (!drawer) {
+      // Build Overlay
+      if (!document.getElementById('drawerOverlay')) {
+        const overlay = document.createElement('div');
+        overlay.id = 'drawerOverlay';
+        overlay.className = 'drawer-overlay';
+        document.body.appendChild(overlay);
+      }
+
+      // Build Drawer
+      drawer = document.createElement('aside');
+      drawer.id = 'drawer';
+      drawer.className = 'drawer';
+      drawer.setAttribute('aria-hidden', 'true');
+
+      // Header
+      const headerHTML = `
+        <div class="drawer-header">
+          <div class="drawer-brand">
+            <img src="images/logo.png" alt="Logo" class="drawer-brand-logo" 
+                 onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<i class=\\'fas fa-graduation-cap\\' style=\\'color:#f9e6b3; font-size:1.2rem;\\'></i>');">
+            <span>Pagejo Rarubi</span>
+          </div>
+          <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
       `;
+
+      // Links (copy from navbar)
+      const navLinks = document.querySelectorAll('.navbar a');
+      let linksHTML = '<nav class="drawer-nav">';
+      if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href') || '#';
+          const isActive = link.classList.contains('active');
+          const icon = link.querySelector('i') ? link.querySelector('i').outerHTML : '';
+          const text = link.textContent.trim();
+          linksHTML += `<a href="${href}" class="${isActive ? 'active' : ''}">
+            ${icon} <span>${text}</span>
+          </a>`;
+        });
+      }
+      linksHTML += '</nav>';
+
+      // Footer
+      const footerHTML = `
+        <div class="drawer-footer">
+          &copy; ${new Date().getFullYear()} Pagejo Rarubi Primary
+          <strong>Knowledge · Integrity · Service</strong>
+        </div>
+      `;
+
+      drawer.innerHTML = headerHTML + linksHTML + footerHTML;
+      document.body.appendChild(drawer);
     }
-    linksHTML += '</nav>';
 
-    // Drawer Footer
-    const footerHTML = `
-      <div class="drawer-footer">
-        &copy; ${new Date().getFullYear()} Pagejo Rarubi Primary
-        <strong>Knowledge · Integrity · Service</strong>
-      </div>
-    `;
-
-    drawer.innerHTML = headerHTML + linksHTML + footerHTML;
-    document.body.appendChild(drawer);
-
-    // --- 3. Build Hamburger Button with Spinning Rings ---
-    // Check if it already exists in the HTML (from static markup)
+    // 2. Ensure Hamburger exists
     let hamburger = document.getElementById('hamburgerBtn');
     
     if (!hamburger) {
@@ -343,7 +331,6 @@
       hamburger.setAttribute('aria-label', 'Open menu');
       hamburger.setAttribute('aria-expanded', 'false');
       
-      // Build the spinning rings design
       hamburger.innerHTML = `
         <div class="hamburger-logo-wrap">
           <span class="hamburger-ring r1"></span>
@@ -353,19 +340,17 @@
         </div>
       `;
 
-      // Insert into DOM - try to place next to header logo, or fallback to body
+      // Try to attach to header logo area
       const mainHeader = document.getElementById('mainHeader');
       const logoArea = document.querySelector('.logo-area');
       
       if (mainHeader) {
         mainHeader.appendChild(hamburger);
-        // Add some spacing
         hamburger.style.marginLeft = 'auto';
       } else if (logoArea) {
         logoArea.appendChild(hamburger);
       } else {
         document.body.appendChild(hamburger);
-        // Make it fixed if floated
         hamburger.style.position = 'fixed';
         hamburger.style.top = '15px';
         hamburger.style.right = '15px';
@@ -377,7 +362,6 @@
     }
   }
 
-  // Wire up the events
   function setupDrawerEvents() {
     const drawer = document.getElementById('drawer');
     const hamburger = document.getElementById('hamburgerBtn');
@@ -402,38 +386,52 @@
       drawer.setAttribute('aria-hidden', 'true');
     }
 
-    // Remove old listeners to prevent duplicates
-    const newHamburger = hamburger.cloneNode(true);
-    hamburger.parentNode.replaceChild(newHamburger, hamburger);
-    
-    // Re-cache the new element
-    const activeHamburger = document.getElementById('hamburgerBtn');
+    // Clean up existing listeners by replacing the button node if needed
+    // Wait, replacing the node breaks the spinning rings if they rely on CSS? No, CSS is fine.
+    // But it's safer to just add a new listener and remove the old one by cloning if we know it's there.
+    // Let's just add the listener directly. If the script is loaded twice, it will double fire.
+    // We'll add a data-attribute to prevent double binding.
+    if (hamburger.dataset.bound !== 'true') {
+      hamburger.dataset.bound = 'true';
+      hamburger.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (drawer.classList.contains('open')) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      });
+    }
 
-    activeHamburger.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (drawer.classList.contains('open')) {
-        closeDrawer();
-      } else {
-        openDrawer();
-      }
-    });
+    if (closeBtn && closeBtn.dataset.bound !== 'true') {
+      closeBtn.dataset.bound = 'true';
+      closeBtn.addEventListener('click', closeDrawer);
+    }
 
-    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-    if (overlay) overlay.addEventListener('click', closeDrawer);
+    if (overlay && overlay.dataset.bound !== 'true') {
+      overlay.dataset.bound = 'true';
+      overlay.addEventListener('click', closeDrawer);
+    }
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) {
-        closeDrawer();
-      }
-    });
+    if (!window._drawerEscBound) {
+      window._drawerEscBound = true;
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    }
 
-    // Close drawer when a link is clicked
+    // Bind links to close
     drawer.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', closeDrawer);
+      if (a.dataset.bound !== 'true') {
+        a.dataset.bound = 'true';
+        a.addEventListener('click', closeDrawer);
+      }
     });
   }
 
-  // Init on DOM ready
+  // Init
   document.addEventListener('DOMContentLoaded', function () {
     injectDrawerStyles();
     buildDrawer();
