@@ -12,454 +12,87 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/drawer.css">
   <style>
-    /* ============================================================
-       HOMEPAGE ANIMATIONS (unchanged)
-       ============================================================ */
-
-    /* ---------- Floating background orbs ---------- */
     .hero { position: relative; overflow: hidden; }
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-      animation: orbFloat 18s ease-in-out infinite;
-    }
-    .orb-1 { width: 320px; height: 320px; background: #d4a373; top: 10%; left: -80px; animation-delay: 0s; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.35; pointer-events: none; z-index: 0; animation: orbFloat 18s ease-in-out infinite; }
+    .orb-1 { width: 320px; height: 320px; background: #d4a373; top: 10%; left: -80px; }
     .orb-2 { width: 400px; height: 400px; background: #f9e6b3; top: 50%; right: -120px; animation-delay: -6s; }
     .orb-3 { width: 260px; height: 260px; background: #2e7d5e; bottom: -60px; left: 30%; animation-delay: -12s; }
-
-    @keyframes orbFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33%      { transform: translate(40px, -30px) scale(1.1); }
-      66%      { transform: translate(-30px, 20px) scale(0.95); }
-    }
+    @keyframes orbFloat { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-30px) scale(1.1); } 66% { transform: translate(-30px,20px) scale(0.95); } }
     .hero-content { position: relative; z-index: 2; }
-
-    /* ---------- Hero badge pulse ---------- */
-    .hero-badge {
-      animation: badgeFloat 3s ease-in-out infinite, badgeFadeIn 0.8s ease 0.1s both;
-    }
-    @keyframes badgeFloat {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-6px); }
-    }
-    @keyframes badgeFadeIn {
-      from { opacity: 0; transform: translateY(-20px) scale(0.9); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* ---------- HERO TITLE — Typing Animation ---------- */
-    .hero h2 {
-      min-height: 4.2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      font-size: 3.5rem;
-      line-height: 1.15;
-    }
-
-    .typing-text {
-      display: inline-block;
-      background: linear-gradient(120deg, #f9e6b3 0%, #d4a373 50%, #f9e6b3 100%);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmerText 3s ease-in-out infinite;
-      word-break: break-word;
-    }
-
-    @keyframes shimmerText {
-      0%, 100% { background-position: 0% 50%; }
-      50%      { background-position: 100% 50%; }
-    }
-
-    .typing-cursor {
-      display: inline-block;
-      margin-left: 6px;
-      font-weight: 300;
-      color: #f9e6b3;
-      -webkit-text-fill-color: #f9e6b3;
-      animation: blink 0.8s steps(2, start) infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0; }
-    }
-
-    /* ---------- Hero subtitle slide-up ---------- */
+    .hero-badge { animation: badgeFloat 3s ease-in-out infinite, badgeFadeIn 0.8s ease 0.1s both; }
+    @keyframes badgeFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes badgeFadeIn { from { opacity: 0; transform: translateY(-20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .hero h2 { min-height: 4.2em; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; font-size: 3.5rem; line-height: 1.15; }
+    .typing-text { display: inline-block; background: linear-gradient(120deg, #f9e6b3 0%, #d4a373 50%, #f9e6b3 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerText 3s ease-in-out infinite; word-break: break-word; }
+    @keyframes shimmerText { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .typing-cursor { display: inline-block; margin-left: 6px; font-weight: 300; color: #f9e6b3; -webkit-text-fill-color: #f9e6b3; animation: blink 0.8s steps(2,start) infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
     .hero p { animation: subtitleSlide 0.9s ease 0.6s both; }
-    @keyframes subtitleSlide {
-      from { opacity: 0; transform: translateY(25px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---------- Hero stats counter pulse ---------- */
+    @keyframes subtitleSlide { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
     .hero-stat .number { transition: transform 0.3s ease; }
-    .hero-stat:hover .number {
-      transform: scale(1.15);
-      text-shadow: 0 0 30px rgba(249, 230, 179, 0.8);
-    }
-
-    /* ---------- Hero actions slide-in ---------- */
+    .hero-stat:hover .number { transform: scale(1.15); text-shadow: 0 0 30px rgba(249,230,179,0.8); }
     .hero-actions { animation: subtitleSlide 0.9s ease 0.9s both; }
-
-    /* ---------- Button shimmer ---------- */
-    .btn {
-      position: relative;
-      overflow: hidden;
-    }
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
-      transition: left 0.7s ease;
-      pointer-events: none;
-    }
+    .btn { position: relative; overflow: hidden; }
+    .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%); transition: left 0.7s ease; pointer-events: none; }
     .btn:hover::before { left: 100%; }
-
-    /* ---------- Section header underline draw-in ---------- */
-    .section-header h2::after {
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
+    .section-header h2::after { transform: scaleX(0); transform-origin: center; transition: transform 0.8s cubic-bezier(0.34,1.56,0.64,1); }
     .section-header.visible h2::after { transform: scaleX(1); }
-
-    /* ---------- Card stagger entrance ---------- */
-    .quick-link-card,
-    .highlight-card,
-    .project-preview,
-    .hero-stat {
-      opacity: 0;
-      transform: translateY(40px) scale(0.95);
-      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .quick-link-card.visible,
-    .highlight-card.visible,
-    .project-preview.visible,
-    .hero-stat.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    .quick-link-card:nth-child(1) { transition-delay: 0s; }
-    .quick-link-card:nth-child(2) { transition-delay: 0.08s; }
-    .quick-link-card:nth-child(3) { transition-delay: 0.16s; }
-    .quick-link-card:nth-child(4) { transition-delay: 0.24s; }
-    .quick-link-card:nth-child(5) { transition-delay: 0.32s; }
-    .quick-link-card:nth-child(6) { transition-delay: 0.4s; }
-
-    .highlight-card:nth-child(1) { transition-delay: 0s; }
-    .highlight-card:nth-child(2) { transition-delay: 0.1s; }
-    .highlight-card:nth-child(3) { transition-delay: 0.2s; }
-    .highlight-card:nth-child(4) { transition-delay: 0.3s; }
-
-    .project-preview:nth-child(1) { transition-delay: 0s; }
-    .project-preview:nth-child(2) { transition-delay: 0.12s; }
-    .project-preview:nth-child(3) { transition-delay: 0.24s; }
-
-    .quick-link-card:hover .quick-icon,
-    .highlight-card:hover .icon-circle {
-      animation: iconWiggle 0.6s ease;
-    }
-    @keyframes iconWiggle {
-      0%   { transform: rotate(0) scale(1); }
-      25%  { transform: rotate(-12deg) scale(1.15); }
-      50%  { transform: rotate(10deg) scale(1.1); }
-      75%  { transform: rotate(-5deg) scale(1.05); }
-      100% { transform: rotate(0) scale(1); }
-    }
-
-    /* ---------- Welcome image Ken Burns zoom ---------- */
+    .quick-link-card, .highlight-card, .project-preview, .hero-stat { opacity: 0; transform: translateY(40px) scale(0.95); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1); }
+    .quick-link-card.visible, .highlight-card.visible, .project-preview.visible, .hero-stat.visible { opacity: 1; transform: translateY(0) scale(1); }
+    .quick-link-card:nth-child(1) { transition-delay: 0s; } .quick-link-card:nth-child(2) { transition-delay: 0.08s; } .quick-link-card:nth-child(3) { transition-delay: 0.16s; } .quick-link-card:nth-child(4) { transition-delay: 0.24s; } .quick-link-card:nth-child(5) { transition-delay: 0.32s; } .quick-link-card:nth-child(6) { transition-delay: 0.4s; }
+    .highlight-card:nth-child(1) { transition-delay: 0s; } .highlight-card:nth-child(2) { transition-delay: 0.1s; } .highlight-card:nth-child(3) { transition-delay: 0.2s; } .highlight-card:nth-child(4) { transition-delay: 0.3s; }
+    .project-preview:nth-child(1) { transition-delay: 0s; } .project-preview:nth-child(2) { transition-delay: 0.12s; } .project-preview:nth-child(3) { transition-delay: 0.24s; }
+    .quick-link-card:hover .quick-icon, .highlight-card:hover .icon-circle { animation: iconWiggle 0.6s ease; }
+    @keyframes iconWiggle { 0%,100% { transform: rotate(0) scale(1); } 25% { transform: rotate(-12deg) scale(1.15); } 50% { transform: rotate(10deg) scale(1.1); } 75% { transform: rotate(-5deg) scale(1.05); } }
     .welcome-image img { transition: transform 8s ease; }
     .welcome-image.visible img { animation: kenBurns 12s ease-in-out infinite alternate; }
-    @keyframes kenBurns {
-      0%   { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.12) translate(-3%, -2%); }
-    }
-
-    /* ---------- Navbar underline slide ---------- */
+    @keyframes kenBurns { 0% { transform: scale(1) translate(0,0); } 100% { transform: scale(1.12) translate(-3%,-2%); } }
     .navbar a { position: relative; overflow: hidden; }
-    .navbar a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #d4a373, #f9e6b3);
-      transition: width 0.35s ease, left 0.35s ease;
-      transform: translateX(-50%);
-    }
-    .navbar a:hover::after,
-    .navbar a.active::after { width: 80%; }
+    .navbar a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; background: linear-gradient(90deg,#d4a373,#f9e6b3); transition: width 0.35s ease, left 0.35s ease; transform: translateX(-50%); }
+    .navbar a:hover::after, .navbar a.active::after { width: 80%; }
+    .back-to-top.visible { animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes bounceIn { 0% { opacity: 0; transform: translateY(40px) scale(0.6); } 60% { opacity: 1; transform: translateY(-8px) scale(1.05); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } .quick-link-card, .highlight-card, .project-preview, .hero-stat { opacity: 1; transform: none; } }
+    @media (max-width: 768px) { .hero h2 { font-size: 2rem; min-height: 5em; } .typing-cursor { margin-left: 3px; } .orb-1 { width: 200px; height: 200px; } .orb-2 { width: 250px; height: 250px; } .orb-3 { width: 160px; height: 160px; } }
 
-    /* ---------- Back to top bounce-in ---------- */
-    .back-to-top.visible { animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    @keyframes bounceIn {
-      0%   { opacity: 0; transform: translateY(40px) scale(0.6); }
-      60%  { opacity: 1; transform: translateY(-8px) scale(1.05); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
+    /* WELCOME LOADER */
+    #welcomeLoader { position: fixed; inset: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, #1e4b3a 0%, #0f2a20 60%, #081a12 100%); transition: opacity 0.9s ease, visibility 0.9s ease; }
+    #welcomeLoader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo-wrap { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+    .loader-ring { position: absolute; top: 50%; left: 50%; border-radius: 50%; border: 3px solid transparent; box-sizing: border-box; }
+    .ring-1 { width: 200px; height: 200px; border-top-color: #d4a373; border-right-color: #d4a373; animation: spinCW 1.6s linear infinite; box-shadow: 0 0 30px rgba(212,163,115,0.5); }
+    .ring-2 { width: 156px; height: 156px; border-bottom-color: #f9e6b3; border-left-color: #f9e6b3; animation: spinCCW 2.1s linear infinite; box-shadow: 0 0 24px rgba(249,230,179,0.4); }
+    .ring-3 { width: 112px; height: 112px; border-top-color: #6ee7b7; border-right-color: #6ee7b7; animation: spinCW 2.8s linear infinite; box-shadow: 0 0 20px rgba(110,231,183,0.4); }
+    @keyframes spinCW { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+    @keyframes spinCCW { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(-360deg); } }
+    .loader-logo { position: relative; z-index: 2; width: 96px; height: 96px; border-radius: 50%; object-fit: contain; background: #f9e6b3; padding: 12px; box-shadow: 0 0 35px rgba(249,230,179,0.6), 0 0 70px rgba(212,163,115,0.3); animation: logoPulse 2s ease-in-out infinite; }
+    @keyframes logoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+    .loader-text { margin-top: 30px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: 3.5px; text-transform: uppercase; color: #f9e6b3; opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards; text-align: center; padding: 0 20px; }
+    .loader-sub { margin-top: 10px; font-family: 'Open Sans', sans-serif; font-size: 0.85rem; color: #a8d5c0; letter-spacing: 2px; opacity: 0; animation: fadeUp 0.9s ease 0.6s forwards; text-align: center; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .loader-dots { margin-top: 22px; display: flex; gap: 9px; }
+    .loader-dots span { width: 10px; height: 10px; border-radius: 50%; background: #d4a373; opacity: 0.4; animation: dotPulse 1.2s ease-in-out infinite; }
+    .loader-dots span:nth-child(2) { animation-delay: 0.2s; } .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse { 0%,100% { opacity: 0.3; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.2); } }
+    @media (max-width: 480px) { .loader-logo-wrap { width: 150px; height: 150px; } .ring-1 { width: 150px; height: 150px; } .ring-2 { width: 116px; height: 116px; } .ring-3 { width: 84px; height: 84px; } .loader-logo { width: 72px; height: 72px; padding: 9px; } .loader-text { font-size: 0.95rem; letter-spacing: 2.5px; } .loader-sub { font-size: 0.72rem; letter-spacing: 1.2px; } }
 
-    /* ---------- Accessibility ---------- */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .quick-link-card, .highlight-card, .project-preview, .hero-stat { opacity: 1; transform: none; }
-    }
-
-    /* ---------- Mobile ---------- */
-    @media (max-width: 768px) {
-      .hero h2 { font-size: 2rem; min-height: 5em; }
-      .typing-cursor { margin-left: 3px; }
-      .orb-1 { width: 200px; height: 200px; }
-      .orb-2 { width: 250px; height: 250px; }
-      .orb-3 { width: 160px; height: 160px; }
-    }
-
-    /* ============================================================
-       WELCOME LOADER — spinning rounded rings with logo
-       ============================================================ */
-    #welcomeLoader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at 50% 40%, #1e4b3a 0%, #0f2a20 60%, #081a12 100%);
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-    #welcomeLoader.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .loader-logo-wrap {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Spinning rings */
-    .loader-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 3px solid transparent;
-      box-sizing: border-box;
-    }
-    .ring-1 {
-      width: 100%;
-      height: 100%;
-      border-top-color: #d4a373;
-      border-right-color: #d4a373;
-      animation: spinCW 1.6s linear infinite;
-      box-shadow: 0 0 25px rgba(212, 163, 115, 0.5);
-    }
-    .ring-2 {
-      width: 80%;
-      height: 80%;
-      border-bottom-color: #f9e6b3;
-      border-left-color: #f9e6b3;
-      animation: spinCCW 2.1s linear infinite;
-      box-shadow: 0 0 20px rgba(249, 230, 179, 0.4);
-    }
-    .ring-3 {
-      width: 60%;
-      height: 60%;
-      border-top-color: #6ee7b7;
-      border-right-color: #6ee7b7;
-      animation: spinCW 2.8s linear infinite;
-      box-shadow: 0 0 18px rgba(110, 231, 183, 0.4);
-    }
-
-    @keyframes spinCW {
-      to { transform: rotate(360deg); }
-    }
-    @keyframes spinCCW {
-      to { transform: rotate(-360deg); }
-    }
-
-    .loader-logo {
-      position: relative;
-      z-index: 2;
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: contain;
-      background: #f9e6b3;
-      padding: 10px;
-      box-shadow: 0 0 30px rgba(249, 230, 179, 0.6), 0 0 60px rgba(212, 163, 115, 0.3);
-      animation: logoPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes logoPulse {
-      0%, 100% { transform: scale(1); }
-      50%      { transform: scale(1.06); }
-    }
-
-    .loader-text {
-      margin-top: 28px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #f9e6b3;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.3s forwards;
-    }
-    .loader-sub {
-      margin-top: 8px;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.85rem;
-      color: #a8d5c0;
-      letter-spacing: 1.5px;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.6s forwards;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .loader-dots {
-      margin-top: 18px;
-      display: flex;
-      gap: 8px;
-    }
-    .loader-dots span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #d4a373;
-      opacity: 0.4;
-      animation: dotPulse 1.2s ease-in-out infinite;
-    }
-    .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
-    .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes dotPulse {
-      0%, 100% { opacity: 0.3; transform: scale(0.85); }
-      50%      { opacity: 1; transform: scale(1.2); }
-    }
-
-    @media (max-width: 480px) {
-      .loader-logo-wrap { width: 130px; height: 130px; }
-      .loader-logo { width: 64px; height: 64px; }
-      .loader-text { font-size: 0.9rem; letter-spacing: 2px; }
-      .loader-sub { font-size: 0.75rem; }
-    }
-
-    /* ============================================================
-       EDIT MODE STYLES (additions only, matching academics page)
-       ============================================================ */
-    .edit-toggle-btn {
-      background: #d4a373;
-      color: #1e4b3a;
-      border: none;
-      border-radius: 30px;
-      padding: 8px 20px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      vertical-align: middle;
-    }
-    .edit-toggle-btn:hover {
-      background: #c49a6c;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .edit-toggle-btn i { font-size: 0.95rem; }
-    .section-header .header-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .section-header .header-actions .eyebrow { margin-right: 8px; }
-
-    [contenteditable="true"] {
-      outline: 2px dashed rgba(212, 163, 115, 0.6);
-      outline-offset: 2px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 4px;
-      transition: outline 0.2s;
-      min-width: 20px;
-      display: inline-block;
-    }
-    [contenteditable="true"]:hover {
-      outline: 2px dashed #d4a373;
-      background: rgba(255, 255, 255, 0.75);
-    }
-    [contenteditable="true"]:focus {
-      outline: 2px solid #1e4b3a;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(30, 75, 58, 0.15);
-    }
-    td[contenteditable="true"] { display: table-cell; }
-    .sop-list li[contenteditable="true"] { display: list-item; }
-    .catchment-item span[contenteditable="true"] { display: inline-block; }
-
-    .save-indicator {
-      font-size: 0.75rem;
-      color: #2e7d32;
-      margin-left: 6px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .save-indicator.show { opacity: 1; }
-
-    .edit-mode-active .edit-toggle-btn {
-      background: #1e4b3a;
-      color: #fff;
-    }
-    .edit-mode-active .edit-toggle-btn:hover { background: #14352a; }
-    .edit-mode-active .section-header .eyebrow { opacity: 0.7; }
-
-    .table-wrapper { position: relative; }
-
-    @media (max-width: 600px) {
-      .edit-toggle-btn {
-        padding: 6px 12px;
-        font-size: 0.78rem;
-      }
-      .section-header .header-actions {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
+    /* EDIT MODE */
+    .edit-toggle-btn { background: linear-gradient(135deg,#d4a373,#b88645); color: #1e4b3a; border: none; border-radius: 30px; padding: 8px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); vertical-align: middle; font-family: 'Montserrat', sans-serif; }
+    .edit-toggle-btn:hover { background: linear-gradient(135deg,#c49a6c,#a8783d); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .edit-toggle-btn.is-saving { background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; }
+    .section-header .header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    [contenteditable="true"] { outline: 2px dashed rgba(212,163,115,0.6); outline-offset: 2px; background: rgba(255,255,255,0.5); border-radius: 4px; transition: outline 0.2s; min-width: 20px; display: inline-block; padding: 1px 3px; }
+    [contenteditable="true"]:hover { outline: 2px dashed #d4a373; background: rgba(255,255,255,0.75); }
+    [contenteditable="true"]:focus { outline: 2px solid #1e4b3a; background: #fff; box-shadow: 0 0 0 3px rgba(30,75,58,0.15); }
+    .edit-save-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: linear-gradient(135deg,#1e4b3a,#2e7d5e); color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 9998; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; }
+    .edit-save-banner.show { transform: translateX(-50%) translateY(0); }
+    .edit-save-banner i { color: #f9e6b3; }
+    @media (max-width: 600px) { .edit-toggle-btn { padding: 6px 12px; font-size: 0.78rem; } .section-header .header-actions { flex-direction: column; align-items: flex-start; } .edit-save-banner { font-size: 0.8rem; padding: 10px 18px; } }
   </style>
 </head>
 <body class="page-home">
 
-  <!-- ============================================================
-       WELCOME LOADER
-       ============================================================ -->
+  <!-- WELCOME LOADER -->
   <div id="welcomeLoader" aria-hidden="true">
     <div class="loader-logo-wrap">
       <span class="loader-ring ring-1"></span>
@@ -471,6 +104,11 @@
     <div class="loader-text">Pagejo Rarubi Primary</div>
     <div class="loader-sub">Knowledge · Integrity · Service</div>
     <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- SAVE TOAST -->
+  <div id="saveBanner" class="edit-save-banner" aria-live="polite">
+    <i class="fas fa-check-circle"></i> <span id="saveBannerText">Changes saved!</span>
   </div>
 
   <!-- TOP BAR -->
@@ -495,7 +133,7 @@
     <div class="header-badge"><i class="fas fa-calendar-alt"></i> Est. 1998</div>
   </header>
 
-  <!-- NAVIGATION -->
+  <!-- NAV -->
   <nav class="navbar">
     <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
     <a href="about.html"><i class="fas fa-users"></i> About Us</a>
@@ -511,33 +149,22 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
-
     <div class="hero-content">
-      <div class="hero-badge"><i class="fas fa-award"></i> Excellence in Education</div>
-
-      <h2 id="heroTitle">
-        <span id="typingText" class="typing-text"></span><span class="typing-cursor">|</span>
-      </h2>
-
-      <p contenteditable="false" id="heroSubtitle">A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
-
+      <div class="hero-badge" data-edit-key="hero.badge"><i class="fas fa-award"></i> Excellence in Education</div>
+      <h2 id="heroTitle"><span id="typingText" class="typing-text"></span><span class="typing-cursor">|</span></h2>
+      <p id="heroSubtitle" data-edit-key="hero.subtitle">A heritage-driven education for a society where life skills, God-given talents, and character building are nurtured.</p>
       <div class="hero-stats">
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="25" data-suffix="+">0+</div><div class="label" contenteditable="false">Years of Excellence</div></div>
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="446">0</div><div class="label" contenteditable="false">Happy Learners</div></div>
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="13">0</div><div class="label" contenteditable="false">Dedicated Staff</div></div>
-        <div class="hero-stat animate-on-scroll"><div class="number" data-count="80" data-suffix="%">0%</div><div class="label" contenteditable="false">Pass Rate</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="25" data-suffix="+" data-edit-key="stat.1.num">0+</div><div class="label" data-edit-key="stat.1.lbl">Years of Excellence</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="446" data-edit-key="stat.2.num">0</div><div class="label" data-edit-key="stat.2.lbl">Happy Learners</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="13" data-edit-key="stat.3.num">0</div><div class="label" data-edit-key="stat.3.lbl">Dedicated Staff</div></div>
+        <div class="hero-stat animate-on-scroll"><div class="number" data-count="80" data-suffix="%" data-edit-key="stat.4.num">0%</div><div class="label" data-edit-key="stat.4.lbl">Pass Rate</div></div>
       </div>
-
       <div class="hero-actions">
         <a href="contact.html" class="btn btn-gold"><i class="fas fa-user-plus"></i> Enroll Now</a>
         <a href="about.html" class="btn btn-outline"><i class="fas fa-info-circle"></i> Learn More</a>
       </div>
-
-      <!-- Hero Edit Button -->
       <div style="margin-top: 20px; text-align: center; position: relative; z-index: 10;">
-        <button class="edit-toggle-btn" data-target="hero" id="heroEditBtn" style="background: rgba(212,163,115,0.9);">
-          <i class="fas fa-pen"></i> Edit Hero
-        </button>
+        <button class="edit-toggle-btn" data-target="hero"><i class="fas fa-pen"></i> Edit Hero</button>
       </div>
     </div>
   </section>
@@ -548,9 +175,7 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-hand-wave"></i> Welcome</span>
-          <button class="edit-toggle-btn" data-target="welcome" title="Enable editing for welcome section">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="welcome"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>A Message from Our Leadership</h2>
       </div>
@@ -558,15 +183,15 @@
         <div class="welcome-image animate-on-scroll" style="padding: 0; overflow: hidden;">
           <img src="images/head-horiro.jpg" alt="Mrs Horiro Ruth - Headmistress" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; min-height: 350px; position: absolute; top: 0; left: 0;" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<i class=\'fas fa-female placeholder-icon\'></i>');">
           <div class="image-caption">
-            <strong contenteditable="false">Mrs Horiro Ruth</strong>
-            <span contenteditable="false">Headmistress</span>
+            <strong data-edit-key="welcome.name">Mrs Horiro Ruth</strong>
+            <span data-edit-key="welcome.role">Headmistress</span>
           </div>
         </div>
         <div class="welcome-text animate-on-scroll">
-          <h3 contenteditable="false">Welcome to Our School Family</h3>
-          <p contenteditable="false">At Pagejo Rarubi Primary School, we believe every child is a unique gift with boundless potential. Our dedicated team of educators works tirelessly to nurture not just academic excellence, but also strong moral values, life skills, and God-given talents.</p>
-          <p contenteditable="false">We are guided by our Vision 2030 — towards a prosperous upper middle-income society — and our mission to provide a heritage-driven education where character building is paramount.</p>
-          <p contenteditable="false"><em>"In Pursuit of Excellence for Holistic Development"</em></p>
+          <h3 data-edit-key="welcome.title">Welcome to Our School Family</h3>
+          <p data-edit-key="welcome.p1">At Pagejo Rarubi Primary School, we believe every child is a unique gift with boundless potential. Our dedicated team of educators works tirelessly to nurture not just academic excellence, but also strong moral values, life skills, and God-given talents.</p>
+          <p data-edit-key="welcome.p2">We are guided by our Vision 2030 — towards a prosperous upper middle-income society — and our mission to provide a heritage-driven education where character building is paramount.</p>
+          <p data-edit-key="welcome.quote"><em>"In Pursuit of Excellence for Holistic Development"</em></p>
           <a href="about.html" class="btn btn-green"><i class="fas fa-arrow-right"></i> Read Our Full Story</a>
         </div>
       </div>
@@ -579,43 +204,17 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-th-large"></i> Explore</span>
-          <button class="edit-toggle-btn" data-target="quicklinks" title="Enable editing for quick links">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="quicklinks"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Quick Links</h2>
       </div>
       <div class="quick-links-grid" id="quickLinksGrid">
-        <a href="about.html" class="quick-link-card animate-on-scroll">
-          <div class="quick-icon"><i class="fas fa-bullseye"></i></div>
-          <h4 contenteditable="false">Vision &amp; Mission</h4>
-          <p contenteditable="false">Discover our direction and purpose</p>
-        </a>
-        <a href="about.html" class="quick-link-card animate-on-scroll">
-          <div class="quick-icon"><i class="fas fa-handshake"></i></div>
-          <h4 contenteditable="false">Client's Charter</h4>
-          <p contenteditable="false">Our promise to learners and parents</p>
-        </a>
-        <a href="academics.html" class="quick-link-card animate-on-scroll">
-          <div class="quick-icon"><i class="fas fa-clock"></i></div>
-          <h4 contenteditable="false">Timetable</h4>
-          <p contenteditable="false">Daily and afternoon activities</p>
-        </a>
-        <a href="results.html" class="quick-link-card animate-on-scroll">
-          <div class="quick-icon"><i class="fas fa-chart-line"></i></div>
-          <h4 contenteditable="false">Results</h4>
-          <p contenteditable="false">View examination performance</p>
-        </a>
-        <a href="projects.html" class="quick-link-card animate-on-scroll">
-          <div class="quick-icon"><i class="fas fa-seedling"></i></div>
-          <h4 contenteditable="false">School Projects</h4>
-          <p contenteditable="false">Mushroom, pumpkins &amp; road runners</p>
-        </a>
-        <a href="contact.html" class="quick-link-card animate-on-scroll">
-          <div class="quick-icon"><i class="fas fa-address-card"></i></div>
-          <h4 contenteditable="false">Contact Us</h4>
-          <p contenteditable="false">Enrollment &amp; general enquiries</p>
-        </a>
+        <a href="about.html" class="quick-link-card animate-on-scroll"><div class="quick-icon"><i class="fas fa-bullseye"></i></div><h4 data-edit-key="ql.1.title">Vision &amp; Mission</h4><p data-edit-key="ql.1.desc">Discover our direction and purpose</p></a>
+        <a href="about.html" class="quick-link-card animate-on-scroll"><div class="quick-icon"><i class="fas fa-handshake"></i></div><h4 data-edit-key="ql.2.title">Client's Charter</h4><p data-edit-key="ql.2.desc">Our promise to learners and parents</p></a>
+        <a href="academics.html" class="quick-link-card animate-on-scroll"><div class="quick-icon"><i class="fas fa-clock"></i></div><h4 data-edit-key="ql.3.title">Timetable</h4><p data-edit-key="ql.3.desc">Daily and afternoon activities</p></a>
+        <a href="results.html" class="quick-link-card animate-on-scroll"><div class="quick-icon"><i class="fas fa-chart-line"></i></div><h4 data-edit-key="ql.4.title">Results</h4><p data-edit-key="ql.4.desc">View examination performance</p></a>
+        <a href="projects.html" class="quick-link-card animate-on-scroll"><div class="quick-icon"><i class="fas fa-seedling"></i></div><h4 data-edit-key="ql.5.title">School Projects</h4><p data-edit-key="ql.5.desc">Mushroom, pumpkins &amp; road runners</p></a>
+        <a href="contact.html" class="quick-link-card animate-on-scroll"><div class="quick-icon"><i class="fas fa-address-card"></i></div><h4 data-edit-key="ql.6.title">Contact Us</h4><p data-edit-key="ql.6.desc">Enrollment &amp; general enquiries</p></a>
       </div>
     </div>
   </section>
@@ -626,33 +225,15 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-heart"></i> Our Difference</span>
-          <button class="edit-toggle-btn" data-target="highlights" title="Enable editing for highlights">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="highlights"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Why Choose Pagejo Rarubi?</h2>
       </div>
       <div class="highlights-grid" id="highlightsGrid">
-        <div class="highlight-card animate-on-scroll">
-          <div class="icon-circle"><i class="fas fa-book"></i></div>
-          <h4 contenteditable="false">Rich Curriculum</h4>
-          <p contenteditable="false">Balanced national curriculum enriched with arts, sports, and life skills.</p>
-        </div>
-        <div class="highlight-card animate-on-scroll">
-          <div class="icon-circle"><i class="fas fa-hand-holding-heart"></i></div>
-          <h4 contenteditable="false">Care &amp; Support</h4>
-          <p contenteditable="false">Small class sizes and dedicated teachers focused on every child's growth.</p>
-        </div>
-        <div class="highlight-card animate-on-scroll">
-          <div class="icon-circle"><i class="fas fa-tree"></i></div>
-          <h4 contenteditable="false">Green Campus</h4>
-          <p contenteditable="false">Spacious grounds and a school garden that inspire curiosity and health.</p>
-        </div>
-        <div class="highlight-card animate-on-scroll">
-          <div class="icon-circle"><i class="fas fa-trophy"></i></div>
-          <h4 contenteditable="false">Holistic Success</h4>
-          <p contenteditable="false">We celebrate academics, sports, culture, and character development.</p>
-        </div>
+        <div class="highlight-card animate-on-scroll"><div class="icon-circle"><i class="fas fa-book"></i></div><h4 data-edit-key="hl.1.title">Rich Curriculum</h4><p data-edit-key="hl.1.desc">Balanced national curriculum enriched with arts, sports, and life skills.</p></div>
+        <div class="highlight-card animate-on-scroll"><div class="icon-circle"><i class="fas fa-hand-holding-heart"></i></div><h4 data-edit-key="hl.2.title">Care &amp; Support</h4><p data-edit-key="hl.2.desc">Small class sizes and dedicated teachers focused on every child's growth.</p></div>
+        <div class="highlight-card animate-on-scroll"><div class="icon-circle"><i class="fas fa-tree"></i></div><h4 data-edit-key="hl.3.title">Green Campus</h4><p data-edit-key="hl.3.desc">Spacious grounds and a school garden that inspire curiosity and health.</p></div>
+        <div class="highlight-card animate-on-scroll"><div class="icon-circle"><i class="fas fa-trophy"></i></div><h4 data-edit-key="hl.4.title">Holistic Success</h4><p data-edit-key="hl.4.desc">We celebrate academics, sports, culture, and character development.</p></div>
       </div>
     </div>
   </section>
@@ -663,34 +244,23 @@
       <div class="section-header animate-on-scroll">
         <div class="header-actions">
           <span class="eyebrow"><i class="fas fa-seedling"></i> Our Projects</span>
-          <button class="edit-toggle-btn" data-target="projectpreview" title="Enable editing for project previews">
-            <i class="fas fa-pen"></i> Edit
-          </button>
+          <button class="edit-toggle-btn" data-target="projectpreview"><i class="fas fa-pen"></i> Edit</button>
         </div>
         <h2>Learning by Doing</h2>
         <p>Our hands-on agricultural projects teach life skills and entrepreneurship.</p>
       </div>
       <div class="projects-preview-grid" id="projectsPreviewGrid">
         <div class="project-preview animate-on-scroll">
-          <div class="project-preview-img" style="background: linear-gradient(135deg, #8B6F47, #6B4F2F); height: 200px; padding: 0; overflow: hidden;">
-            <img src="images/mushroom.jpg" alt="Mushroom Growing Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-seedling\' style=\'font-size: 4rem; color: #fff;\'></i>';">
-          </div>
-          <h4 contenteditable="false">Mushroom Growing</h4>
-          <p contenteditable="false">Students learn cultivation, harvesting, and marketing of mushrooms.</p>
+          <div class="project-preview-img" style="background: linear-gradient(135deg, #8B6F47, #6B4F2F); height: 200px; padding: 0; overflow: hidden;"><img src="images/mushroom.jpg" alt="Mushroom Growing Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-seedling\' style=\'font-size: 4rem; color: #fff;\'></i>';"></div>
+          <h4 data-edit-key="pp.1.title">Mushroom Growing</h4><p data-edit-key="pp.1.desc">Students learn cultivation, harvesting, and marketing of mushrooms.</p>
         </div>
         <div class="project-preview animate-on-scroll">
-          <div class="project-preview-img" style="background: linear-gradient(135deg, #E67E22, #D35400); height: 200px; padding: 0; overflow: hidden;">
-            <img src="images/pumpkin.jpg" alt="Pumpkin Farming Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-leaf\' style=\'font-size: 4rem; color: #fff;\'></i>';">
-          </div>
-          <h4 contenteditable="false">Pumpkin Farming</h4>
-          <p contenteditable="false">Planting, nurturing, and harvesting pumpkins for nutrition and income.</p>
+          <div class="project-preview-img" style="background: linear-gradient(135deg, #E67E22, #D35400); height: 200px; padding: 0; overflow: hidden;"><img src="images/pumpkin.jpg" alt="Pumpkin Farming Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-leaf\' style=\'font-size: 4rem; color: #fff;\'></i>';"></div>
+          <h4 data-edit-key="pp.2.title">Pumpkin Farming</h4><p data-edit-key="pp.2.desc">Planting, nurturing, and harvesting pumpkins for nutrition and income.</p>
         </div>
         <div class="project-preview animate-on-scroll">
-          <div class="project-preview-img" style="background: linear-gradient(135deg, #3498DB, #2980B9); height: 200px; padding: 0; overflow: hidden;">
-            <img src="images/roadrunners.jpg" alt="Road Runners Chicks Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-kiwi-bird\' style=\'font-size: 4rem; color: #fff;\'></i>';">
-          </div>
-          <h4 contenteditable="false">Road Runners Chicks</h4>
-          <p contenteditable="false">Poultry rearing project teaching students animal husbandry skills.</p>
+          <div class="project-preview-img" style="background: linear-gradient(135deg, #3498DB, #2980B9); height: 200px; padding: 0; overflow: hidden;"><img src="images/roadrunners.jpg" alt="Road Runners Chicks Project" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-kiwi-bird\' style=\'font-size: 4rem; color: #fff;\'></i>';"></div>
+          <h4 data-edit-key="pp.3.title">Road Runners Chicks</h4><p data-edit-key="pp.3.desc">Poultry rearing project teaching students animal husbandry skills.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 2rem;">
@@ -699,7 +269,7 @@
     </div>
   </section>
 
-  <!-- CTA BANNER -->
+  <!-- CTA -->
   <section class="cta-banner" id="cta-banner">
     <div class="cta-content">
       <h2>Ready to Join Our School Family?</h2>
@@ -719,12 +289,7 @@
         <span>Pagejo Rarubi Primary</span>
       </div>
       <div class="footer-links">
-        <a href="about.html">About</a>
-        <a href="academics.html">Academics</a>
-        <a href="results.html">Results</a>
-        <a href="projects.html">Projects</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a><a href="academics.html">Academics</a><a href="results.html">Results</a><a href="projects.html">Projects</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -736,173 +301,207 @@
 
   <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- SCRIPTS -->
   <script src="js/admin.js"></script>
   <script src="js/lightbox.js"></script>
   <script src="js/drawer.js"></script>
   <script src="js/script.js"></script>
 
-  <!-- EDIT MODE SCRIPT (Homepage) -->
   <script>
-    (function() {
-      'use strict';
+  /* ============================================================
+     PAGEJO RARUBI — SHARED EDIT ENGINE
+     Real persistence via localStorage. Every key is namespaced
+     so edits survive reloads, tab closes, and browser restarts.
+     ============================================================ */
+  (function () {
+    'use strict';
 
-      // ============================================================
-      // 1. WELCOME LOADER — hide after page load / timeout
-      // ============================================================
-      const loader = document.getElementById('welcomeLoader');
-      function hideLoader() {
-        if (loader && !loader.classList.contains('hide')) {
-          loader.classList.add('hide');
-          setTimeout(() => { loader.style.display = 'none'; }, 900);
-        }
+    const STORAGE_PREFIX = 'pagejo_edit_'; // single namespace for all edits
+
+    /* ---------- Loader (7s, once per session) ---------- */
+    const loader = document.getElementById('welcomeLoader');
+    const LOADER_MS = 7000;
+    function hideLoader() {
+      if (loader && !loader.classList.contains('hide')) {
+        loader.classList.add('hide');
+        setTimeout(() => { loader.style.display = 'none'; }, 950);
       }
-      window.addEventListener('load', () => setTimeout(hideLoader, 700));
-      setTimeout(hideLoader, 3500); // safety net
+    }
+    let shown = false;
+    try { shown = sessionStorage.getItem('pagejo_loader_shown') === '1'; } catch (e) {}
+    if (shown) {
+      if (loader) loader.style.display = 'none';
+    } else {
+      setTimeout(hideLoader, LOADER_MS);
+      setTimeout(hideLoader, LOADER_MS + 2000); // safety net
+      try { sessionStorage.setItem('pagejo_loader_shown', '1'); } catch (e) {}
+    }
 
-      // ============================================================
-      // 2. EDIT MODE — toggle contenteditable per section
-      // ============================================================
-      function toggleSectionEdit(targetId) {
-        const section = document.getElementById(targetId);
-        if (!section) return;
+    /* ---------- Toast ---------- */
+    const banner = document.getElementById('saveBanner');
+    const bannerText = document.getElementById('saveBannerText');
+    let bannerTimer = null;
+    function toast(msg) {
+      if (!banner) return;
+      if (bannerText) bannerText.textContent = msg;
+      banner.classList.add('show');
+      clearTimeout(bannerTimer);
+      bannerTimer = setTimeout(() => banner.classList.remove('show'), 2200);
+    }
 
-        const editableSelectors = {
-          hero: '#heroSubtitle[contenteditable], #hero .hero-stat .label[contenteditable]',
-          welcome: '#welcome-section [contenteditable]',
-          quicklinks: '#quickLinksGrid [contenteditable]',
-          highlights: '#highlightsGrid [contenteditable]',
-          projectpreview: '#projectsPreviewGrid [contenteditable]'
-        };
-
-        let selector = editableSelectors[targetId];
-        if (!selector) {
-          // fallback: all contenteditable within section
-          selector = '[contenteditable]';
+    /* ---------- Storage helpers ---------- */
+    function saveValue(key, value) {
+      try {
+        localStorage.setItem(STORAGE_PREFIX + key, value);
+        return true;
+      } catch (e) {
+        console.error('Save failed for', key, e);
+        toast('Could not save — storage full or blocked');
+        return false;
+      }
+    }
+    function readValue(key) {
+      try { return localStorage.getItem(STORAGE_PREFIX + key); }
+      catch (e) { return null; }
+    }
+    function readAll() {
+      const out = {};
+      try {
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          if (k && k.indexOf(STORAGE_PREFIX) === 0) {
+            out[k.slice(STORAGE_PREFIX.length)] = localStorage.getItem(k);
+          }
         }
+      } catch (e) {}
+      return out;
+    }
 
-        const editables = section.querySelectorAll(selector);
-        if (editables.length === 0) return;
-
-        // Determine current state from first editable
-        const isCurrentlyEditing = editables[0].getAttribute('contenteditable') === 'true';
-        const newState = isCurrentlyEditing ? 'false' : 'true';
-
-        editables.forEach(el => el.setAttribute('contenteditable', newState));
-
-        // Toggle button appearance
-        const btn = section.querySelector('.edit-toggle-btn') ||
-                    document.querySelector(`.edit-toggle-btn[data-target="${targetId}"]`);
-        if (btn) {
-          if (newState === 'true') {
-            btn.innerHTML = '<i class="fas fa-save"></i> Save';
-            btn.style.background = '#1e4b3a';
-            btn.style.color = '#fff';
+    /* ---------- Restore all saved edits on page load ---------- */
+    function restoreAll() {
+      const saved = readAll();
+      const nodes = document.querySelectorAll('[data-edit-key]');
+      nodes.forEach(node => {
+        const key = node.getAttribute('data-edit-key');
+        if (saved.hasOwnProperty(key)) {
+          // Handle number counters separately (see applyCounterRestore below)
+          if (node.classList.contains('number') && node.dataset.count) {
+            const stored = saved[key];
+            // If the saved value is purely text like "25+", keep it, but still allow counter
+            node.textContent = stored;
+            node.setAttribute('data-counted', 'true');
+            node.dataset.restoredText = stored;
           } else {
-            btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
-            btn.style.background = '#d4a373';
-            btn.style.color = '#1e4b3a';
+            node.innerHTML = saved[key];
           }
         }
+      });
+    }
 
-        if (newState === 'true' && editables.length > 0) {
-          editables[0].focus();
+    /* ---------- Initialize editing on a single element ---------- */
+    function initEditable(node) {
+      const key = node.getAttribute('data-edit-key');
+      if (!key) return;
+
+      // Do not make buttons/links editable, only textual content
+      // Everything with data-edit-key is intended to be editable.
+      node.setAttribute('contenteditable', 'false');
+
+      // Save on blur
+      node.addEventListener('blur', function () {
+        if (this.getAttribute('contenteditable') !== 'true') return;
+        const val = this.innerHTML;
+        if (saveValue(key, val)) {
+          toast('Saved: ' + key);
         }
+      }, true);
+
+      // Live save on input (debounced)
+      let inputTimer = null;
+      node.addEventListener('input', function () {
+        if (this.getAttribute('contenteditable') !== 'true') return;
+        const self = this;
+        clearTimeout(inputTimer);
+        inputTimer = setTimeout(function () {
+          saveValue(key, self.innerHTML);
+        }, 500);
+      });
+    }
+
+    /* ---------- Toggle entire section ---------- */
+    function toggleSectionEdit(targetId, btn) {
+      const section = document.getElementById(targetId);
+      if (!section) return;
+
+      // Scope: only elements with data-edit-key inside this section
+      const editables = section.querySelectorAll('[data-edit-key]');
+      if (!editables.length) return;
+
+      const first = editables[0];
+      const entering = first.getAttribute('contenteditable') !== 'true';
+      const newState = entering ? 'true' : 'false';
+
+      editables.forEach(el => {
+        el.setAttribute('contenteditable', newState);
+      });
+
+      if (entering) {
+        // Also enable hero title via typing? No — keep typing text as-is.
+        // But we allow editing the badge and subtitle.
+        editables[0].focus();
+        if (btn) {
+          btn.classList.add('is-saving');
+          btn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+        }
+        toast('Editing enabled — click Save Changes when done');
+      } else {
+        // Save all fields in this section immediately
+        let savedCount = 0;
+        editables.forEach(el => {
+          const key = el.getAttribute('data-edit-key');
+          if (!key) return;
+          if (saveValue(key, el.innerHTML)) savedCount++;
+        });
+        if (btn) {
+          btn.classList.remove('is-saving');
+          btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
+        }
+        toast(savedCount + ' field' + (savedCount === 1 ? '' : 's') + ' saved ✓');
       }
+    }
 
-      // ============================================================
-      // 3. Attach listeners to all edit buttons
-      // ============================================================
-      document.addEventListener('DOMContentLoaded', function() {
-        // Welcome loader hide fallback
-        if (document.readyState === 'complete') {
-          setTimeout(hideLoader, 400);
-        }
-
-        // Bind edit buttons
-        document.querySelectorAll('.edit-toggle-btn').forEach(btn => {
-          btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = this.getAttribute('data-target');
-            if (target) toggleSectionEdit(target);
-          });
-        });
-
-        // ============================================================
-        // 4. PERSISTENCE — assign keys & restore from localStorage
-        // ============================================================
-        function assignKeys() {
-          // Hero
-          const heroSub = document.getElementById('heroSubtitle');
-          if (heroSub && !heroSub.dataset.editKey) heroSub.dataset.editKey = 'home_hero_subtitle';
-
-          document.querySelectorAll('#hero .hero-stat .label[contenteditable]').forEach((el, idx) => {
-            if (!el.dataset.editKey) el.dataset.editKey = 'home_hero_label_' + idx;
-          });
-
-          // Welcome
-          const welcomeSection = document.getElementById('welcome-section');
-          if (welcomeSection) {
-            welcomeSection.querySelectorAll('[contenteditable]').forEach((el, idx) => {
-              if (!el.dataset.editKey) el.dataset.editKey = 'home_welcome_' + idx;
-            });
-          }
-
-          // Quick links
-          const qlGrid = document.getElementById('quickLinksGrid');
-          if (qlGrid) {
-            qlGrid.querySelectorAll('[contenteditable]').forEach((el, idx) => {
-              if (!el.dataset.editKey) el.dataset.editKey = 'home_quicklink_' + idx;
-            });
-          }
-
-          // Highlights
-          const hlGrid = document.getElementById('highlightsGrid');
-          if (hlGrid) {
-            hlGrid.querySelectorAll('[contenteditable]').forEach((el, idx) => {
-              if (!el.dataset.editKey) el.dataset.editKey = 'home_highlight_' + idx;
-            });
-          }
-
-          // Projects preview
-          const ppGrid = document.getElementById('projectsPreviewGrid');
-          if (ppGrid) {
-            ppGrid.querySelectorAll('[contenteditable]').forEach((el, idx) => {
-              if (!el.dataset.editKey) el.dataset.editKey = 'home_project_' + idx;
-            });
-          }
-        }
-
-        assignKeys();
-
-        // Restore saved content
-        document.querySelectorAll('[data-edit-key]').forEach(el => {
-          const key = el.dataset.editKey;
-          const saved = localStorage.getItem('pagejo_home_' + key);
-          if (saved !== null) {
-            el.innerHTML = saved;
-          }
-        });
-
-        // Save on blur
-        document.addEventListener('blur', function(e) {
-          const target = e.target;
-          if (target.hasAttribute('contenteditable') && target.dataset.editKey) {
-            const key = target.dataset.editKey;
-            localStorage.setItem('pagejo_home_' + key, target.innerHTML);
-          }
-        }, true);
-
-        // Save on input (real-time)
-        document.addEventListener('input', function(e) {
-          const target = e.target;
-          if (target.hasAttribute('contenteditable') && target.dataset.editKey) {
-            const key = target.dataset.editKey;
-            localStorage.setItem('pagejo_home_' + key, target.innerHTML);
-          }
+    /* ---------- Bind all edit buttons ---------- */
+    function bindButtons() {
+      document.querySelectorAll('.edit-toggle-btn').forEach(btn => {
+        // avoid double-binding
+        if (btn.dataset.bound === '1') return;
+        btn.dataset.bound = '1';
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = this.getAttribute('data-target');
+          if (!target) return;
+          toggleSectionEdit(target, this);
         });
       });
-    })();
+    }
+
+    /* ---------- Boot ---------- */
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1. Initialize all editable nodes
+      document.querySelectorAll('[data-edit-key]').forEach(initEditable);
+      // 2. Restore saved values
+      restoreAll();
+      // 3. Bind buttons
+      bindButtons();
+    });
+
+    // Expose a small API for other pages
+    window.PagejoEdits = {
+      save: saveValue,
+      read: readValue,
+      readAll: readAll,
+      toast: toast
+    };
+  })();
   </script>
 </body>
-      </html>
+</html>
