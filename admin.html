@@ -17,60 +17,31 @@
     }
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
 
-    .admin-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .admin-container { max-width: 1200px; margin: 0 auto; }
 
     /* Login */
     .login-box {
-      background: #fff;
-      max-width: 450px;
-      margin: 5rem auto;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-      text-align: center;
+      background: #fff; max-width: 450px; margin: 5rem auto; padding: 2.5rem;
+      border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.4); text-align: center;
       border-top: 5px solid #d4a373;
     }
-    .login-icon {
-      font-size: 3.5rem;
-      color: #d4a373;
-      margin-bottom: 1rem;
-    }
+    .login-icon { font-size: 3.5rem; color: #d4a373; margin-bottom: 1rem; }
     .login-box h2 { color: #0b2b1e; margin-bottom: 0.5rem; }
     .login-box p { color: #6b7d75; font-size: 0.9rem; margin-bottom: 2rem; }
     .login-input {
-      width: 100%;
-      padding: 1rem;
-      border: 2px solid #d8e2dc;
-      border-radius: 50px;
-      font-size: 1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      font-family: 'Open Sans', sans-serif;
+      width: 100%; padding: 1rem; border: 2px solid #d8e2dc; border-radius: 50px;
+      font-size: 1rem; text-align: center; margin-bottom: 1rem; font-family: 'Open Sans', sans-serif;
     }
     .login-input:focus { outline: none; border-color: #1e4b3a; box-shadow: 0 0 0 4px rgba(30,75,58,0.1); }
     .login-error { color: #d32f2f; font-weight: 700; margin: 1rem 0; display: none; }
     .login-error.show { display: block; }
 
     .btn-admin {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.85rem 1.8rem;
-      background: linear-gradient(135deg, #1e4b3a, #2e7d5e);
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 6px 15px rgba(30,75,58,0.3);
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem;
+      background: linear-gradient(135deg, #1e4b3a, #2e7d5e); color: #fff; border: none;
+      border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+      transition: 0.3s; box-shadow: 0 6px 15px rgba(30,75,58,0.3);
     }
     .btn-admin:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(30,75,58,0.4); }
     .btn-admin.gold { background: linear-gradient(135deg, #d4a373, #b88645); color: #0b2b1e; }
@@ -80,78 +51,37 @@
 
     /* Dashboard */
     .dashboard {
-      display: none;
-      background: #fff;
-      border-radius: 20px;
-      padding: 2rem;
+      display: none; background: #fff; border-radius: 20px; padding: 2rem;
       box-shadow: 0 30px 60px rgba(0,0,0,0.3);
     }
     .dashboard.active { display: block; }
 
     .dash-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 2px solid #eef2f0;
-      margin-bottom: 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+      gap: 1rem; padding-bottom: 1.5rem; border-bottom: 2px solid #eef2f0; margin-bottom: 2rem;
     }
-    .dash-header h1 {
-      color: #0b2b1e;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
+    .dash-header h1 { color: #0b2b1e; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
     .dash-header h1 i { color: #d4a373; }
-    .dash-user {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+    .dash-user { display: flex; align-items: center; gap: 1rem; }
     .dash-badge {
-      background: #e8f5ee;
-      color: #1e4b3a;
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      background: #e8f5ee; color: #1e4b3a; padding: 0.4rem 1rem;
+      border-radius: 50px; font-size: 0.8rem; font-weight: 700;
     }
 
     /* Tabs */
     .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      background: #f8faf9;
-      padding: 0.5rem;
-      border-radius: 14px;
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
+      background: #f8faf9; padding: 0.5rem; border-radius: 14px;
     }
     .tab {
-      flex: 1;
-      min-width: 140px;
-      padding: 0.8rem 1rem;
-      background: transparent;
-      border: none;
-      border-radius: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: #4a5a52;
-      cursor: pointer;
-      transition: 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
+      flex: 1; min-width: 140px; padding: 0.8rem 1rem; background: transparent; border: none;
+      border-radius: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.8rem; color: #4a5a52; cursor: pointer; transition: 0.3s;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
     }
     .tab:hover { background: #e8f5ee; }
     .tab.active {
-      background: linear-gradient(135deg, #1e4b3a, #2e7d5e);
-      color: #f9e6b3;
+      background: linear-gradient(135deg, #1e4b3a, #2e7d5e); color: #f9e6b3;
       box-shadow: 0 4px 12px rgba(30,75,58,0.3);
     }
 
@@ -160,144 +90,41 @@
     .panel.active { display: block; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    .panel-title {
-      color: #0b2b1e;
-      font-size: 1.2rem;
-      margin-bottom: 0.3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .panel-title { color: #0b2b1e; font-size: 1.2rem; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem; }
     .panel-title i { color: #d4a373; }
-    .panel-sub {
-      color: #6b7d75;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-    }
+    .panel-sub { color: #6b7d75; font-size: 0.85rem; margin-bottom: 1.5rem; }
 
     /* Form fields */
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.2rem; }
     .form-field { display: flex; flex-direction: column; margin-bottom: 1rem; }
-    .form-field label {
-      font-weight: 700;
-      color: #0b2b1e;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.4rem;
+    .form-field label { font-weight: 700; color: #0b2b1e; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.4rem; }
+    .form-field input, .form-field textarea, .form-field select {
+      padding: 0.75rem 1rem; border: 2px solid #d8e2dc; border-radius: 10px;
+      font-family: 'Open Sans', sans-serif; font-size: 0.9rem; background: #f8faf9; transition: 0.2s;
     }
-    .form-field input,
-    .form-field textarea,
-    .form-field select {
-      padding: 0.75rem 1rem;
-      border: 2px solid #d8e2dc;
-      border-radius: 10px;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.9rem;
-      background: #f8faf9;
-      transition: 0.2s;
-    }
-    .form-field input:focus,
-    .form-field textarea:focus,
-    .form-field select:focus {
-      outline: none;
-      border-color: #1e4b3a;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(30,75,58,0.1);
+    .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+      outline: none; border-color: #1e4b3a; background: #fff; box-shadow: 0 0 0 3px rgba(30,75,58,0.1);
     }
     .form-field textarea { resize: vertical; min-height: 90px; font-family: 'Open Sans', sans-serif; }
 
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin: 1rem 0;
-    }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 1rem 0; }
 
     /* Table */
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      margin-top: 1rem;
-    }
-    table.cms-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      background: #fff;
-      min-width: 600px;
-    }
-    table.cms-table thead th {
-      background: linear-gradient(135deg, #0b2b1e, #1e4b3a);
-      color: #fff;
-      padding: 0.9rem 0.7rem;
-      text-align: left;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    table.cms-table tbody td {
-      padding: 0.8rem 0.7rem;
-      border-bottom: 1px solid #eef2f0;
-      font-weight: 600;
-    }
+    .table-wrap { overflow-x: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); margin-top: 1rem; }
+    table.cms-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: #fff; min-width: 600px; }
+    table.cms-table thead th { background: linear-gradient(135deg, #0b2b1e, #1e4b3a); color: #fff; padding: 0.9rem 0.7rem; text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; }
+    table.cms-table tbody td { padding: 0.8rem 0.7rem; border-bottom: 1px solid #eef2f0; font-weight: 600; }
     table.cms-table tbody tr:hover { background: #f8fdfa; }
 
-    .item-card {
-      background: #f8faf9;
-      padding: 1rem 1.2rem;
-      border-radius: 10px;
-      margin-bottom: 0.7rem;
-      border-left: 4px solid #d4a373;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .item-card { background: #f8faf9; padding: 1rem 1.2rem; border-radius: 10px; margin-bottom: 0.7rem; border-left: 4px solid #d4a373; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .item-card-content { flex: 1; min-width: 200px; }
     .item-card-content h4 { color: #0b2b1e; font-size: 0.95rem; margin-bottom: 0.2rem; }
     .item-card-content p { color: #6b7d75; font-size: 0.8rem; }
-    .item-card-content .item-date {
-      color: #d4a373;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    .item-card-content .item-date { color: #d4a373; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .info-box {
-      background: #f9e6b3;
-      border-left: 5px solid #d4a373;
-      padding: 1rem 1.2rem;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      color: #5a4030;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
+    .info-box { background: #f9e6b3; border-left: 5px solid #d4a373; padding: 1rem 1.2rem; border-radius: 10px; font-size: 0.85rem; color: #5a4030; font-weight: 600; margin-bottom: 1.5rem; }
 
-    .toast {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #2e7d32;
-      color: #fff;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      font-weight: 700;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: 0.3s;
-      z-index: 9999;
-    }
+    .toast { position: fixed; top: 20px; right: 20px; background: #2e7d32; color: #fff; padding: 1rem 1.5rem; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); font-weight: 700; opacity: 0; transform: translateY(-20px); transition: 0.3s; z-index: 9999; }
     .toast.show { opacity: 1; transform: translateY(0); }
     .toast.error { background: #d32f2f; }
 
@@ -343,7 +170,7 @@
         <button class="tab" data-tab="welcome"><i class="fas fa-comment"></i> Welcome</button>
         <button class="tab" data-tab="photos"><i class="fas fa-camera"></i> Photos</button>
         <button class="tab" data-tab="staff"><i class="fas fa-users"></i> Staff</button>
-        <button class="tab" data-tab="school"><i class="fas fa-school"></i> School</button>
+        <button class="tab" data-tab="school"><i class="fas fa-school"></i> School Info</button>
         <button class="tab" data-tab="announcements"><i class="fas fa-bullhorn"></i> Announcements</button>
         <button class="tab" data-tab="layout"><i class="fas fa-th-large"></i> Layout</button>
       </div>
@@ -354,30 +181,12 @@
         <p class="panel-sub">Add, edit, or delete student results. Changes appear instantly on the Results page.</p>
 
         <div class="form-grid">
-          <div class="form-field">
-            <label>Student Name</label>
-            <input type="text" id="sName" placeholder="e.g. Tendai Moyo">
-          </div>
-          <div class="form-field">
-            <label>English</label>
-            <input type="number" id="sEng" min="0" max="100" placeholder="0-100">
-          </div>
-          <div class="form-field">
-            <label>Maths</label>
-            <input type="number" id="sMath" min="0" max="100" placeholder="0-100">
-          </div>
-          <div class="form-field">
-            <label>Science</label>
-            <input type="number" id="sSci" min="0" max="100" placeholder="0-100">
-          </div>
-          <div class="form-field">
-            <label>Shona</label>
-            <input type="number" id="sShona" min="0" max="100" placeholder="0-100">
-          </div>
-          <div class="form-field">
-            <label>Social Studies</label>
-            <input type="number" id="sSoc" min="0" max="100" placeholder="0-100">
-          </div>
+          <div class="form-field"><label>Student Name</label><input type="text" id="sName" placeholder="e.g. Tendai Moyo"></div>
+          <div class="form-field"><label>English</label><input type="number" id="sEng" min="0" max="100" placeholder="0-100"></div>
+          <div class="form-field"><label>Maths</label><input type="number" id="sMath" min="0" max="100" placeholder="0-100"></div>
+          <div class="form-field"><label>Science</label><input type="number" id="sSci" min="0" max="100" placeholder="0-100"></div>
+          <div class="form-field"><label>Shona</label><input type="number" id="sShona" min="0" max="100" placeholder="0-100"></div>
+          <div class="form-field"><label>Social Studies</label><input type="number" id="sSoc" min="0" max="100" placeholder="0-100"></div>
         </div>
 
         <div class="btn-row">
@@ -402,18 +211,9 @@
         <h3 class="panel-title"><i class="fas fa-image"></i> Hero Section</h3>
         <p class="panel-sub">Edit the big welcome text on the homepage.</p>
 
-        <div class="form-field">
-          <label>Hero Badge Text</label>
-          <input type="text" id="heroBadge">
-        </div>
-        <div class="form-field">
-          <label>Hero Title</label>
-          <input type="text" id="heroTitle">
-        </div>
-        <div class="form-field">
-          <label>Hero Subtitle</label>
-          <textarea id="heroSubtitle"></textarea>
-        </div>
+        <div class="form-field"><label>Hero Badge Text</label><input type="text" id="heroBadge"></div>
+        <div class="form-field"><label>Hero Title</label><input type="text" id="heroTitle"></div>
+        <div class="form-field"><label>Hero Subtitle</label><textarea id="heroSubtitle"></textarea></div>
 
         <h4 style="color:#0b2b1e; margin: 1.5rem 0 0.8rem;"><i class="fas fa-chart-bar" style="color:#d4a373;"></i> Hero Stats</h4>
         <div class="form-grid">
@@ -426,10 +226,7 @@
           <div class="form-field"><label>Stat 4 Number</label><input type="text" id="stat4n"></div>
           <div class="form-field"><label>Stat 4 Label</label><input type="text" id="stat4l"></div>
         </div>
-
-        <div class="btn-row">
-          <button class="btn-admin" onclick="saveHero()"><i class="fas fa-save"></i> Save Hero</button>
-        </div>
+        <div class="btn-row"><button class="btn-admin" onclick="saveHero()"><i class="fas fa-save"></i> Save Hero</button></div>
       </div>
 
       <!-- WELCOME TAB -->
@@ -437,36 +234,18 @@
         <h3 class="panel-title"><i class="fas fa-comment"></i> Welcome Message</h3>
         <p class="panel-sub">Edit the welcome message shown on the homepage.</p>
 
-        <div class="form-field">
-          <label>Welcome Title</label>
-          <input type="text" id="welcomeTitle">
-        </div>
-        <div class="form-field">
-          <label>Paragraph 1</label>
-          <textarea id="welcomeP1"></textarea>
-        </div>
-        <div class="form-field">
-          <label>Paragraph 2</label>
-          <textarea id="welcomeP2"></textarea>
-        </div>
-        <div class="form-field">
-          <label>Quote / Motto</label>
-          <input type="text" id="welcomeQuote">
-        </div>
-
-        <div class="btn-row">
-          <button class="btn-admin" onclick="saveWelcome()"><i class="fas fa-save"></i> Save Welcome</button>
-        </div>
+        <div class="form-field"><label>Welcome Title</label><input type="text" id="welcomeTitle"></div>
+        <div class="form-field"><label>Paragraph 1</label><textarea id="welcomeP1"></textarea></div>
+        <div class="form-field"><label>Paragraph 2</label><textarea id="welcomeP2"></textarea></div>
+        <div class="form-field"><label>Quote / Motto</label><input type="text" id="welcomeQuote"></div>
+        <div class="btn-row"><button class="btn-admin" onclick="saveWelcome()"><i class="fas fa-save"></i> Save Welcome</button></div>
       </div>
 
       <!-- PHOTOS TAB -->
       <div class="panel" id="panel-photos">
         <h3 class="panel-title"><i class="fas fa-camera"></i> Photo Management</h3>
         <p class="panel-sub">Change the file paths for images. Put new photos in the images folder, then update the paths here.</p>
-
-        <div class="info-box">
-          <i class="fas fa-info-circle"></i> Keep your photos in the <strong>images</strong> folder. Use paths like <code>images/photo.jpg</code>
-        </div>
+        <div class="info-box"><i class="fas fa-info-circle"></i> Keep your photos in the <strong>images</strong> folder. Use paths like <code>images/photo.jpg</code></div>
 
         <div class="form-grid">
           <div class="form-field"><label>School Logo</label><input type="text" id="photoLogo"></div>
@@ -479,10 +258,7 @@
           <div class="form-field"><label>Pumpkin Project</label><input type="text" id="photoPumpkin"></div>
           <div class="form-field"><label>Road Runners</label><input type="text" id="photoRR"></div>
         </div>
-
-        <div class="btn-row">
-          <button class="btn-admin" onclick="savePhotos()"><i class="fas fa-save"></i> Save Photos</button>
-        </div>
+        <div class="btn-row"><button class="btn-admin" onclick="savePhotos()"><i class="fas fa-save"></i> Save Photos</button></div>
       </div>
 
       <!-- STAFF TAB -->
@@ -491,18 +267,9 @@
         <p class="panel-sub">Manage the school administration directory.</p>
 
         <div class="form-grid">
-          <div class="form-field">
-            <label>Position</label>
-            <input type="text" id="staffPos" placeholder="e.g. SCHOOL HEAD">
-          </div>
-          <div class="form-field">
-            <label>Name</label>
-            <input type="text" id="staffName" placeholder="e.g. HORIRO R.">
-          </div>
-          <div class="form-field">
-            <label>Phone</label>
-            <input type="text" id="staffPhone" placeholder="+263 7XX XXX XXX">
-          </div>
+          <div class="form-field"><label>Position</label><input type="text" id="staffPos" placeholder="e.g. SCHOOL HEAD"></div>
+          <div class="form-field"><label>Name</label><input type="text" id="staffName" placeholder="e.g. HORIRO R."></div>
+          <div class="form-field"><label>Phone</label><input type="text" id="staffPhone" placeholder="+263 7XX XXX XXX"></div>
           <div class="form-field">
             <label>Category</label>
             <select id="staffCat">
@@ -513,22 +280,17 @@
             </select>
           </div>
         </div>
-
-        <div class="btn-row">
-          <button class="btn-admin" onclick="addStaff()"><i class="fas fa-plus"></i> Add Staff</button>
-        </div>
+        <div class="btn-row"><button class="btn-admin" onclick="addStaff()"><i class="fas fa-plus"></i> Add Staff</button></div>
 
         <div class="table-wrap">
           <table class="cms-table">
-            <thead>
-              <tr><th>Position</th><th>Name</th><th>Phone</th><th>Action</th></tr>
-            </thead>
+            <thead><tr><th>Position</th><th>Name</th><th>Phone</th><th>Action</th></tr></thead>
             <tbody id="staffTableBody"></tbody>
           </table>
         </div>
       </div>
 
-      <!-- SCHOOL TAB -->
+      <!-- SCHOOL INFO TAB -->
       <div class="panel" id="panel-school">
         <h3 class="panel-title"><i class="fas fa-school"></i> School Information</h3>
         <p class="panel-sub">Edit the school's contact info and identity.</p>
@@ -543,10 +305,7 @@
           <div class="form-field"><label>Email</label><input type="email" id="schoolEmail"></div>
           <div class="form-field"><label>Address</label><input type="text" id="schoolAddress"></div>
         </div>
-
-        <div class="btn-row">
-          <button class="btn-admin" onclick="saveSchool()"><i class="fas fa-save"></i> Save School Info</button>
-        </div>
+        <div class="btn-row"><button class="btn-admin" onclick="saveSchool()"><i class="fas fa-save"></i> Save School Info</button></div>
       </div>
 
       <!-- ANNOUNCEMENTS TAB -->
@@ -558,13 +317,8 @@
           <div class="form-field"><label>Title</label><input type="text" id="annTitle" placeholder="Announcement title"></div>
           <div class="form-field"><label>Date</label><input type="date" id="annDate"></div>
         </div>
-        <div class="form-field">
-          <label>Content</label>
-          <textarea id="annContent" placeholder="Announcement text..."></textarea>
-        </div>
-        <div class="btn-row">
-          <button class="btn-admin" onclick="addAnnouncement()"><i class="fas fa-plus"></i> Add Announcement</button>
-        </div>
+        <div class="form-field"><label>Content</label><textarea id="annContent" placeholder="Announcement text..."></textarea></div>
+        <div class="btn-row"><button class="btn-admin" onclick="addAnnouncement()"><i class="fas fa-plus"></i> Add Announcement</button></div>
 
         <h4 style="color:#0b2b1e; margin: 1.5rem 0 0.8rem;">Current Announcements</h4>
         <div id="annList"></div>
@@ -576,69 +330,32 @@
         <p class="panel-sub">Show or hide sections on the homepage.</p>
 
         <div class="item-card">
-          <div class="item-card-content">
-            <h4>Hero Section</h4>
-            <p>Big welcome banner at the top</p>
-          </div>
-          <label style="cursor:pointer;">
-            <input type="checkbox" id="secHero" onchange="toggleSection('hero', this.checked)" style="width:24px; height:24px; cursor:pointer;">
-          </label>
+          <div class="item-card-content"><h4>Hero Section</h4><p>Big welcome banner at the top</p></div>
+          <label style="cursor:pointer;"><input type="checkbox" id="secHero" onchange="toggleSection('hero', this.checked)" style="width:24px; height:24px; cursor:pointer;"></label>
         </div>
-
         <div class="item-card">
-          <div class="item-card-content">
-            <h4>Welcome Message</h4>
-            <p>Headmistress welcome message</p>
-          </div>
-          <label style="cursor:pointer;">
-            <input type="checkbox" id="secWelcome" onchange="toggleSection('welcome', this.checked)" style="width:24px; height:24px; cursor:pointer;">
-          </label>
+          <div class="item-card-content"><h4>Welcome Message</h4><p>Headmistress welcome message</p></div>
+          <label style="cursor:pointer;"><input type="checkbox" id="secWelcome" onchange="toggleSection('welcome', this.checked)" style="width:24px; height:24px; cursor:pointer;"></label>
         </div>
-
         <div class="item-card">
-          <div class="item-card-content">
-            <h4>Quick Links</h4>
-            <p>Grid of quick access links</p>
-          </div>
-          <label style="cursor:pointer;">
-            <input type="checkbox" id="secQuickLinks" onchange="toggleSection('quickLinks', this.checked)" style="width:24px; height:24px; cursor:pointer;">
-          </label>
+          <div class="item-card-content"><h4>Quick Links</h4><p>Grid of quick access links</p></div>
+          <label style="cursor:pointer;"><input type="checkbox" id="secQuickLinks" onchange="toggleSection('quickLinks', this.checked)" style="width:24px; height:24px; cursor:pointer;"></label>
         </div>
-
         <div class="item-card">
-          <div class="item-card-content">
-            <h4>Why Choose Us</h4>
-            <p>Highlights section</p>
-          </div>
-          <label style="cursor:pointer;">
-            <input type="checkbox" id="secWhy" onchange="toggleSection('whyChooseUs', this.checked)" style="width:24px; height:24px; cursor:pointer;">
-          </label>
+          <div class="item-card-content"><h4>Why Choose Us</h4><p>Highlights section</p></div>
+          <label style="cursor:pointer;"><input type="checkbox" id="secWhy" onchange="toggleSection('whyChooseUs', this.checked)" style="width:24px; height:24px; cursor:pointer;"></label>
         </div>
-
         <div class="item-card">
-          <div class="item-card-content">
-            <h4>Projects Preview</h4>
-            <p>Mushroom, pumpkin, road runners</p>
-          </div>
-          <label style="cursor:pointer;">
-            <input type="checkbox" id="secProjects" onchange="toggleSection('projects', this.checked)" style="width:24px; height:24px; cursor:pointer;">
-          </label>
+          <div class="item-card-content"><h4>Projects Preview</h4><p>Mushroom, pumpkin, road runners</p></div>
+          <label style="cursor:pointer;"><input type="checkbox" id="secProjects" onchange="toggleSection('projects', this.checked)" style="width:24px; height:24px; cursor:pointer;"></label>
         </div>
-
         <div class="item-card">
-          <div class="item-card-content">
-            <h4>Call-to-Action Banner</h4>
-            <p>Enrollment call-to-action</p>
-          </div>
-          <label style="cursor:pointer;">
-            <input type="checkbox" id="secCta" onchange="toggleSection('cta', this.checked)" style="width:24px; height:24px; cursor:pointer;">
-          </label>
+          <div class="item-card-content"><h4>Call-to-Action Banner</h4><p>Enrollment call-to-action</p></div>
+          <label style="cursor:pointer;"><input type="checkbox" id="secCta" onchange="toggleSection('cta', this.checked)" style="width:24px; height:24px; cursor:pointer;"></label>
         </div>
 
         <div class="btn-row" style="margin-top:2rem;">
-          <button class="btn-admin danger" onclick="if(confirm('Reset ALL website content to defaults? This cannot be undone.')) { resetData(); location.reload(); }">
-            <i class="fas fa-trash"></i> Reset All Content
-          </button>
+          <button class="btn-admin danger" onclick="if(confirm('Reset ALL website content to defaults? This cannot be undone.')) { resetData(); location.reload(); }"><i class="fas fa-trash"></i> Reset All Content</button>
         </div>
       </div>
 
@@ -660,7 +377,6 @@
       loadAllPanels();
     }
 
-    // Login
     function doLogin() {
       const key = document.getElementById('adminKey').value.trim();
       if (login(key)) {
@@ -677,13 +393,11 @@
       if (e.key === 'Enter') doLogin();
     });
 
-    // Logout
     function doLogout() {
       logout();
       location.reload();
     }
 
-    // Toast
     function toast(msg, isError) {
       const t = document.getElementById('toast');
       t.textContent = msg;
@@ -708,7 +422,6 @@
     function loadAllPanels() {
       const d = getData();
 
-      // Results
       renderAdminResults();
 
       // Hero
@@ -749,7 +462,6 @@
 
       // Staff
       renderStaffTable();
-
       // Announcements
       renderAnnList();
 
@@ -791,9 +503,7 @@
           <td>${s.shona}</td>
           <td>${s.social}</td>
           <td><strong>${avg}%</strong></td>
-          <td>
-            <button class="btn-admin danger small" onclick="deleteStudent(${i})"><i class="fas fa-trash"></i></button>
-          </td>`;
+          <td><button class="btn-admin danger small" onclick="deleteStudent(${i})"><i class="fas fa-trash"></i></button></td>`;
         tbody.appendChild(row);
       });
     }
@@ -938,7 +648,7 @@
     }
 
     /* ============================================================
-       SCHOOL
+       SCHOOL INFO
        ============================================================ */
     function saveSchool() {
       const d = getData();
